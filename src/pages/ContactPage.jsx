@@ -1,14 +1,16 @@
-import { useLayoutEffect, useRef } from "react";
-import { ArrowRight, Check, Mail, MapPin, Phone, Send, Sparkles } from "lucide-react";
+import { useLayoutEffect, useRef, useState } from "react";
+import { ArrowRight, ChevronDown, Mail, MapPin, Phone, Sparkles } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Contact from "../components/forms/Contact";
+import { FAQ_ITEMS } from "../utils/constants";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ContactPage = () => {
     const pageRef = useRef(null);
+    const [openFaq, setOpenFaq] = useState(0);
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
@@ -102,13 +104,11 @@ const ContactPage = () => {
 
                     <div className="contact-page__hero-card">
                         <div className="contact-page__hero-card-glow" />
-                        <span className="contact-page__hero-card-label">
-                            COSMALAC · DUBAI
-                        </span>
-                        <div className="contact-page__hero-card-mark">
-                            <span>C</span>
-                        </div>
-                        <p>Premium skincare. Thoughtfully connected.</p>
+                        <img
+                            className="contact-page__hero-logo"
+                            src="/images/logo/cosmalac-logo.png"
+                            alt="Cosmalac"
+                        />
                     </div>
                 </div>
             </section>
@@ -137,6 +137,75 @@ const ContactPage = () => {
                             <small>Based in</small>
                             <p>Dubai, United Arab Emirates</p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="contact-page__faq section" id="faq">
+                <div className="container">
+                    <div className="contact-page__faq-heading">
+                        <div>
+                            <span className="contact-page__faq-eyebrow">
+                                Frequently asked
+                            </span>
+                            <h2>
+                                Questions,
+                                <br />
+                                <em>answered.</em>
+                            </h2>
+                        </div>
+                        <p>
+                            Find quick answers about Cosmalac, our formulas
+                            and how to choose the right products.
+                        </p>
+                    </div>
+
+                    <div className="contact-page__faq-list">
+                        {FAQ_ITEMS.map((item, index) => {
+                            const isOpen = openFaq === index;
+
+                            return (
+                                <article
+                                    className={
+                                        isOpen
+                                            ? "contact-page__faq-item is-open"
+                                            : "contact-page__faq-item"
+                                    }
+                                    key={item.question}
+                                >
+                                    <button
+                                        type="button"
+                                        aria-expanded={isOpen}
+                                        onClick={() =>
+                                            setOpenFaq(isOpen ? null : index)
+                                        }
+                                    >
+                                        <span className="contact-page__faq-number">
+                                            {String(index + 1).padStart(2, "0")}
+                                        </span>
+                                        <span className="contact-page__faq-question">
+                                            {item.question}
+                                        </span>
+                                        <span className="contact-page__faq-toggle">
+                                            <ChevronDown size={18} />
+                                        </span>
+                                    </button>
+
+                                    <div
+                                        className="contact-page__faq-answer-wrap"
+                                        style={{
+                                            gridTemplateRows: isOpen
+                                                ? "1fr"
+                                                : "0fr",
+                                        }}
+                                    >
+                                        <div className="contact-page__faq-answer">
+                                            <p>{item.answer}</p>
+                                        </div>
+                                    </div>
+                                </article>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
