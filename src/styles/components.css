@@ -5717,3 +5717,162 @@ body.modal-open {
         font-size: 4rem;
     }
 }
+
+/* =========================================================
+   PRODUCT DETAIL — SCROLLYTELLING / ROTATABLE PRODUCT
+   ========================================================= */
+
+.product-detail--scrollytelling .product-detail__image-inner {
+    position: relative;
+    isolation: isolate;
+    perspective: 1400px;
+    overflow: hidden;
+    will-change: transform, opacity;
+}
+
+.product-detail--scrollytelling .product-detail__product-visual {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.product-detail--scrollytelling .product-detail__product-art {
+    position: relative;
+    z-index: 4;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    touch-action: pan-y;
+    transform: rotateY(var(--product-drag-rotation, 0deg)) rotateZ(0deg);
+    transform-style: preserve-3d;
+    transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+.product-detail--scrollytelling .product-detail__product-art:active {
+    cursor: grabbing;
+    transition: none;
+}
+
+.product-detail--scrollytelling .product-detail__product-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+    transform: translateZ(18px);
+}
+
+.product-detail--scrollytelling .product-detail__orbit {
+    position: absolute;
+    z-index: 1;
+    inset: 7%;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+}
+
+.product-detail--scrollytelling .product-detail__orbit span {
+    position: absolute;
+    display: block;
+    width: 62%;
+    aspect-ratio: 1;
+    border: 1px solid rgba(174, 134, 69, 0.16);
+    border-radius: 50%;
+}
+
+.product-detail--scrollytelling .product-detail__orbit span:nth-child(2) {
+    width: 78%;
+    border-color: rgba(174, 134, 69, 0.11);
+}
+
+.product-detail--scrollytelling .product-detail__orbit span:nth-child(3) {
+    width: 94%;
+    border-color: rgba(174, 134, 69, 0.08);
+}
+
+.product-detail--scrollytelling .product-detail__rotate-hint {
+    position: absolute;
+    z-index: 6;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    padding: 0.55rem 0.75rem;
+    color: var(--color-brown-700);
+    background: rgba(255, 253, 248, 0.72);
+    border: 1px solid rgba(174, 134, 69, 0.16);
+    border-radius: var(--radius-pill);
+    backdrop-filter: blur(10px);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+.product-detail--scrollytelling .product-detail__content {
+    will-change: transform, opacity;
+}
+
+@media (max-width: 767px) {
+    .product-detail--scrollytelling {
+        gap: 2rem;
+    }
+
+    .product-detail--scrollytelling .product-detail__image-inner {
+        aspect-ratio: 1 / 1.05;
+        padding: 1.5rem;
+        border-radius: var(--radius-xl);
+    }
+
+    .product-detail--scrollytelling .product-detail__product-art {
+        width: 94%;
+        height: 94%;
+    }
+
+    .product-detail--scrollytelling .product-detail__orbit {
+        inset: 3%;
+    }
+
+    .product-detail--scrollytelling .product-detail__rotate-hint {
+        right: 0.85rem;
+        bottom: 0.85rem;
+        font-size: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-detail--scrollytelling .product-detail__image-inner {
+        padding: 1rem;
+    }
+
+    .product-detail--scrollytelling .product-detail__product-art {
+        width: 98%;
+        height: 98%;
+    }
+
+    .product-detail--scrollytelling .product-detail__rotate-hint {
+        bottom: 0.65rem;
+        right: 0.65rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .product-detail--scrollytelling .product-detail__product-art {
+        transition: none;
+    }
+
+    .product-detail--scrollytelling .product-detail__rotate-hint {
+        display: none;
+    }
+}
