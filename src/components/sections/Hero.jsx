@@ -526,11 +526,6 @@ const Hero = () => {
 
                     </div>
 
-                    <div className="hero__note">
-                        <span className="hero__note-line" />
-                        <span>Cosmalac Pvt Ltd · Dubai, UAE</span>
-                    </div>
-
                 </div>
 
                 <div className="hero__visual">
