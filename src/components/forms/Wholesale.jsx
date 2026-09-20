@@ -109,8 +109,8 @@ const Wholesale = () => {
                                 <ArrowRight size={15} />
                             </a>
 
-                            <a href="tel:+971559915823">
-                                +971 55 991 5823
+                            <a href="tel:+94755697476">
+                                +94 75 569 7476
                                 <ArrowRight size={15} />
                             </a>
                         </div>
@@ -200,7 +200,7 @@ const Wholesale = () => {
                                         label="Phone"
                                         name="phone"
                                         type="tel"
-                                        placeholder="+971..."
+                                        placeholder="+94 75..."
                                         value={form.phone}
                                         onChange={handleChange}
                                         error={errors.phone}
