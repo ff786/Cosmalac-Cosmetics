@@ -8826,3 +8826,219 @@ body.menu-open {
         padding-top: 3rem;
     }
 }
+
+
+
+/* =========================================================
+   COSMALAC HEADER — PROFESSIONAL MOBILE SYSTEM
+   ========================================================= */
+
+@media (max-width: 1023px) {
+    .nuvia-header {
+        height: 74px;
+        background: rgba(255, 253, 250, 0.82);
+        border-bottom: 1px solid rgba(92, 63, 45, 0.08);
+        box-shadow: 0 5px 24px rgba(55, 37, 27, 0.055);
+        backdrop-filter: blur(18px) saturate(125%);
+        -webkit-backdrop-filter: blur(18px) saturate(125%);
+    }
+
+    .nuvia-header--scrolled {
+        background: rgba(255, 253, 250, 0.94);
+        box-shadow: 0 8px 28px rgba(55, 37, 27, 0.09);
+    }
+
+    .nuvia-header__inner {
+        width: calc(100% - 32px);
+        max-width: none;
+        grid-template-columns: 1fr auto;
+        gap: 1rem;
+    }
+
+    .nuvia-header__logo {
+        justify-self: start;
+        transform: none !important;
+    }
+
+    .nuvia-header__logo-name {
+        font-size: 1.28rem;
+        letter-spacing: 0.18em;
+    }
+
+    .nuvia-header__logo-est {
+        margin-top: 4px;
+        font-size: 0.38rem;
+        letter-spacing: 0.29em;
+    }
+
+    .nuvia-nav--desktop {
+        display: none;
+    }
+
+    .nuvia-header__actions {
+        justify-self: end;
+        gap: 0.55rem;
+    }
+
+    .nuvia-header__inquiry {
+        min-height: 40px;
+        padding: 0.62rem 0.85rem;
+        font-size: 0.58rem;
+        letter-spacing: 0.01em;
+    }
+
+    .nuvia-header__mobile-toggle {
+        display: inline-flex;
+        position: relative;
+        z-index: calc(var(--z-header) + 20);
+        width: 42px;
+        height: 42px;
+    }
+}
+
+@media (max-width: 767px) {
+    .nuvia-header {
+        height: 68px;
+    }
+
+    .nuvia-header__inner {
+        width: calc(100% - 24px);
+        padding-inline: 0;
+    }
+
+    .nuvia-header__logo-name {
+        font-size: 1.12rem;
+        letter-spacing: 0.16em;
+    }
+
+    .nuvia-header__logo-est {
+        margin-top: 3px;
+        font-size: 0.34rem;
+        letter-spacing: 0.25em;
+    }
+
+    .nuvia-header__inquiry {
+        min-height: 38px;
+        padding: 0.58rem 0.7rem;
+        font-size: 0.53rem;
+    }
+
+    .nuvia-header__inquiry svg {
+        display: none;
+    }
+
+    .nuvia-header__mobile-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nuvia-mobile-menu {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100dvh !important;
+        min-height: 100dvh !important;
+        max-height: none !important;
+        margin: 0 !important;
+        padding:
+            calc(1rem + env(safe-area-inset-top))
+            calc(1rem + env(safe-area-inset-right))
+            calc(1rem + env(safe-area-inset-bottom))
+            calc(1rem + env(safe-area-inset-left));
+        box-sizing: border-box;
+        border-radius: 0;
+        transform: none;
+    }
+
+    .nuvia-mobile-menu__header {
+        min-height: 44px;
+        padding: 0;
+    }
+
+    .nuvia-mobile-menu__brand {
+        font-family: "Josefin Sans", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+    }
+
+    .nuvia-mobile-menu__close {
+        width: 40px;
+        height: 40px;
+        flex: 0 0 40px;
+    }
+
+    .nuvia-mobile-menu__nav {
+        margin-top: clamp(2.8rem, 9vh, 5rem);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nuvia-mobile-menu__link {
+        display: grid;
+        grid-template-columns: 38px 1fr;
+        align-items: center;
+        gap: 0.65rem;
+        min-height: 64px;
+        padding: 0.85rem 0;
+        border-bottom: 1px solid rgba(92, 63, 45, 0.1);
+        color: var(--color-brown-800);
+        font-family: var(--font-serif);
+        font-size: clamp(1.75rem, 8.5vw, 2.8rem);
+        line-height: 1;
+    }
+
+    .nuvia-mobile-menu__link span {
+        color: var(--color-gold-600);
+        font-family: "Josefin Sans", sans-serif;
+        font-size: 0.5rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+    }
+
+    .nuvia-mobile-menu__link--active {
+        color: var(--color-gold-600);
+    }
+
+    .nuvia-mobile-menu__footer {
+        margin-top: auto;
+        padding-top: 2rem;
+        padding-bottom: 0.5rem;
+        border-top: 1px solid rgba(92, 63, 45, 0.08);
+    }
+
+    .nuvia-mobile-menu__footer p {
+        color: var(--color-text-muted);
+        font-size: 0.68rem;
+        line-height: 1.6;
+    }
+
+    body.menu-open {
+        overflow: hidden !important;
+        touch-action: none;
+    }
+}
+
+@media (max-width: 390px) {
+    .nuvia-header__inquiry {
+        max-width: 122px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .nuvia-header__logo-name {
+        font-size: 1rem;
+    }
+
+    .nuvia-mobile-menu__link {
+        min-height: 58px;
+        font-size: 1.7rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nuvia-mobile-menu {
+        transition: none;
+    }
+}
