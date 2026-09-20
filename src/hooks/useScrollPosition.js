@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
 const useScrollPosition = () => {
-    const [scrollPosition, setScrollPosition] = useState(0);
+    const [y, setY] = useState(0);
 
     useEffect(() => {
         let ticking = false;
 
         const updateScrollPosition = () => {
-            setScrollPosition(window.scrollY);
+            setY(window.scrollY);
             ticking = false;
         };
 
@@ -29,7 +29,7 @@ const useScrollPosition = () => {
         };
     }, []);
 
-    return scrollPosition;
+    return { y };
 };
 
 export default useScrollPosition;
