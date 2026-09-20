@@ -1327,30 +1327,39 @@ body.modal-open {
     inset: 0;
     z-index: 0;
     overflow: hidden;
-
-    background:
-            radial-gradient(
-                    circle at 18% 35%,
-                    rgba(255, 255, 255, 0.82),
-                    transparent 31%
-            ),
-            radial-gradient(
-                    circle at 82% 25%,
-                    rgba(203, 161, 92, 0.17),
-                    transparent 30%
-            );
-
+    background: #ead8c0;
     pointer-events: none;
+}
+
+.hero__background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 252, 247, 0.18) 0%,
+            rgba(255, 252, 247, 0.04) 42%,
+            transparent 68%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.06),
+            transparent 35%
+        );
 }
 
 .hero__background-image {
     position: absolute;
-    inset: -2%;
-    width: 104%;
-    height: 104%;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
     display: block;
     object-fit: cover;
-    object-position: center;
+    object-position: center center;
     transform: scale(1);
     transform-origin: center center;
     will-change: transform;
@@ -1639,6 +1648,7 @@ body.modal-open {
     z-index: 30;
     overflow: hidden;
     pointer-events: none;
+    isolation: isolate;
 }
 
 .hero__model-layer {
@@ -1651,7 +1661,9 @@ body.modal-open {
     max-width: none;
     transform-origin: 68% 78%;
     will-change: transform;
-    filter: drop-shadow(0 24px 40px rgba(55, 37, 27, 0.08));
+    filter:
+        drop-shadow(0 24px 40px rgba(55, 37, 27, 0.08))
+        drop-shadow(0 8px 18px rgba(174, 134, 69, 0.06));
 }
 
 .hero__image-frame--mobile {
