@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const COOKIE_NAME = "cosmalac_cookie_consent";
 const ONE_YEAR = 60 * 60 * 24 * 365;
 
 const readConsent = () => {
+    if (typeof document === "undefined") {
+        return null;
+    }
+
     const cookie = document.cookie
         .split("; ")
         .find((entry) => entry.startsWith(COOKIE_NAME + "="));
@@ -26,11 +30,7 @@ const writeConsent = (value) => {
 };
 
 const CookieConsent = () => {
-    const [consent, setConsent] = useState(null);
-
-    useEffect(() => {
-        setConsent(readConsent());
-    }, []);
+    const [consent, setConsent] = useState(readConsent);
 
     if (consent) {
         return null;
