@@ -180,11 +180,16 @@ const WholesalePage = () => {
 
                 gsap.set(imageWrapRef.current, {
                     opacity: 0,
-                    x: 48,
-                    y: 72,
-                    scale: 1.035,
+                    x: 42,
+                    y: 34,
+                    scale: 1.02,
+                    top: "auto",
+                    bottom: 0,
+                    height: "58%",
+                    left: 0,
+                    right: 0,
                     clipPath:
-                        "polygon(100% 42%, 100% 100%, 0% 100%, 0% 78%)",
+                        "polygon(100% 0%, 100% 100%, 0% 100%, 0% 48%)",
                 });
 
                 const intro = gsap.timeline({
@@ -243,15 +248,21 @@ const WholesalePage = () => {
                         imageWrapRef.current,
                         {
                             x: 0,
-                            y: 18,
-                            scale: 1.10,
+                            y: 0,
+                            scale: 1,
+                            height: "58%",
+                            top: "auto",
+                            bottom: 0,
                             clipPath:
-                                "polygon(100% 58%, 100% 100%, 0% 100%, 0% 84%)",
+                                "polygon(100% 0%, 100% 100%, 0% 100%, 0% 48%)",
                         },
                         {
                             x: -4,
-                            y: -4,
+                            y: 0,
                             scale: 1.055,
+                            height: "100%",
+                            top: 0,
+                            bottom: 0,
                             clipPath:
                                 "polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)",
                             duration: 1,
