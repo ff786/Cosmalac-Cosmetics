@@ -9804,13 +9804,19 @@ body.menu-open {
     }
 
     .hero {
-        min-height: 185svh;
+        width: 100% !important;
+        min-height: 100svh;
+        height: 100svh;
+        max-height: 100svh;
+        overflow: visible;
     }
 
     .hero__container {
+        position: relative;
         width: 100% !important;
         height: 100svh;
         min-height: 100svh;
+        max-height: 100svh;
     }
 
     .hero__content {
