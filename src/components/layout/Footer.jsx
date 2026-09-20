@@ -3,6 +3,7 @@ import {
     Mail,
     MapPin,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import { NAVIGATION_ITEMS, SOCIAL_LINKS } from "../../utils/constants";
 
@@ -39,10 +40,10 @@ const Footer = () => {
 
                             <nav>
                                 {NAVIGATION_ITEMS.map((item) => (
-                                    <a key={item.path} href={item.path}>
+                                    <Link key={item.path} to={item.path}>
                                         {item.label}
                                         <ArrowUpRight size={13} />
-                                    </a>
+                                    </Link>
                                 ))}
                             </nav>
                         </div>
@@ -137,8 +138,8 @@ const Footer = () => {
                         </p>
 
                         <div className="nuvia-footer__legal">
-                            <a href="/privacy">Privacy</a>
-                            <a href="/terms">Terms</a>
+                            <Link to="/privacy">Privacy</Link>
+                            <Link to="/terms">Terms</Link>
                         </div>
                     </div>
                 </div>
