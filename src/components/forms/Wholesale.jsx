@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
     ArrowRight,
     Building2,
@@ -12,6 +12,10 @@ import Input from "../common/Input";
 import Button from "../common/Button";
 
 import { validateWholesaleForm } from "../../utils/validation";
+import {
+    hasRecentSubmission,
+    isLikelyBot,
+} from "../../utils/formSecurity";
 
 const initialForm = {
     businessName: "",
@@ -27,6 +31,8 @@ const Wholesale = () => {
     const [form, setForm] = useState(initialForm);
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
+    const [honeypot, setHoneypot] = useState("");
+    const startedAtRef = useRef(Date.now());
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -52,6 +58,39 @@ const Wholesale = () => {
             setErrors(validationErrors);
             return;
         }
+
+        if (
+            isLikelyBot({
+                honeypot,
+                startedAt: startedAtRef.current,
+            }) ||
+            hasRecentSubmission("wholesale")
+        ) {
+            return;
+        }
+
+        const whatsappMessage = [
+            "Hello Cosmalac, I would like to make a wholesale / B2B inquiry.",
+            "",
+            `Business: ${form.businessName.trim()}`,
+            `Contact: ${form.contactName.trim()}`,
+            `Email: ${form.email.trim()}`,
+            `Phone: ${form.phone.trim()}`,
+            `Country / Market: ${form.country.trim() || "Not provided"}`,
+            `Estimated Quantity: ${form.quantity.trim() || "Not provided"}`,
+            "",
+            "Requirements:",
+            form.message.trim() || "Not provided",
+        ].join("\n");
+
+        const whatsappUrl =
+            `https://wa.me/94755697476?text=${encodeURIComponent(whatsappMessage)}`;
+
+        window.open(
+            whatsappUrl,
+            "_blank",
+            "noopener,noreferrer"
+        );
 
         setSubmitted(true);
     };
@@ -133,8 +172,10 @@ const Wholesale = () => {
                                 </h3>
 
                                 <p>
-                                    Our B2B team will review your inquiry
-                                    and contact you with the next steps.
+                                    Your inquiry has been prepared for
+                                    WhatsApp. Complete the conversation there
+                                    and our B2B team will contact you with the
+                                    next steps.
                                 </p>
 
                                 <button
@@ -152,6 +193,16 @@ const Wholesale = () => {
                                 className="wholesale__form"
                                 onSubmit={handleSubmit}
                             >
+                                <input
+                                    type="text"
+                                    name="website"
+                                    value={honeypot}
+                                    onChange={(event) => setHoneypot(event.target.value)}
+                                    tabIndex="-1"
+                                    autoComplete="off"
+                                    aria-hidden="true"
+                                    className="form-honeypot"
+                                />
                                 <div className="wholesale__form-title">
                                     <h3>
                                         Let's build something
