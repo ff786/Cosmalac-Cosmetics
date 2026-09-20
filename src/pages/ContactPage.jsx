@@ -136,8 +136,8 @@ const ContactPage = () => {
                         <div className="contact-page__principle">
                             <span><Phone size={18} /></span>
                             <small>Phone</small>
-                            <a href="tel:+971559915823">
-                                +971 55 991 5823
+                            <a href="tel:+94755697476">
+                                +94 75 569 7476
                             </a>
                         </div>
 
