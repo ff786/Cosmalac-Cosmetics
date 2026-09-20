@@ -305,7 +305,7 @@ const Hero = () => {
                         </Link>
 
                         <a
-                            href="#wholesale"
+                            href="/wholesale"
                             className="hero__secondary-link"
                         >
                             Wholesale Inquiry

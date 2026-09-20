@@ -6,6 +6,10 @@ export const APP_NAME = "Cosmalac";
 
 export const NAVIGATION_ITEMS = [
     {
+        label: "Home",
+        path: "/",
+    },
+    {
         label: "Products",
         path: "/products",
     },
@@ -19,7 +23,7 @@ export const NAVIGATION_ITEMS = [
     },
     {
         label: "Contact Us",
-        path: "/contact",
+        path: "/ContactUs",
     },
 ];
 

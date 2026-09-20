@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
 import AboutPage from "./pages/AboutPage";
 import WholesalePage from "./pages/WholesalePage";
+import ContactPage from "./pages/ContactPage.jsx";
 import { destroyLenis, initLenis } from "./utils/lenis";
 
 const App = () => {
@@ -95,6 +96,10 @@ const App = () => {
                 <Route
                     path="/about"
                     element={<AboutPage />}
+                />
+                <Route
+                    path="/ContactUs"
+                    element={<ContactPage />}
                 />
                 <Route
                     path="/wholesale"
