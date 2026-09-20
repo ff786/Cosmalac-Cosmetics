@@ -176,17 +176,3 @@ export const CartProvider = ({ children }) => {
         </CartContext.Provider>
     );
 };
-
-export const useCart = () => {
-    const context = useContext(CartContext);
-
-    if (!context) {
-        throw new Error(
-            "useCart must be used inside a CartProvider"
-        );
-    }
-
-    return context;
-};
-
-export default CartContext;
