@@ -10507,3 +10507,120 @@ body.menu-open {
         object-position: 73% 20%;
     }
 }
+
+
+/* =========================================================
+   WHOLESALE MOBILE — STATIC POSITIONING
+   Clean editorial composition: copy above, portrait anchored
+   to the bottom-right and revealed diagonally.
+   ========================================================= */
+
+@media (max-width: 767px) {
+    .wholesale-page__hero--editorial {
+        position: relative;
+        min-height: 100svh;
+        height: 100svh;
+        max-height: 100svh;
+        overflow: hidden;
+        background: #f8eee0;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-container {
+        position: relative;
+        z-index: 8;
+        width: calc(100% - 2rem);
+        height: 100%;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 100%;
+        padding-top: 2.45rem;
+        padding-bottom: 0;
+    }
+
+    /* The portrait is one full-height layer.
+       The diagonal is the actual boundary between copy and image. */
+    .wholesale-page__hero--editorial .wholesale-page__hero-image {
+        position: absolute;
+        z-index: 4;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        margin: 0;
+        border-radius: 0;
+        overflow: hidden;
+        transform: none !important;
+        opacity: 1 !important;
+        clip-path: polygon(
+            100% 0%,
+            100% 100%,
+            0% 100%,
+            0% 76%
+        );
+        will-change: auto;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 72% 38%;
+        transform: none !important;
+        will-change: auto;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-image-wash {
+        opacity: 0.7;
+        background:
+            linear-gradient(
+                180deg,
+                rgba(248,238,224,0) 0%,
+                rgba(248,238,224,0.02) 48%,
+                rgba(248,238,224,0.08) 72%,
+                rgba(57,37,29,0.04) 100%
+            );
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content,
+    .wholesale-page__hero--editorial .wholesale-page__hero-content h1,
+    .wholesale-page__hero--editorial .wholesale-page__hero-content p,
+    .wholesale-page__hero--editorial .wholesale-page__hero-content .eyebrow,
+    .wholesale-page__hero--editorial .wholesale-page__hero-link {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-stats {
+        z-index: 10;
+        left: 1.25rem;
+        right: 1.25rem;
+        bottom: 1.15rem;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .wholesale-page__hero--editorial .wholesale-page__hero-content {
+        padding-top: 2.35rem;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-image {
+        clip-path: polygon(
+            100% 0%,
+            100% 100%,
+            0% 100%,
+            0% 74%
+        );
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-image img {
+        object-position: 72% 37%;
+    }
+}
