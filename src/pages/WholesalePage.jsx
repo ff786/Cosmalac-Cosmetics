@@ -243,14 +243,14 @@ const WholesalePage = () => {
                         imageWrapRef.current,
                         {
                             x: 0,
-                            y: 0,
-                            scale: 1,
+                            y: 18,
+                            scale: 1.10,
                             clipPath:
-                                "polygon(100% 24%, 100% 100%, 0% 100%, 0% 84%)",
+                                "polygon(100% 58%, 100% 100%, 0% 100%, 0% 84%)",
                         },
                         {
                             x: -4,
-                            y: -12,
+                            y: -4,
                             scale: 1.055,
                             clipPath:
                                 "polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)",
