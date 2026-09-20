@@ -10609,9 +10609,14 @@ body.menu-open {
     min-height: 48px;
     padding: 0.75rem 1.15rem;
 
-    color: #fffaf3;
-    background: var(--color-brown-800);
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: var(--color-brown-900);
+    background: linear-gradient(
+        135deg,
+        #fff5df 0%,
+        #e9ca8d 52%,
+        #bd8740 100%
+    );
+    border: 1px solid rgba(174, 134, 69, 0.3);
     border-radius: 999px;
 
     box-shadow:
@@ -10638,8 +10643,13 @@ body.menu-open {
 }
 
 .whatsapp-chat-button:hover {
-    background: var(--color-brown-900);
-    color: #fffaf3;
+    background: linear-gradient(
+        135deg,
+        #fff8e9 0%,
+        #efd49f 52%,
+        #c9944c 100%
+    );
+    color: var(--color-brown-900);
     transform: translateY(-2px) scale(1.05);
     box-shadow:
         0 18px 34px rgba(57, 37, 29, 0.28),
