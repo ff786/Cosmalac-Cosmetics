@@ -252,7 +252,7 @@ const Hero = () => {
                         "pointermove",
                         handlePointerMove
                     );
-                    heroRef.current?.removeEventListener(
+                    heroElement.removeEventListener(
                         "pointerleave",
                         resetPointer
                     );
@@ -268,7 +268,7 @@ const Hero = () => {
             mm.add("(max-width: 767px)", () => {
                 const tl = gsap.timeline({
                     scrollTrigger: {
-                        trigger: heroRef.current,
+                        trigger: heroElement,
                         start: "top top",
                         end: "bottom top",
                         scrub: 1,
