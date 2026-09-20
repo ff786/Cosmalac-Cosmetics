@@ -5876,3 +5876,318 @@ body.modal-open {
         display: none;
     }
 }
+
+
+
+/* =========================================================
+   COSMALAC — FLOATING 3D PRODUCT STAGE
+   ========================================================= */
+
+.product-detail--scrollytelling {
+    position: relative;
+    min-height: min(860px, 92vh);
+    align-items: center;
+    overflow: visible;
+}
+
+.product-detail--scrollytelling .product-detail__image {
+    position: relative;
+    min-height: 720px;
+    display: grid;
+    place-items: center;
+    overflow: visible;
+}
+
+.product-detail--scrollytelling .product-detail__image-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 720px;
+    display: grid;
+    place-items: center;
+    isolation: isolate;
+    perspective: 1500px;
+    overflow: visible;
+}
+
+.product-detail--scrollytelling .product-detail__image-inner::before {
+    content: "";
+    position: absolute;
+    width: 72%;
+    height: 72%;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 250, 235, 0.98) 0%,
+        rgba(246, 232, 210, 0.72) 42%,
+        rgba(246, 232, 210, 0) 74%
+    );
+    filter: blur(8px);
+    z-index: -3;
+}
+
+.product-detail--scrollytelling .product-detail__product-visual {
+    position: relative;
+    z-index: 5;
+    width: min(620px, 78%);
+    aspect-ratio: 1 / 0.82;
+    display: grid;
+    place-items: center;
+    transform-style: preserve-3d;
+    will-change: transform;
+    filter: drop-shadow(0 45px 38px rgba(65, 42, 28, 0.13));
+}
+
+.product-detail--scrollytelling .product-detail__product-art {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    cursor: grab;
+    touch-action: pan-y;
+    transform:
+        rotateY(var(--product-drag-rotation, 0deg))
+        rotateX(var(--product-drag-tilt, 0deg));
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.product-detail--scrollytelling .product-detail__product-art::before {
+    content: "";
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    bottom: 8%;
+    height: 12%;
+    border-radius: 50%;
+    background: rgba(61, 39, 28, 0.2);
+    filter: blur(22px);
+    transform: translateZ(-80px) scaleX(0.8);
+    z-index: -2;
+}
+
+.product-detail--scrollytelling .product-detail__product-art img {
+    position: relative;
+    z-index: 3;
+    width: 92%;
+    height: 92%;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+    transform: translateZ(35px);
+    filter:
+        drop-shadow(0 24px 22px rgba(60, 39, 28, 0.16))
+        saturate(1.03);
+}
+
+.product-detail--scrollytelling .product-detail__product-sheen {
+    position: absolute;
+    z-index: 5;
+    width: 54%;
+    height: 42%;
+    border-radius: 50%;
+    background: linear-gradient(
+        110deg,
+        rgba(255,255,255,0) 15%,
+        rgba(255,255,255,0.28) 47%,
+        rgba(255,255,255,0) 72%
+    );
+    filter: blur(5px);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    transform: translate(-17%, -7%) rotate(-18deg);
+    opacity: 0.45;
+}
+
+.product-detail--scrollytelling .product-detail__air-shadow {
+    position: absolute;
+    z-index: 2;
+    bottom: 10%;
+    width: 42%;
+    height: 5%;
+    border-radius: 50%;
+    background: rgba(60, 39, 28, 0.28);
+    filter: blur(20px);
+    opacity: 0.62;
+    will-change: transform, opacity;
+}
+
+.product-detail--scrollytelling .product-detail__orbit {
+    position: absolute;
+    z-index: 1;
+    width: 86%;
+    height: 54%;
+    inset: auto;
+    left: 7%;
+    top: 25%;
+    display: block;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+}
+
+.product-detail--scrollytelling .product-detail__orbit::before,
+.product-detail--scrollytelling .product-detail__orbit::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(174, 134, 69, 0.18);
+    border-radius: 50%;
+    transform: rotateX(68deg) rotateZ(-8deg);
+}
+
+.product-detail--scrollytelling .product-detail__orbit::after {
+    inset: 9% 2%;
+    border-color: rgba(174, 134, 69, 0.10);
+    transform: rotateX(68deg) rotateZ(10deg);
+}
+
+.product-detail--scrollytelling .product-detail__orbit span {
+    width: 9px;
+    height: 9px;
+    aspect-ratio: auto;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(186, 139, 65, 0.7);
+    box-shadow: 0 0 16px rgba(220, 178, 102, 0.8);
+}
+
+.product-detail--scrollytelling .product-detail__orbit span:nth-child(1) {
+    left: 14%;
+    top: 24%;
+}
+
+.product-detail--scrollytelling .product-detail__orbit span:nth-child(2) {
+    width: 13px;
+    height: 13px;
+    left: 74%;
+    top: 62%;
+}
+
+.product-detail--scrollytelling .product-detail__orbit span:nth-child(3) {
+    left: 52%;
+    top: 6%;
+}
+
+.product-detail--scrollytelling .product-detail__particles {
+    position: absolute;
+    inset: 8%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.product-detail--scrollytelling .product-detail__particles span {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(183, 137, 66, 0.62);
+    box-shadow: 0 0 12px rgba(224, 182, 105, 0.8);
+    animation: cosmalac-particle-float 4s ease-in-out infinite;
+}
+
+.product-detail--scrollytelling .product-detail__particles span:nth-child(1) { left: 16%; top: 26%; animation-delay: -1s; }
+.product-detail--scrollytelling .product-detail__particles span:nth-child(2) { left: 78%; top: 28%; animation-delay: -2.2s; }
+.product-detail--scrollytelling .product-detail__particles span:nth-child(3) { left: 68%; top: 72%; animation-delay: -0.6s; }
+.product-detail--scrollytelling .product-detail__particles span:nth-child(4) { left: 28%; top: 76%; animation-delay: -3s; }
+.product-detail--scrollytelling .product-detail__particles span:nth-child(5) { left: 48%; top: 15%; animation-delay: -1.8s; }
+
+@keyframes cosmalac-particle-float {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(0.8); opacity: 0.35; }
+    50% { transform: translate3d(0, -14px, 20px) scale(1.2); opacity: 0.9; }
+}
+
+.product-detail--scrollytelling .product-detail__interaction {
+    position: absolute;
+    left: 50%;
+    bottom: 3.5%;
+    z-index: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    transform: translateX(-50%);
+    color: var(--color-brown-700);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.58rem;
+    font-weight: 700;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.product-detail--scrollytelling .product-detail__interaction-degree {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+}
+
+.product-detail--scrollytelling .product-detail__scroll-cue {
+    position: absolute;
+    left: 3%;
+    bottom: 4%;
+    z-index: 8;
+    color: var(--color-text-muted);
+    font-size: 0.56rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+}
+
+@media (max-width: 1023px) {
+    .product-detail--scrollytelling .product-detail__image,
+    .product-detail--scrollytelling .product-detail__image-inner {
+        min-height: 620px;
+    }
+
+    .product-detail--scrollytelling .product-detail__product-visual {
+        width: 82%;
+    }
+}
+
+@media (max-width: 767px) {
+    .product-detail--scrollytelling {
+        min-height: auto;
+    }
+
+    .product-detail--scrollytelling .product-detail__image,
+    .product-detail--scrollytelling .product-detail__image-inner {
+        min-height: 520px;
+    }
+
+    .product-detail--scrollytelling .product-detail__product-visual {
+        width: 94%;
+    }
+
+    .product-detail--scrollytelling .product-detail__interaction {
+        bottom: 2%;
+    }
+
+    .product-detail--scrollytelling .product-detail__scroll-cue {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-detail--scrollytelling .product-detail__image,
+    .product-detail--scrollytelling .product-detail__image-inner {
+        min-height: 430px;
+    }
+
+    .product-detail--scrollytelling .product-detail__product-visual {
+        width: 100%;
+    }
+
+    .product-detail--scrollytelling .product-detail__interaction-degree {
+        font-size: 1.6rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .product-detail--scrollytelling .product-detail__particles span {
+        animation: none;
+    }
+}
