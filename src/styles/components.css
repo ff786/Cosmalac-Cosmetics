@@ -1808,6 +1808,8 @@ body.modal-open {
 @media (max-width: 767px) {
 
     .hero {
+        width: 100vw;
+        max-width: 100vw;
         min-height: 190svh;
         overflow: clip;
     }
@@ -1816,6 +1818,8 @@ body.modal-open {
         position: sticky;
         top: 0;
 
+        width: 100vw;
+        max-width: 100vw;
         height: 100svh;
         min-height: 100svh;
 
@@ -9644,5 +9648,121 @@ body.menu-open {
     .nuvia-mobile-menu,
     .nuvia-nav__link {
         transition: none;
+    }
+}
+
+
+/* =========================================================
+   MOBILE VIEWPORT — FINAL WIDTH / SPACING NORMALIZATION
+   ========================================================= */
+
+@media (max-width: 767px) {
+    html,
+    body,
+    #root,
+    .hero,
+    .hero__container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .nuvia-header {
+        width: 100vw;
+        max-width: 100vw;
+    }
+
+    .hero {
+        min-height: 185svh;
+    }
+
+    .hero__content {
+        top: calc(var(--header-height-mobile) + 1.5rem);
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: none;
+        padding-inline: clamp(1rem, 5vw, 1.35rem);
+    }
+
+    .hero__eyebrow {
+        max-width: 100%;
+        margin-bottom: 1.25rem;
+        font-size: clamp(0.52rem, 2.15vw, 0.66rem);
+        letter-spacing: clamp(0.12em, 0.7vw, 0.2em);
+    }
+
+    .hero__title {
+        max-width: 100%;
+        font-size: clamp(3rem, 15vw, 4.7rem);
+    }
+
+    .hero__title-main,
+    .hero__title-script {
+        max-width: 100%;
+    }
+
+    .hero__description {
+        max-width: min(100%, 31rem);
+        margin-top: 1.5rem;
+        font-size: clamp(0.76rem, 3.6vw, 0.92rem);
+        line-height: 1.7;
+    }
+
+    .hero__actions {
+        width: 100%;
+        max-width: 100%;
+        gap: clamp(0.65rem, 3vw, 1rem);
+    }
+
+    .hero__actions .nuvia-button--large {
+        min-width: 0;
+        flex: 1 1 auto;
+        padding-inline: clamp(0.85rem, 4vw, 1.15rem);
+        font-size: clamp(0.66rem, 2.8vw, 0.78rem);
+    }
+
+    .hero__secondary-link {
+        flex: 0 1 auto;
+        font-size: clamp(0.6rem, 2.7vw, 0.72rem);
+    }
+
+    .hero__note {
+        max-width: 100%;
+        margin-top: 1.1rem;
+        font-size: clamp(0.46rem, 2.1vw, 0.56rem);
+        letter-spacing: clamp(0.06em, 0.45vw, 0.1em);
+    }
+
+    .hero__image-frame {
+        left: 64%;
+        width: min(78vw, 430px);
+        max-width: 78vw;
+    }
+
+    .hero__floating-card {
+        max-width: calc(100vw - 2rem);
+        right: 0.75rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .hero__actions {
+        gap: 0.55rem;
+    }
+
+    .hero__actions .nuvia-button--large {
+        min-height: 44px;
+        padding-inline: 0.8rem;
+        font-size: 0.63rem;
+    }
+
+    .hero__secondary-link {
+        gap: 0.3rem;
+        font-size: 0.58rem;
+    }
+
+    .hero__secondary-link svg {
+        width: 13px;
+        height: 13px;
     }
 }
