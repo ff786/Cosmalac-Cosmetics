@@ -27,6 +27,7 @@ const ProductDetail = ({ product }) => {
     const productArtRef = useRef(null);
     const contentRef = useRef(null);
     const orbitRef = useRef(null);
+    const shadowRef = useRef(null);
 
     const dragState = useRef({
         active: false,
@@ -51,6 +52,7 @@ const ProductDetail = ({ product }) => {
                         visualRef.current,
                         contentRef.current,
                         orbitRef.current,
+                        shadowRef.current,
                     ],
                     {
                         clearProps: "all",
@@ -68,6 +70,26 @@ const ProductDetail = ({ product }) => {
                     scrub: 1.1,
                     invalidateOnRefresh: true,
                 },
+            });
+
+            gsap.to(visualRef.current, {
+                y: -10,
+                rotationZ: 1.5,
+                rotationX: 1.5,
+                duration: 3.8,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true,
+            });
+
+            gsap.to(shadowRef.current, {
+                scaleX: 0.88,
+                scaleY: 0.82,
+                opacity: 0.72,
+                duration: 3.8,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true,
             });
 
             timeline
@@ -136,24 +158,41 @@ const ProductDetail = ({ product }) => {
                 .to(
                     visualRef.current,
                     {
-                        rotateY: 10,
-                        rotateZ: 2.5,
-                        y: -8,
+                        rotateY: 18,
+                        rotateX: -5,
+                        rotateZ: -6,
+                        y: -72,
+                        scale: 1.08,
                         ease: "none",
-                        duration: 0.75,
+                        duration: 1.25,
                     },
                     0.95
                 )
                 .to(
                     visualRef.current,
                     {
+                        rotateY: -10,
+                        rotateX: 3,
+                        rotateZ: 4,
+                        y: -38,
+                        scale: 1.02,
+                        ease: "none",
+                        duration: 1.25,
+                    },
+                    2.2
+                )
+                .to(
+                    visualRef.current,
+                    {
                         rotateY: 0,
+                        rotateX: 0,
                         rotateZ: 0,
                         y: 0,
+                        scale: 1,
                         ease: "power2.out",
-                        duration: 0.75,
+                        duration: 1.1,
                     },
-                    1.7
+                    3.45
                 )
                 .to(
                     orbitRef.current,
@@ -249,6 +288,23 @@ const ProductDetail = ({ product }) => {
                     </div>
 
                     <div
+                        className="product-detail__particles"
+                        aria-hidden="true"
+                    >
+                        <span />
+                        <span />
+                        <span />
+                        <span />
+                        <span />
+                    </div>
+
+                    <div
+                        className="product-detail__air-shadow"
+                        ref={shadowRef}
+                        aria-hidden="true"
+                    />
+
+                    <div
                         className="product-detail__product-visual"
                         ref={visualRef}
                     >
@@ -262,6 +318,11 @@ const ProductDetail = ({ product }) => {
                             role="img"
                             aria-label={`${product.name} — drag to rotate`}
                         >
+                            <span
+                                className="product-detail__product-sheen"
+                                aria-hidden="true"
+                            />
+
                             <img
                                 src={product.image}
                                 alt={product.name}
@@ -270,8 +331,15 @@ const ProductDetail = ({ product }) => {
                         </div>
                     </div>
 
-                    <span className="product-detail__rotate-hint">
-                        Drag to rotate
+                    <div className="product-detail__interaction">
+                        <span className="product-detail__interaction-degree">
+                            360°
+                        </span>
+                        <span>Drag to rotate</span>
+                    </div>
+
+                    <span className="product-detail__scroll-cue">
+                        Scroll to explore
                     </span>
                 </div>
             </div>
