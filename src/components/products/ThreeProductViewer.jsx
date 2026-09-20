@@ -3,7 +3,7 @@ import * as THREE from "three";
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
-const createLabelTexture = (sourceUrl) => {
+const createLabelTexture = (product) => {
     const canvas = document.createElement("canvas");
     canvas.width = 1024;
     canvas.height = 512;
@@ -12,22 +12,38 @@ const createLabelTexture = (sourceUrl) => {
     ctx.fillStyle = "#f7e8bf";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    const image = new Image();
-    image.crossOrigin = "anonymous";
-    image.src = sourceUrl;
+    ctx.fillStyle = "#8c5a19";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
 
-    image.onload = () => {
-        ctx.save();
-        ctx.globalAlpha = 0.98;
-        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-        ctx.restore();
-    };
+    ctx.font = "600 76px Georgia, serif";
+    ctx.fillText(
+        product?.name?.includes("Queen") ? "8X" : "6 in 1",
+        512,
+        205
+    );
+
+    ctx.font = "italic 74px cursive";
+    ctx.fillText(
+        product?.name?.includes("Queen") ? "Beauty Night Care" : "Solution",
+        512,
+        302
+    );
+
+    ctx.strokeStyle = "#9a6b27";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(120, 265);
+    ctx.lineTo(330, 265);
+    ctx.moveTo(694, 265);
+    ctx.lineTo(904, 265);
+    ctx.stroke();
 
     const texture = new THREE.CanvasTexture(canvas);
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.anisotropy = 8;
 
-    return { canvas, texture, image };
+    return texture;
 };
 
 const ThreeProductViewer = ({ product, className = "" }) => {
@@ -153,16 +169,8 @@ const ThreeProductViewer = ({ product, className = "" }) => {
         label.rotation.y = 0;
         labelGroup.add(label);
 
-        const source = product?.labelTexture || product?.image;
-        if (source) {
-            const { texture, image } = createLabelTexture(source);
-            label.material.map = texture;
-            label.material.needsUpdate = true;
-
-            image.onload = () => {
-                texture.needsUpdate = true;
-            };
-        }
+        label.material.map = createLabelTexture(product);
+        label.material.needsUpdate = true;
 
         const inner = new THREE.Mesh(
             new THREE.CylinderGeometry(1.82, 1.88, 1.34, 96),
