@@ -6,6 +6,7 @@ import Layout from "./components/layout/Layout";
 import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
 import AboutPage from "./pages/AboutPage";
+import WholesalePage from "./pages/WholesalePage";
 import { destroyLenis, initLenis } from "./utils/lenis";
 
 const App = () => {
@@ -94,6 +95,10 @@ const App = () => {
                 <Route
                     path="/about"
                     element={<AboutPage />}
+                />
+                <Route
+                    path="/wholesale"
+                    element={<WholesalePage />}
                 />
             </Route>
         </Routes>
