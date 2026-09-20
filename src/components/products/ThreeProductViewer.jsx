@@ -51,12 +51,28 @@ const ThreeProductViewer = ({ product, className = "" }) => {
     const sceneRef = useRef(null);
     const targetRotation = useRef({ x: 0, y: 0 });
     const rotation = useRef({ x: 0, y: 0 });
+    const scrollDriven = useRef(false);
+    const scrollRotation = useRef(0);
     const pointer = useRef({
         active: false,
         x: 0,
         y: 0,
         moved: false,
     });
+
+    useEffect(() => {
+        const onProductScroll = (event) => {
+            scrollDriven.current = true;
+            scrollRotation.current =
+                (event.detail?.progress || 0) * Math.PI * 1.35;
+        };
+
+        window.addEventListener("cosmalac:product-scroll", onProductScroll);
+
+        return () => {
+            window.removeEventListener("cosmalac:product-scroll", onProductScroll);
+        };
+    }, []);
 
     useEffect(() => {
         const mount = mountRef.current;
@@ -266,9 +282,14 @@ const ThreeProductViewer = ({ product, className = "" }) => {
             const elapsed = clock.getElapsedTime();
 
             if (!pointer.current.active) {
-                targetRotation.current.y += 0.0017;
-                targetRotation.current.x +=
-                    (Math.sin(elapsed * 0.55) * 0.035 - targetRotation.current.x) * 0.002;
+                if (scrollDriven.current) {
+                    targetRotation.current.y +=
+                        (scrollRotation.current - targetRotation.current.y) * 0.035;
+                } else {
+                    targetRotation.current.y += 0.0017;
+                    targetRotation.current.x +=
+                        (Math.sin(elapsed * 0.55) * 0.035 - targetRotation.current.x) * 0.002;
+                }
             }
 
             rotation.current.x +=
