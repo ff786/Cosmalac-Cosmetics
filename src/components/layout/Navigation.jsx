@@ -6,14 +6,16 @@ import { NAVIGATION_ITEMS } from "../../utils/constants";
 import { useApp } from "../../context/AppContext";
 
 const Navigation = () => {
-    const { isMobileMenuOpen, closeMobileMenu } = useApp();
+    const {
+        isMobileMenuOpen,
+        closeMobileMenu,
+    } = useApp();
     const navigate = useNavigate();
     const location = useLocation();
 
     const getHeaderOffset = () => {
         const header = document.querySelector(".nuvia-header");
-        const headerHeight = header?.offsetHeight || 0;
-        return Math.max(headerHeight + 12, 72);
+        return (header?.offsetHeight || 72) + 12;
     };
 
     const scrollToHashSection = (hash) => {
@@ -22,17 +24,17 @@ const Navigation = () => {
         if (!target) return false;
 
         const offset = getHeaderOffset();
-        const top =
-            target.getBoundingClientRect().top +
-            window.scrollY -
-            offset;
-
         const reducedMotion = window.matchMedia(
             "(prefers-reduced-motion: reduce)"
         ).matches;
 
         window.scrollTo({
-            top: Math.max(0, top),
+            top: Math.max(
+                0,
+                target.getBoundingClientRect().top +
+                    window.scrollY -
+                    offset
+            ),
             left: 0,
             behavior: reducedMotion ? "auto" : "smooth",
         });
@@ -40,18 +42,19 @@ const Navigation = () => {
         return true;
     };
 
-    const handleNavClick = (event, path) => {
-        if (!path.includes("#")) {
+    const handleNavigation = (event, item) => {
+        if (!item.path?.includes("#")) {
             closeMobileMenu();
             return;
         }
 
         event.preventDefault();
-        closeMobileMenu();
 
-        const [pathname, hashFragment] = path.split("#");
-        const hash = hashFragment ? `#${hashFragment}` : "";
+        const [pathname, hashFragment] = item.path.split("#");
         const targetPath = pathname || "/";
+        const hash = hashFragment ? `#${hashFragment}` : "";
+
+        closeMobileMenu();
 
         if (location.pathname !== targetPath) {
             navigate(`${targetPath}${hash}`);
@@ -59,53 +62,57 @@ const Navigation = () => {
         }
 
         if (hash) {
-            scrollToHashSection(hash);
+            requestAnimationFrame(() => scrollToHashSection(hash));
         }
     };
 
-    const handleMobileNavigation = (event, item) => {
-        if (item.hash) {
-            event.preventDefault();
-            closeMobileMenu();
-
-            const targetPath = item.path?.split("#")[0] || "/";
-            const hash = `#${item.hash.replace(/^#/, "")}`;
-
-            if (location.pathname !== targetPath) {
-                navigate(`${targetPath}${hash}`);
-                return;
-            }
-
-            scrollToHashSection(hash);
-            return;
-        }
-
-        closeMobileMenu();
-    };
-
-    const getLinkClass = ({ isActive }) =>
-        [
-            "nuvia-nav__link",
-            isActive ? "nuvia-nav__link--active" : "",
-        ]
-            .filter(Boolean)
-            .join(" ");
+    const desktopNavigation = (
+        <nav
+            className="nuvia-nav nuvia-nav--desktop"
+            aria-label="Primary navigation"
+        >
+            {NAVIGATION_ITEMS.map((item) => (
+                <NavLink
+                    key={item.label}
+                    to={item.path}
+                    className={({ isActive }) =>
+                        [
+                            "nuvia-nav__link",
+                            isActive ? "nuvia-nav__link--active" : "",
+                        ]
+                            .filter(Boolean)
+                            .join(" ")
+                    }
+                    onClick={(event) => handleNavigation(event, item)}
+                >
+                    {item.label}
+                </NavLink>
+            ))}
+        </nav>
+    );
 
     const mobileMenu = (
         <div
             id="cosmalac-mobile-menu"
             className={[
                 "nuvia-mobile-menu",
-                isMobileMenuOpen ? "nuvia-mobile-menu--open" : "",
+                isMobileMenuOpen
+                    ? "nuvia-mobile-menu--open"
+                    : "",
             ]
                 .filter(Boolean)
                 .join(" ")}
             aria-hidden={!isMobileMenuOpen}
         >
             <div className="nuvia-mobile-menu__header">
-                <span className="nuvia-mobile-menu__brand">
-                    Cosmalac
-                </span>
+                <NavLink
+                    to="/"
+                    className="nuvia-mobile-menu__brand"
+                    onClick={closeMobileMenu}
+                >
+                    COSMALAC
+                    <small>EST. 2016</small>
+                </NavLink>
 
                 <button
                     type="button"
@@ -113,7 +120,7 @@ const Navigation = () => {
                     onClick={closeMobileMenu}
                     aria-label="Close navigation"
                 >
-                    <X size={22} />
+                    <X size={21} aria-hidden="true" />
                 </button>
             </div>
 
@@ -124,7 +131,7 @@ const Navigation = () => {
                 {NAVIGATION_ITEMS.map((item, index) => (
                     <NavLink
                         key={item.label}
-                        to={item.hash ? `/${item.hash}` : item.path}
+                        to={item.path}
                         className={({ isActive }) =>
                             [
                                 "nuvia-mobile-menu__link",
@@ -136,20 +143,23 @@ const Navigation = () => {
                                 .join(" ")
                         }
                         onClick={(event) =>
-                            handleMobileNavigation(event, item)
+                            handleNavigation(event, item)
                         }
                     >
-                        <span>{String(index + 1).padStart(2, "0")}</span>
-                        {item.label}
+                        <span>
+                            {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <strong>{item.label}</strong>
                     </NavLink>
                 ))}
             </nav>
 
             <div className="nuvia-mobile-menu__footer">
+                <span>Cosmalac · Dubai</span>
                 <p>
                     Premium skincare.
                     <br />
-                    Made in Dubai.
+                    Thoughtfully made.
                 </p>
             </div>
         </div>
@@ -157,25 +167,10 @@ const Navigation = () => {
 
     return (
         <>
-            <nav
-                className="nuvia-nav nuvia-nav--desktop"
-                aria-label="Primary navigation"
-            >
-                {NAVIGATION_ITEMS.map((item) => (
-                    <NavLink
-                        key={item.label}
-                        to={item.hash ? `/${item.hash}` : item.path}
-                        className={getLinkClass}
-                        onClick={(event) =>
-                            handleNavClick(event, item.path)
-                        }
-                    >
-                        {item.label}
-                    </NavLink>
-                ))}
-            </nav>
-
-            {createPortal(mobileMenu, document.body)}
+            {desktopNavigation}
+            {typeof document !== "undefined"
+                ? createPortal(mobileMenu, document.body)
+                : null}
         </>
     );
 };
