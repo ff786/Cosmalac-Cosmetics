@@ -184,7 +184,7 @@ const WholesalePage = () => {
                     y: 72,
                     scale: 1.035,
                     clipPath:
-                        "polygon(100% 18%, 100% 100%, 0% 100%, 61% 58%)",
+                        "polygon(100% 24%, 100% 100%, 0% 100%, 0% 84%)",
                 });
 
                 const intro = gsap.timeline({
@@ -246,14 +246,14 @@ const WholesalePage = () => {
                             y: 0,
                             scale: 1,
                             clipPath:
-                                "polygon(100% 18%, 100% 100%, 0% 100%, 61% 58%)",
+                                "polygon(100% 24%, 100% 100%, 0% 100%, 0% 84%)",
                         },
                         {
-                            x: -8,
-                            y: -20,
-                            scale: 1.09,
+                            x: -4,
+                            y: -12,
+                            scale: 1.055,
                             clipPath:
-                                "polygon(100% 0%, 100% 100%, 0% 100%, 0% 100%)",
+                                "polygon(100% 0%, 100% 100%, 0% 100%, 0% 72%)",
                             duration: 1,
                             ease: "none",
                         },
@@ -267,9 +267,9 @@ const WholesalePage = () => {
                             y: 0,
                         },
                         {
-                            scale: 1.09,
-                            x: -8,
-                            y: -10,
+                            scale: 1.055,
+                            x: -4,
+                            y: -6,
                             duration: 1,
                             ease: "none",
                         },
