@@ -28,6 +28,72 @@ const WholesalePage = () => {
 
             const mm = gsap.matchMedia();
 
+            mm.add("(max-width: 767px)", () => {
+                /*
+                 * Mobile scroll motion — first pass.
+                 * Layout stays untouched. We only animate existing layers:
+                 * copy exits upward, portrait subtly zooms within its crop,
+                 * and the stats settle downward.
+                 */
+                const mobileScroll = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: hero,
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: 0.75,
+                        invalidateOnRefresh: true,
+                    },
+                });
+
+                mobileScroll
+                    .fromTo(
+                        contentRef.current,
+                        {
+                            y: 0,
+                            opacity: 1,
+                        },
+                        {
+                            y: -70,
+                            opacity: 0,
+                            duration: 0.42,
+                            ease: "none",
+                        },
+                        0.05
+                    )
+                    .fromTo(
+                        imageRef.current,
+                        {
+                            scale: 1,
+                            x: 0,
+                        },
+                        {
+                            scale: 1.075,
+                            x: -10,
+                            duration: 1,
+                            ease: "none",
+                        },
+                        0
+                    )
+                    .fromTo(
+                        statsRef.current,
+                        {
+                            y: 0,
+                            opacity: 1,
+                        },
+                        {
+                            y: 26,
+                            opacity: 0,
+                            duration: 0.5,
+                            ease: "none",
+                        },
+                        0.45
+                    );
+
+                return () => {
+                    mobileScroll.scrollTrigger?.kill();
+                };
+            });
+
             mm.add("(min-width: 768px)", () => {
                 gsap.set([contentRef.current, statsRef.current], {
                     opacity: 0,
