@@ -287,7 +287,6 @@ const Hero = () => {
                             Care
                         </span>
                     </h1>
-
                     <p className="hero__description">
                         Discover professionally crafted skincare
                         designed to help reveal brighter, clearer,
