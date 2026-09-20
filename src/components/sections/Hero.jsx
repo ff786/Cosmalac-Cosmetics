@@ -48,14 +48,15 @@ const Hero = () => {
 
                 /*
                  * PHASE 2
-                 * Image starts moving left and growing.
+                 * Image moves only slightly toward the centre while
+                 * the dominant motion comes from the zoom.
                  */
                 tl.to(
                     imageFrameRef.current,
                     {
-                        x: "-18vw",
+                        x: "-7vw",
                         scale: 1.18,
-                        duration: 0.45,
+                        duration: 0.48,
                         ease: "none",
                     },
                     0.15
@@ -63,14 +64,16 @@ const Hero = () => {
 
                 /*
                  * PHASE 3
-                 * Image covers the text.
+                 * The image becomes the dominant hero visual.
+                 * Keep horizontal travel controlled; let scale create
+                 * the cinematic takeover.
                  */
                 tl.to(
                     imageFrameRef.current,
                     {
-                        x: "-30vw",
-                        scale: 1.38,
-                        duration: 0.4,
+                        x: "-11vw",
+                        scale: 1.58,
+                        duration: 0.42,
                         ease: "none",
                     },
                     0.55
@@ -97,7 +100,7 @@ const Hero = () => {
                     tl.to(
                         floatingCardRef.current,
                         {
-                            x: "-22vw",
+                            x: "-8vw",
                             scale: 1.05,
                             opacity: 0,
                             duration: 0.45,
