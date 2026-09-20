@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Navigate, Routes, Route, useLocation } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 
@@ -101,7 +101,7 @@ const App = () => {
                 />
                 <Route
                     path="/ContactUs"
-                    element={<ContactPage />}
+                    element={<Navigate to="/contact" replace />}
                 />
                 <Route
                     path="/contact"
