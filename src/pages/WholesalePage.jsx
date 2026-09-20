@@ -163,14 +163,28 @@ const WholesalePage = () => {
             });
 
             mm.add("(max-width: 767px)", () => {
-                gsap.set([contentRef.current, statsRef.current], {
+                // Mobile uses a diagonal editorial composition:
+                // text enters from the upper-left while the portrait
+                // enters from the lower-right.
+                gsap.set(contentRef.current, {
                     opacity: 0,
-                    y: 28,
+                    x: -34,
+                    y: -42,
                 });
+
+                gsap.set(statsRef.current, {
+                    opacity: 0,
+                    x: -24,
+                    y: 24,
+                });
+
                 gsap.set(imageWrapRef.current, {
                     opacity: 0,
-                    y: 55,
-                    scale: 1.04,
+                    x: 48,
+                    y: 72,
+                    scale: 1.035,
+                    clipPath:
+                        "polygon(100% 18%, 100% 100%, 0% 100%, 61% 58%)",
                 });
 
                 const intro = gsap.timeline({
@@ -178,37 +192,44 @@ const WholesalePage = () => {
                 });
 
                 intro
-                    .to(imageWrapRef.current, {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        duration: 0.9,
-                    })
+                    .to(
+                        imageWrapRef.current,
+                        {
+                            opacity: 1,
+                            x: 0,
+                            y: 0,
+                            scale: 1,
+                            duration: 1.05,
+                        },
+                        0
+                    )
                     .to(
                         contentRef.current,
                         {
                             opacity: 1,
+                            x: 0,
                             y: 0,
-                            duration: 0.75,
+                            duration: 0.85,
                         },
-                        "-=0.55"
+                        0.18
                     )
                     .to(
                         statsRef.current,
                         {
                             opacity: 1,
+                            x: 0,
                             y: 0,
-                            duration: 0.6,
+                            duration: 0.7,
                         },
-                        "-=0.35"
+                        0.42
                     );
 
                 const scroll = gsap.timeline({
                     scrollTrigger: {
                         trigger: hero,
                         start: "top top",
-                        end: "+=65%",
-                        scrub: 0.7,
+                        end: "+=72%",
+                        scrub: 0.65,
                         pin: true,
                         anticipatePin: 1,
                         invalidateOnRefresh: true,
@@ -216,43 +237,23 @@ const WholesalePage = () => {
                 });
 
                 scroll
-                    .fromTo(
-                        contentRef.current,
-                        {
-                            y: 0,
-                            opacity: 1,
-                        },
-                        {
-                            y: -95,
-                            opacity: 0,
-                            duration: 0.85,
-                            ease: "none",
-                        },
-                        0
-                    )
-                    .fromTo(
-                        statsRef.current,
-                        {
-                            y: 0,
-                            opacity: 1,
-                        },
-                        {
-                            y: -30,
-                            opacity: 0,
-                            duration: 0.6,
-                            ease: "none",
-                        },
-                        0.3
-                    )
+                    // The diagonal portrait expands across the composition
+                    // as the copy exits, creating one continuous transition.
                     .fromTo(
                         imageWrapRef.current,
                         {
+                            x: 0,
                             y: 0,
                             scale: 1,
+                            clipPath:
+                                "polygon(100% 18%, 100% 100%, 0% 100%, 61% 58%)",
                         },
                         {
-                            y: -42,
-                            scale: 1.075,
+                            x: -8,
+                            y: -20,
+                            scale: 1.09,
+                            clipPath:
+                                "polygon(100% 0%, 100% 100%, 0% 100%, 0% 100%)",
                             duration: 1,
                             ease: "none",
                         },
@@ -262,15 +263,49 @@ const WholesalePage = () => {
                         imageRef.current,
                         {
                             scale: 1,
+                            x: 0,
                             y: 0,
                         },
                         {
-                            scale: 1.08,
+                            scale: 1.09,
+                            x: -8,
                             y: -10,
                             duration: 1,
                             ease: "none",
                         },
                         0
+                    )
+                    .fromTo(
+                        contentRef.current,
+                        {
+                            x: 0,
+                            y: 0,
+                            opacity: 1,
+                        },
+                        {
+                            x: -12,
+                            y: -125,
+                            opacity: 0,
+                            duration: 0.78,
+                            ease: "power1.in",
+                        },
+                        0.08
+                    )
+                    .fromTo(
+                        statsRef.current,
+                        {
+                            x: 0,
+                            y: 0,
+                            opacity: 1,
+                        },
+                        {
+                            x: -20,
+                            y: -55,
+                            opacity: 0,
+                            duration: 0.58,
+                            ease: "power1.in",
+                        },
+                        0.22
                     );
 
                 return () => {
