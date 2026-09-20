@@ -11,6 +11,10 @@
 html {
   scroll-behavior: auto;
   background: var(--bg-primary);
+  width: 100%;
+  max-width: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 html.lenis,
