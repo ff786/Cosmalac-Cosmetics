@@ -1,3 +1,4 @@
+import react from "react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Mail, MapPin, Phone, Sparkles } from "lucide-react";
 import gsap from "gsap";

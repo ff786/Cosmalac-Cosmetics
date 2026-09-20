@@ -271,7 +271,7 @@ const AboutPage = () => {
                             </div>
 
                             <a
-                                href="/#wholesale"
+                                href="/wholesale"
                                 className="about-page__link"
                             >
                                 Partner with Cosmalac

@@ -345,7 +345,7 @@ const Products = () => {
                                     </div>
 
                                     <Link
-                                        to="/#wholesale"
+                                        to="/wholesale"
                                         className="products-showcase__cta"
                                     >
                                         <span>
@@ -372,7 +372,7 @@ const Products = () => {
                     </p>
 
                     <Link
-                        to="/#wholesale"
+                        to="/wholesale"
                         className="products-section__link"
                     >
                         <span>

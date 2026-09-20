@@ -105,7 +105,7 @@ const Benefits = () => {
                         </div>
 
                         <a
-                            href="/products/crown-whitening-beauty-cream"
+                            href="/products"
                             className="benefits__link"
                         >
                             <span>Explore Crown Beauty Cream</span>
