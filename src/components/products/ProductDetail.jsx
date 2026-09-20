@@ -277,6 +277,14 @@ const ProductDetail = ({ product }) => {
                             role="img"
                             aria-label={`${product.name} — drag to rotate`}
                         >
+                            <div className="product-detail__depth" aria-hidden="true">
+                                <img src={product.image} alt="" />
+                                <img src={product.image} alt="" />
+                                <img src={product.image} alt="" />
+                                <img src={product.image} alt="" />
+                                <img src={product.image} alt="" />
+                            </div>
+
                             <span
                                 className="product-detail__product-sheen"
                                 aria-hidden="true"
