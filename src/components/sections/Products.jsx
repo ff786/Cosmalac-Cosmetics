@@ -36,6 +36,7 @@ const products = [
             "Avocado Oil",
         ],
     },
+    /*
     {
         id: "queen",
         category: "NIGHT CARE",
@@ -61,6 +62,7 @@ const products = [
             "Octyl Methoxy Cinnamate",
         ],
     },
+    */
 ];
 
 const Products = () => {
