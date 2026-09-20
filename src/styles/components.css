@@ -10129,6 +10129,23 @@ body.menu-open {
             0% 100%,
             0% 76%
         );
+        /* Keep the diagonal reveal visible, but soft, in the initial state. */
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            #000 0%,
+            #000 72%,
+            rgba(0, 0, 0, 0.72) 76%,
+            rgba(0, 0, 0, 0.18) 84%,
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to bottom,
+            #000 0%,
+            #000 72%,
+            rgba(0, 0, 0, 0.72) 76%,
+            rgba(0, 0, 0, 0.18) 84%,
+            transparent 100%
+        );
         animation: wholesale-mobile-portrait-in 1100ms
             cubic-bezier(0.16, 1, 0.3, 1) 220ms forwards;
         will-change: transform, opacity;
