@@ -1,9 +1,12 @@
 import {
     createContext,
     useContext,
+    useEffect,
     useMemo,
     useState,
 } from "react";
+
+import { initLenis } from "../utils/lenis";
 
 const AppContext = createContext(null);
 
@@ -12,22 +15,55 @@ export const AppProvider = ({ children }) => {
     const [activeModal, setActiveModal] = useState(null);
     const [selectedProduct, setSelectedProduct] = useState(null);
 
-    const openMobileMenu = () => {
-        setIsMobileMenuOpen(true);
-        document.body.classList.add("menu-open");
-    };
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === "Escape") {
+                setIsMobileMenuOpen(false);
+            }
+        };
 
-    const closeMobileMenu = () => {
-        setIsMobileMenuOpen(false);
-        document.body.classList.remove("menu-open");
-    };
+        const handleResize = () => {
+            if (window.innerWidth >= 1024) {
+                setIsMobileMenuOpen(false);
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        const body = document.body;
+        const html = document.documentElement;
+        const lenis = initLenis();
+
+        if (isMobileMenuOpen) {
+            body.classList.add("menu-open");
+            html.classList.add("menu-open");
+            lenis?.stop();
+        } else {
+            body.classList.remove("menu-open");
+            html.classList.remove("menu-open");
+            lenis?.start();
+        }
+
+        return () => {
+            body.classList.remove("menu-open");
+            html.classList.remove("menu-open");
+            lenis?.start();
+        };
+    }, [isMobileMenuOpen]);
+
+    const openMobileMenu = () => setIsMobileMenuOpen(true);
+    const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
     const toggleMobileMenu = () => {
-        if (isMobileMenuOpen) {
-            closeMobileMenu();
-        } else {
-            openMobileMenu();
-        }
+        setIsMobileMenuOpen((open) => !open);
     };
 
     const openModal = (modalName, data = null) => {
@@ -37,39 +73,25 @@ export const AppProvider = ({ children }) => {
         });
     };
 
-    const closeModal = () => {
-        setActiveModal(null);
-    };
+    const closeModal = () => setActiveModal(null);
 
-    const openProduct = (product) => {
-        setSelectedProduct(product);
-    };
-
-    const closeProduct = () => {
-        setSelectedProduct(null);
-    };
+    const openProduct = (product) => setSelectedProduct(product);
+    const closeProduct = () => setSelectedProduct(null);
 
     const value = useMemo(
         () => ({
             isMobileMenuOpen,
             activeModal,
             selectedProduct,
-
             openMobileMenu,
             closeMobileMenu,
             toggleMobileMenu,
-
             openModal,
             closeModal,
-
             openProduct,
             closeProduct,
         }),
-        [
-            isMobileMenuOpen,
-            activeModal,
-            selectedProduct,
-        ]
+        [isMobileMenuOpen, activeModal, selectedProduct]
     );
 
     return (
@@ -83,9 +105,7 @@ export const useApp = () => {
     const context = useContext(AppContext);
 
     if (!context) {
-        throw new Error(
-            "useApp must be used inside an AppProvider"
-        );
+        throw new Error("useApp must be used inside an AppProvider");
     }
 
     return context;
