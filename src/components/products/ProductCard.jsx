@@ -1,6 +1,6 @@
 import { Heart, Plus, Star } from "lucide-react";
 
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../hooks/useCart";
 import { useApp } from "../../context/AppContext";
 
 import { formatPrice } from "../../utils/helpers";
