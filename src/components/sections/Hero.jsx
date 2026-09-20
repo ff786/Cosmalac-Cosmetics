@@ -25,10 +25,8 @@ const Hero = () => {
                     scrollTrigger: {
                         trigger: heroRef.current,
                         start: "top top",
-                        end: "+=85%",
-                        scrub: 1,
-                        pin: true,
-                        anticipatePin: 1,
+                        end: "bottom bottom",
+                        scrub: 0.35,
                         invalidateOnRefresh: true,
                     },
                 });
