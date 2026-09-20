@@ -107,10 +107,10 @@ const WholesalePage = () => {
                         {
                             y: -120,
                             opacity: 0,
-                            duration: 1,
+                            duration: 0.82,
                             ease: "none",
                         },
-                        0
+                        0.18
                     )
                     .fromTo(
                         imageWrapRef.current,
