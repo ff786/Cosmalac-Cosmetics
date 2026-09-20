@@ -8,6 +8,8 @@ import ProductsPage from "./pages/ProductsPage";
 import AboutPage from "./pages/AboutPage";
 import WholesalePage from "./pages/WholesalePage";
 import ContactPage from "./pages/ContactPage.jsx";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsPage from "./pages/TermsPage";
 import { destroyLenis, initLenis } from "./utils/lenis";
 
 const App = () => {
@@ -102,8 +104,20 @@ const App = () => {
                     element={<ContactPage />}
                 />
                 <Route
+                    path="/contact"
+                    element={<ContactPage />}
+                />
+                <Route
                     path="/wholesale"
                     element={<WholesalePage />}
+                />
+                <Route
+                    path="/privacy"
+                    element={<PrivacyPolicyPage />}
+                />
+                <Route
+                    path="/terms"
+                    element={<TermsPage />}
                 />
             </Route>
         </Routes>
