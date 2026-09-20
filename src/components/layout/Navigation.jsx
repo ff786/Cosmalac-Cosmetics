@@ -30,7 +30,7 @@ const Navigation = () => {
             activeElement.blur();
         }
 
-        closeMenu();
+        closeMobileMenu();
 
         requestAnimationFrame(() => {
             document.querySelector(".nuvia-header__mobile-toggle")?.focus();
