@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef } from "react";
-import { ArrowRight, Building2, Globe2, Package, Sparkles, Mouse } from "lucide-react";
+import { ArrowRight, Building2, Globe2, Package, Sparkles } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -14,7 +14,6 @@ const WholesalePage = () => {
     const contentRef = useRef(null);
     const statsRef = useRef(null);
     const glowRef = useRef(null);
-    const scrollCueRef = useRef(null);
 
     useLayoutEffect(() => {
         const hero = heroRef.current;
@@ -88,7 +87,7 @@ const WholesalePage = () => {
                         trigger: hero,
                         start: "top top",
                         end: "+=80%",
-                        scrub: 1,
+                        scrub: 0.8,
                         pin: true,
                         anticipatePin: 1,
                         invalidateOnRefresh: true,
@@ -96,40 +95,64 @@ const WholesalePage = () => {
                 });
 
                 scroll
-                    .to(
+                    // Explicitly define the scroll-start state so the
+                    // intro animation can never leave the text invisible
+                    // when the user scrolls back to the top.
+                    .fromTo(
                         contentRef.current,
                         {
-                            y: -80,
-                            opacity: 0.35,
-                            duration: 0.65,
+                            y: 0,
+                            opacity: 1,
+                        },
+                        {
+                            y: -120,
+                            opacity: 0,
+                            duration: 1,
+                            ease: "none",
                         },
                         0
                     )
-                    .to(
+                    .fromTo(
                         imageWrapRef.current,
                         {
-                            x: -70,
-                            y: 35,
-                            scale: 1.12,
-                            duration: 0.9,
+                            x: 0,
+                            y: 0,
+                            scale: 1,
+                        },
+                        {
+                            x: -58,
+                            y: 28,
+                            scale: 1.1,
+                            duration: 1,
+                            ease: "none",
                         },
                         0
                     )
-                    .to(
+                    .fromTo(
                         statsRef.current,
                         {
-                            y: 45,
-                            opacity: 0,
-                            duration: 0.55,
+                            y: 0,
+                            opacity: 1,
                         },
-                        0.2
+                        {
+                            y: 38,
+                            opacity: 0,
+                            duration: 0.7,
+                            ease: "none",
+                        },
+                        0.28
                     )
-                    .to(
+                    .fromTo(
                         imageRef.current,
                         {
-                            scale: 1.06,
-                            x: -20,
+                            scale: 1,
+                            x: 0,
+                        },
+                        {
+                            scale: 1.055,
+                            x: -12,
                             duration: 1,
+                            ease: "none",
                         },
                         0
                     );
@@ -184,8 +207,8 @@ const WholesalePage = () => {
                     scrollTrigger: {
                         trigger: hero,
                         start: "top top",
-                        end: "+=70%",
-                        scrub: 1,
+                        end: "+=65%",
+                        scrub: 0.7,
                         pin: true,
                         anticipatePin: 1,
                         invalidateOnRefresh: true,
@@ -193,39 +216,59 @@ const WholesalePage = () => {
                 });
 
                 scroll
-                    .to(
+                    .fromTo(
                         contentRef.current,
                         {
-                            y: -70,
+                            y: 0,
+                            opacity: 1,
+                        },
+                        {
+                            y: -95,
                             opacity: 0,
-                            duration: 0.48,
+                            duration: 0.85,
+                            ease: "none",
                         },
                         0
                     )
-                    .to(
+                    .fromTo(
                         statsRef.current,
                         {
-                            y: -35,
-                            opacity: 0,
-                            duration: 0.42,
+                            y: 0,
+                            opacity: 1,
                         },
-                        0.1
+                        {
+                            y: -30,
+                            opacity: 0,
+                            duration: 0.6,
+                            ease: "none",
+                        },
+                        0.3
                     )
-                    .to(
+                    .fromTo(
                         imageWrapRef.current,
                         {
-                            y: -35,
-                            scale: 1.08,
-                            duration: 0.85,
+                            y: 0,
+                            scale: 1,
+                        },
+                        {
+                            y: -42,
+                            scale: 1.075,
+                            duration: 1,
+                            ease: "none",
                         },
                         0
                     )
-                    .to(
+                    .fromTo(
                         imageRef.current,
                         {
-                            scale: 1.12,
-                            y: -12,
-                            duration: 0.85,
+                            scale: 1,
+                            y: 0,
+                        },
+                        {
+                            scale: 1.08,
+                            y: -10,
+                            duration: 1,
+                            ease: "none",
                         },
                         0
                     );
@@ -233,15 +276,6 @@ const WholesalePage = () => {
                 return () => {
                     scroll.scrollTrigger?.kill();
                 };
-            });
-
-            gsap.to(scrollCueRef.current, {
-                y: 8,
-                opacity: 0.55,
-                duration: 1.1,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut",
             });
 
             return () => mm.revert();
@@ -316,10 +350,6 @@ const WholesalePage = () => {
                         </div>
                     </div>
 
-                    <div className="wholesale-page__hero-scroll" ref={scrollCueRef}>
-                        <Mouse size={15} />
-                        <span>Scroll to explore</span>
-                    </div>
                 </div>
             </section>
 
