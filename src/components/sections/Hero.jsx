@@ -148,7 +148,7 @@ const Hero = () => {
                 tl.to(
                     imageFrameRef.current,
                     {
-                        x: "-12vw",
+                        x: "-8vw",
                         scale: 1,
                         duration: 0.25,
                         ease: "none",
@@ -164,8 +164,8 @@ const Hero = () => {
                 tl.to(
                     imageFrameRef.current,
                     {
-                        x: "-32vw",
-                        scale: 1,
+                        x: "-22vw",
+                        scale: 1.04,
                         duration: 0.3,
                         ease: "none",
                     },
@@ -178,8 +178,8 @@ const Hero = () => {
                 tl.to(
                     contentRef.current,
                     {
-                        y: -60,
-                        opacity: 0.35,
+                        y: -45,
+                        opacity: 0.42,
                         duration: 0.25,
                         ease: "none",
                     },
@@ -194,8 +194,8 @@ const Hero = () => {
                 tl.to(
                     imageFrameRef.current,
                     {
-                        x: "-48vw",
-                        scale: 1,
+                        x: "-34vw",
+                        scale: 1.08,
                         duration: 0.35,
                         ease: "none",
                     },
@@ -210,7 +210,7 @@ const Hero = () => {
                     contentRef.current,
                     {
                         opacity: 0,
-                        y: -110,
+                        y: -95,
                         duration: 0.2,
                         ease: "none",
                     },
