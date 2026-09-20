@@ -1,11 +1,5 @@
 import { ArrowRight, Menu } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import {
-    ArrowRight,
-    Menu,
-} from "lucide-react";
-
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import Navigation from "./Navigation";
 import useScrollPosition from "../../hooks/useScrollPosition";

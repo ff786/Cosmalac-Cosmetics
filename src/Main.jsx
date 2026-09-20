@@ -7,6 +7,8 @@ import App from "./App";
 import { AppProvider } from "./context/AppContext";
 import { CartProvider } from "./context/CartContext";
 
+import { initLenis } from "./utils/lenis";
+
 import "./styles/variables.css";
 import "./styles/typography.css";
 import "./styles/global.css";
