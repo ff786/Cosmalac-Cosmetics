@@ -6824,3 +6824,198 @@ body.modal-open {
         animation: none !important;
     }
 }
+
+
+
+/* =========================================================
+   COSMALAC — WHOLESALE PAGE
+   ========================================================= */
+
+.wholesale-page {
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--color-cream-50);
+}
+
+.wholesale-page__hero {
+    position: relative;
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: var(--color-white);
+    background:
+        radial-gradient(circle at 82% 35%, rgba(203,161,92,0.2), transparent 28%),
+        var(--color-brown-900);
+}
+
+.wholesale-page__hero .container {
+    position: relative;
+    z-index: 2;
+    width: min(1240px, calc(100% - 48px));
+}
+
+.wholesale-page__hero-content {
+    max-width: 760px;
+    padding-block: 9rem 5rem;
+}
+
+.wholesale-page__hero h1 {
+    margin-top: 1rem;
+    color: var(--color-white);
+    font-size: clamp(4rem, 8vw, 7.2rem);
+    line-height: 0.84;
+    letter-spacing: -0.045em;
+}
+
+.wholesale-page__hero h1 em {
+    color: var(--color-champagne-300);
+    font-weight: 400;
+}
+
+.wholesale-page__hero p {
+    max-width: 570px;
+    margin-top: 1.6rem;
+    color: rgba(255,255,255,0.68);
+    line-height: 1.75;
+}
+
+.wholesale-page__hero-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-top: 2rem;
+    padding: 0.9rem 1.15rem;
+    color: var(--color-brown-900);
+    background: var(--color-champagne-200);
+    border-radius: var(--radius-pill);
+    font-size: 0.67rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: transform var(--transition-base), gap var(--transition-base);
+}
+
+.wholesale-page__hero-link:hover {
+    gap: 0.9rem;
+    transform: translateY(-2px);
+}
+
+.wholesale-page__hero-stats {
+    position: absolute;
+    right: 0;
+    bottom: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 2.5rem;
+}
+
+.wholesale-page__hero-stats div {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: rgba(255,255,255,0.72);
+    font-size: 0.63rem;
+    font-weight: 650;
+}
+
+.wholesale-page__hero-stats svg {
+    color: var(--color-champagne-300);
+}
+
+.wholesale-page__hero-orbit {
+    position: absolute;
+    z-index: 1;
+    right: -7%;
+    top: 50%;
+    width: min(650px, 52vw);
+    aspect-ratio: 1;
+    transform: translateY(-50%);
+    border: 1px solid rgba(239,224,200,0.1);
+    border-radius: 50%;
+}
+
+.wholesale-page__hero-orbit::before,
+.wholesale-page__hero-orbit::after {
+    content: "";
+    position: absolute;
+    inset: 12%;
+    border: 1px solid rgba(239,224,200,0.08);
+    border-radius: 50%;
+}
+
+.wholesale-page__hero-orbit::after {
+    inset: 27%;
+}
+
+.wholesale-page__hero-orbit span {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-gold-500);
+    box-shadow: 0 0 20px rgba(203,161,92,0.6);
+}
+
+.wholesale-page__hero-orbit span:nth-child(1) { left: 10%; top: 48%; }
+.wholesale-page__hero-orbit span:nth-child(2) { right: 14%; top: 18%; width: 10px; height: 10px; }
+.wholesale-page__hero-orbit span:nth-child(3) { left: 48%; bottom: 3%; }
+
+.wholesale-page > #wholesale-inquiry .wholesale {
+    padding-top: 7rem;
+}
+
+@media (max-width: 1023px) {
+    .wholesale-page__hero-content {
+        padding-bottom: 9rem;
+    }
+
+    .wholesale-page__hero-stats {
+        left: 24px;
+        right: auto;
+        bottom: 3rem;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .wholesale-page__hero {
+        min-height: 670px;
+    }
+
+    .wholesale-page__hero .container {
+        width: calc(100% - 2rem);
+    }
+
+    .wholesale-page__hero-content {
+        padding-top: 7.5rem;
+        padding-bottom: 11rem;
+    }
+
+    .wholesale-page__hero h1 {
+        font-size: clamp(3.8rem, 16vw, 5.2rem);
+    }
+
+    .wholesale-page__hero p {
+        max-width: 330px;
+        font-size: 0.78rem;
+    }
+
+    .wholesale-page__hero-stats {
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        bottom: 2rem;
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+    }
+
+    .wholesale-page__hero-stats div {
+        padding-top: 0.7rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .wholesale-page > #wholesale-inquiry .wholesale {
+        padding-top: 4rem;
+    }
+}
