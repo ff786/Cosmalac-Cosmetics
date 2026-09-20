@@ -10282,7 +10282,10 @@ body.menu-open {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: 67% center;
+        /* Keep the face in the lower-right composition instead of
+           letting the diagonal crop cut through the model's head. */
+        object-position: 72% 34%;
+        transform-origin: 72% 34%;
     }
 
     .wholesale-page__hero-image-wash {
@@ -10290,14 +10293,14 @@ body.menu-open {
             linear-gradient(
                 135deg,
                 rgba(249,241,229,0.98) 0%,
-                rgba(249,241,229,0.74) 20%,
-                rgba(249,241,229,0.08) 48%,
-                transparent 64%
+                rgba(249,241,229,0.88) 18%,
+                rgba(249,241,229,0.24) 38%,
+                rgba(249,241,229,0) 55%
             ),
             linear-gradient(
                 0deg,
-                rgba(57,37,29,0.10),
-                transparent 45%
+                rgba(57,37,29,0.08),
+                transparent 42%
             );
     }
 
@@ -10376,5 +10379,46 @@ body.menu-open {
         left: 1.25rem;
         right: 1.25rem;
         bottom: 0.85rem;
+    }
+}
+
+
+/* Final mobile editorial cleanup: the diagonal is a boundary between
+   the copy zone and portrait zone, not a crop through the face. */
+@media (max-width: 767px) {
+    .wholesale-page__hero--editorial {
+        isolation: isolate;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content {
+        z-index: 8;
+        pointer-events: none;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content a,
+    .wholesale-page__hero--editorial .wholesale-page__hero-content button {
+        pointer-events: auto;
+    }
+
+    .wholesale-page__hero-image {
+        z-index: 4;
+    }
+
+    .wholesale-page__hero-image img {
+        object-position: 72% 34%;
+    }
+
+    .wholesale-page__hero-image-wash {
+        pointer-events: none;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-stats {
+        z-index: 8;
+    }
+}
+
+@media (max-width: 480px) {
+    .wholesale-page__hero-image img {
+        object-position: 72% 31%;
     }
 }
