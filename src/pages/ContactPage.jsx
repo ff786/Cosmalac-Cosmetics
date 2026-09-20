@@ -68,12 +68,6 @@ const ContactPage = () => {
     return (
         <main className="contact-page" ref={pageRef}>
             <section className="contact-page__hero">
-                <div className="contact-page__hero-orbit" aria-hidden="true">
-                    <span />
-                    <span />
-                    <span />
-                </div>
-
                 <div className="container contact-page__hero-layout">
                     <div className="contact-page__hero-content">
                         <span className="eyebrow">
@@ -102,13 +96,28 @@ const ContactPage = () => {
                         </a>
                     </div>
 
-                    <div className="contact-page__hero-card">
-                        <div className="contact-page__hero-card-glow" />
-                        <img
-                            className="contact-page__hero-logo"
-                            src="/images/logo/cosmalac-logo.png"
-                            alt="Cosmalac"
-                        />
+                    <div className="contact-page__hero-visual" aria-hidden="true">
+                        <div className="contact-page__visual-light" />
+                        <div className="contact-page__visual-arch" />
+                        <div className="contact-page__visual-panel">
+                            <div className="contact-page__visual-panel-inner">
+                                <span className="contact-page__visual-small">
+                                    PREMIUM SKINCARE
+                                </span>
+                                <img
+                                    className="contact-page__hero-logo"
+                                    src="/images/logo/cosmalac-logo.png"
+                                    alt=""
+                                />
+                                <span className="contact-page__visual-rule" />
+                                <span className="contact-page__visual-est">
+                                    EST. 2016 · DUBAI
+                                </span>
+                            </div>
+                        </div>
+                        <div className="contact-page__visual-stone" />
+                        <div className="contact-page__visual-bloom contact-page__visual-bloom--one" />
+                        <div className="contact-page__visual-bloom contact-page__visual-bloom--two" />
                     </div>
                 </div>
             </section>
