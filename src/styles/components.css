@@ -1325,6 +1325,8 @@ body.modal-open {
 .hero__background {
     position: absolute;
     inset: 0;
+    z-index: 0;
+    overflow: hidden;
 
     background:
             radial-gradient(
@@ -1339,6 +1341,19 @@ body.modal-open {
             );
 
     pointer-events: none;
+}
+
+.hero__background-image {
+    position: absolute;
+    inset: -2%;
+    width: 104%;
+    height: 104%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1);
+    transform-origin: center center;
+    will-change: transform;
 }
 
 /* =========================================================
@@ -1618,6 +1633,31 @@ body.modal-open {
     pointer-events: none;
 }
 
+.hero__desktop-composite {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.hero__model-layer {
+    position: absolute;
+    right: -1vw;
+    bottom: -8vh;
+    width: min(58vw, 920px);
+    height: auto;
+    display: block;
+    max-width: none;
+    transform-origin: 68% 78%;
+    will-change: transform;
+    filter: drop-shadow(0 24px 40px rgba(55, 37, 27, 0.08));
+}
+
+.hero__image-frame--mobile {
+    display: none;
+}
+
 .hero__image-frame {
     position: absolute;
     top: 50%;
@@ -1806,6 +1846,15 @@ body.modal-open {
    ========================================================= */
 
 @media (max-width: 767px) {
+
+    .hero__background-image,
+    .hero__desktop-composite {
+        display: none;
+    }
+
+    .hero__image-frame--mobile {
+        display: block;
+    }
 
     .hero {
         width: 100vw;
