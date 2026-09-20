@@ -1,0 +1,8 @@
+/* Main styles entry point - Import all CSS files */
+@import './variables.css';
+@import './global.css';
+@import './typography.css';
+@import './layout.css';
+@import './animations.css';
+@import './responsive.css';
+@import './components.css';

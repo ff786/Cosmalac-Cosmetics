@@ -1,0 +1,90 @@
+[
+  {
+    "id": "vitamin-c",
+    "name": "Vitamin C",
+    "shortDescription": "A powerful antioxidant commonly used to support brighter-looking skin.",
+    "benefits": [
+      "Supports a brighter complexion",
+      "Provides antioxidant care",
+      "Helps improve the appearance of uneven tone"
+    ],
+    "category": "antioxidant"
+  },
+  {
+    "id": "hyaluronic-acid",
+    "name": "Hyaluronic Acid",
+    "shortDescription": "A hydration-focused ingredient that helps skin retain moisture.",
+    "benefits": [
+      "Supports skin hydration",
+      "Helps skin feel plumper",
+      "Improves the appearance of dry-feeling skin"
+    ],
+    "category": "hydration"
+  },
+  {
+    "id": "niacinamide",
+    "name": "Niacinamide",
+    "shortDescription": "A versatile form of vitamin B3 used in many barrier-supporting skincare formulas.",
+    "benefits": [
+      "Supports the skin barrier",
+      "Helps balance the appearance of skin",
+      "Supports a smoother-looking complexion"
+    ],
+    "category": "barrier-care"
+  },
+  {
+    "id": "ceramides",
+    "name": "Ceramides",
+    "shortDescription": "Lipids naturally associated with the skin barrier.",
+    "benefits": [
+      "Supports the moisture barrier",
+      "Helps reduce moisture loss",
+      "Supports comfortable, hydrated-feeling skin"
+    ],
+    "category": "barrier-care"
+  },
+  {
+    "id": "squalane",
+    "name": "Squalane",
+    "shortDescription": "A lightweight emollient used to soften and condition the skin.",
+    "benefits": [
+      "Helps soften skin",
+      "Supports moisture retention",
+      "Provides a smooth skin feel"
+    ],
+    "category": "emollient"
+  },
+  {
+    "id": "aloe-vera",
+    "name": "Aloe Vera",
+    "shortDescription": "A soothing botanical commonly used in gentle skincare formulas.",
+    "benefits": [
+      "Provides a soothing skin feel",
+      "Supports hydration",
+      "Suitable for gentle formulations"
+    ],
+    "category": "botanical"
+  },
+  {
+    "id": "panthenol",
+    "name": "Panthenol",
+    "shortDescription": "A provitamin commonly used for moisturizing and conditioning.",
+    "benefits": [
+      "Supports hydration",
+      "Helps condition the skin",
+      "Provides a comfortable skin feel"
+    ],
+    "category": "hydration"
+  },
+  {
+    "id": "vitamin-e",
+    "name": "Vitamin E",
+    "shortDescription": "An antioxidant ingredient commonly used to condition and protect formulas.",
+    "benefits": [
+      "Provides antioxidant support",
+      "Helps condition the skin",
+      "Supports nourishing formulations"
+    ],
+    "category": "antioxidant"
+  }
+]

@@ -1,0 +1,106 @@
+[
+  {
+    "id": "crown-whitening-beauty-cream",
+    "slug": "crown-whitening-beauty-cream",
+    "name": "Crown Whitening Beauty Cream",
+    "size": "20g | 0.7 oz",
+    "description": "Every woman deserves to feel confident in her own skin. Crown Beauty Cream is expertly crafted with advanced skincare ingredients and botanical extracts to help improve the appearance of dark spots, blemishes, uneven skin tone, fine lines, and under-eye darkness. Experience skin that looks brighter, smoother, and beautifully radiant with every use.",
+    "image": "/images/products/crown-whitening-beauty-cream.png",
+    "badge": "Crown Collection",
+    "featured": true,
+    "benefits": [
+      {
+        "title": "Acne Spots",
+        "icon": "sparkles"
+      },
+      {
+        "title": "Wrinkles",
+        "icon": "leaf"
+      },
+      {
+        "title": "Black Spots",
+        "icon": "circle"
+      },
+      {
+        "title": "Dark Spots",
+        "icon": "sun"
+      },
+      {
+        "title": "Dark Circles",
+        "icon": "eye"
+      },
+      {
+        "title": "Under-Eye Darkness",
+        "icon": "moon"
+      }
+    ],
+    "ingredients": [
+      "Alpha Arbutin",
+      "Phyllanthus Emblica (Fruit Extract)",
+      "Glycyrrhiza Glabra Extract (Licorice)",
+      "Sodium Ascorbyl Phosphate",
+      "Kojic Acid",
+      "Vitamin A Palmitate",
+      "Vitamin E Acetate",
+      "Vitamin B3",
+      "Vitamin D",
+      "Avocado Oil",
+      "Aloe Vera Extract"
+    ],
+    "directions": "Apply a small amount evenly to clean, dry skin every night before bed. Use consistently for best results.",
+    "caution": "For external use only. Avoid contact with eyes. Discontinue use if irritation occurs.",
+    "isB2B": true
+  },
+  {
+    "id": "queen-beauty-cream-8x",
+    "slug": "queen-beauty-cream-8x",
+    "name": "Queen Beauty Cream 8X Whitening Night Cream",
+    "size": "Premium Night Cream",
+    "description": "Queen Beauty Cream 8X whitening night cream with small particles of Nano-Liposome and special ingredients like Snow lotus extracts that help treat inflammatory acnes, pus acnes and reduce scars from acnes. With Alpha Arbutin and Collagen to help decrease melanin pigment, make freckles look brighter, firm pores, smooth skin and provide moisture. Ginseng extracts help make skin stronger by protecting it from free radicals.",
+    "image": "/images/products/queen-beauty-cream-8x.png",
+    "badge": "8X Night Care",
+    "featured": true,
+    "benefits": [
+      {
+        "title": "Nano-Liposome Care",
+        "icon": "sparkles"
+      },
+      {
+        "title": "Snow Lotus Extract",
+        "icon": "flower"
+      },
+      {
+        "title": "Alpha Arbutin",
+        "icon": "leaf"
+      },
+      {
+        "title": "Collagen Care",
+        "icon": "droplets"
+      },
+      {
+        "title": "Ginseng Extract",
+        "icon": "sprout"
+      },
+      {
+        "title": "Nighttime Hydration",
+        "icon": "moon"
+      }
+    ],
+    "ingredients": [
+      "Active Whitening Arbutin",
+      "Kojic Acid Dipalmitate",
+      "Active SunScreen Avobenzone",
+      "Benzophenone-3",
+      "Octyl Methoxy Cinnamate",
+      "Methyl Paraben",
+      "Propyl Paraben",
+      "BHT",
+      "Allantoin",
+      "Vitamin E",
+      "Perfume"
+    ],
+    "directions": "Apply this cream every day according to the product directions.",
+    "caution": "For external use only. Avoid contact with eyes.",
+    "isB2B": true
+  }
+]
