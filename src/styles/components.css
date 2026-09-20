@@ -7019,3 +7019,370 @@ body.modal-open {
         padding-top: 4rem;
     }
 }
+
+
+
+/* =========================================================
+   COSMALAC — CONTACT PAGE
+   ========================================================= */
+
+.contact-page {
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--color-cream-50);
+}
+
+.contact-page__hero {
+    position: relative;
+    min-height: min(720px, 88vh);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 78% 42%, rgba(225,198,155,0.46), transparent 28%),
+        linear-gradient(120deg, #fbf8f3 0%, #f4eadc 55%, #faf6ef 100%);
+}
+
+.contact-page__hero-layout {
+    position: relative;
+    z-index: 2;
+    min-height: inherit;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.65fr);
+    align-items: center;
+    gap: clamp(2rem, 7vw, 7rem);
+}
+
+.contact-page__hero-content {
+    max-width: 720px;
+    padding-block: 8rem 5rem;
+}
+
+.contact-page__hero h1 {
+    margin-top: 1rem;
+    color: var(--color-brown-800);
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 0.84;
+    letter-spacing: -0.045em;
+}
+
+.contact-page__hero h1 em {
+    color: var(--color-gold-600);
+    font-weight: 400;
+}
+
+.contact-page__hero p {
+    max-width: 520px;
+    margin-top: 1.6rem;
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+}
+
+.contact-page__hero-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-top: 2rem;
+    padding: 0.9rem 1.15rem;
+    color: var(--color-white);
+    background: var(--color-brown-800);
+    border-radius: var(--radius-pill);
+    font-size: 0.67rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: transform var(--transition-base), gap var(--transition-base), box-shadow var(--transition-base);
+}
+
+.contact-page__hero-link:hover {
+    gap: 0.9rem;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(57,37,29,0.16);
+}
+
+.contact-page__hero-card {
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(174,134,69,0.18);
+    border-radius: var(--radius-2xl);
+    background: rgba(255,255,255,0.42);
+    box-shadow: 0 30px 80px rgba(55,37,27,0.08);
+    backdrop-filter: blur(14px);
+}
+
+.contact-page__hero-card-glow {
+    position: absolute;
+    width: 75%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,248,228,0.95), transparent 68%);
+}
+
+.contact-page__hero-card-label {
+    position: absolute;
+    top: 1.4rem;
+    left: 1.4rem;
+    color: var(--color-gold-600);
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+.contact-page__hero-card-mark {
+    position: relative;
+    z-index: 2;
+    width: 145px;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(174,134,69,0.28);
+    border-radius: 50%;
+    box-shadow: inset 0 0 45px rgba(255,255,255,0.6);
+}
+
+.contact-page__hero-card-mark span {
+    color: var(--color-gold-600);
+    font-family: var(--font-serif);
+    font-size: 5rem;
+    font-style: italic;
+}
+
+.contact-page__hero-card p {
+    position: relative;
+    z-index: 2;
+    max-width: 210px;
+    margin-top: 2rem;
+    color: var(--color-brown-700);
+    text-align: center;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-style: italic;
+}
+
+.contact-page__hero-orbit {
+    position: absolute;
+    z-index: 1;
+    right: -10%;
+    top: 50%;
+    width: min(720px, 58vw);
+    aspect-ratio: 1;
+    transform: translateY(-50%);
+    border: 1px solid rgba(174,134,69,0.12);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.contact-page__hero-orbit::before,
+.contact-page__hero-orbit::after {
+    content: "";
+    position: absolute;
+    inset: 12%;
+    border: 1px solid rgba(174,134,69,0.08);
+    border-radius: 50%;
+}
+
+.contact-page__hero-orbit::after {
+    inset: 28%;
+}
+
+.contact-page__hero-orbit span {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-gold-500);
+    box-shadow: 0 0 18px rgba(198,158,91,0.65);
+}
+
+.contact-page__hero-orbit span:nth-child(1) { left: 8%; top: 48%; }
+.contact-page__hero-orbit span:nth-child(2) { right: 13%; top: 21%; width: 10px; height: 10px; }
+.contact-page__hero-orbit span:nth-child(3) { left: 49%; bottom: 3%; }
+
+.contact-page__principles {
+    background: var(--color-white);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.contact-page__principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-left: 1px solid var(--border-light);
+}
+
+.contact-page__principle {
+    min-height: 175px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 2rem;
+    border-right: 1px solid var(--border-light);
+}
+
+.contact-page__principle > span {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    color: var(--color-gold-600);
+    background: var(--color-cream-100);
+    border-radius: 50%;
+}
+
+.contact-page__principle small {
+    margin-top: 0.25rem;
+    color: var(--color-text-muted);
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.contact-page__principle a,
+.contact-page__principle p {
+    color: var(--color-brown-800);
+    font-size: 0.82rem;
+    font-weight: 650;
+}
+
+.contact-page__principle a {
+    transition: color var(--transition-base);
+}
+
+.contact-page__principle a:hover {
+    color: var(--color-gold-600);
+}
+
+.contact-page__form-section {
+    padding-block: 2rem 6rem;
+}
+
+.contact-page__form-section .contact {
+    padding-block: 4rem 2rem;
+}
+
+.contact-page__form-section .contact__grid {
+    position: relative;
+}
+
+.contact-page__form-section .contact__content {
+    position: relative;
+}
+
+.contact-page__form-section .contact__form-wrapper {
+    position: relative;
+}
+
+@media (max-width: 1023px) {
+    .contact-page__hero-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-page__hero-content {
+        padding-bottom: 1rem;
+    }
+
+    .contact-page__hero-card {
+        width: min(520px, 100%);
+        min-height: 360px;
+        margin: 0 auto 4rem;
+    }
+
+    .contact-page__hero-orbit {
+        width: 75vw;
+        right: -18%;
+        top: 58%;
+    }
+
+    .contact-page__principles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-page__principle {
+        min-height: 130px;
+        border-bottom: 1px solid var(--border-light);
+    }
+}
+
+@media (max-width: 767px) {
+    .contact-page__hero {
+        min-height: auto;
+    }
+
+    .contact-page__hero-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .contact-page__hero-content {
+        padding: 7.5rem 0 0;
+    }
+
+    .contact-page__hero h1 {
+        font-size: clamp(3.7rem, 16vw, 5.2rem);
+    }
+
+    .contact-page__hero p {
+        max-width: 330px;
+        font-size: 0.78rem;
+    }
+
+    .contact-page__hero-card {
+        min-height: 330px;
+        margin: 0 0 3rem;
+        border-radius: var(--radius-xl);
+    }
+
+    .contact-page__hero-orbit {
+        width: 105vw;
+        right: 50%;
+        top: 67%;
+        transform: translate(50%, -50%);
+    }
+
+    .contact-page__principle {
+        padding: 1.5rem;
+    }
+
+    .contact-page__form-section {
+        padding-bottom: 3rem;
+    }
+
+    .contact-page__form-section .contact {
+        padding-block: 2rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-page__hero-content {
+        padding-top: 7rem;
+    }
+
+    .contact-page__hero h1 {
+        font-size: clamp(3.5rem, 17vw, 4.6rem);
+    }
+
+    .contact-page__hero-card {
+        min-height: 290px;
+    }
+
+    .contact-page__hero-card-mark {
+        width: 115px;
+    }
+
+    .contact-page__hero-card-mark span {
+        font-size: 4rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-page__hero-orbit {
+        display: none;
+    }
+}
