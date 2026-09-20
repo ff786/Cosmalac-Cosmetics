@@ -10138,7 +10138,9 @@ body.menu-open {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: 72% 38%;
+        /* Lower the portrait so the model's face sits clearly inside the
+           diagonal composition on smaller mobile screens. */
+        object-position: 72% 27%;
         transform: none;
         will-change: auto;
     }
@@ -10248,7 +10250,7 @@ body.menu-open {
     }
 
     .wholesale-page__hero--editorial .wholesale-page__hero-image img {
-        object-position: 72% 37%;
+        object-position: 72% 26%;
     }
 }
 
