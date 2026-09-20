@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Check, Minus, Plus, ShieldCheck } from "lucide-react";
 
 import { useCart } from "../../context/CartContext";
+import ThreeProductViewer from "./ThreeProductViewer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -134,8 +135,8 @@ const ProductDetail = ({ product }) => {
 
             ScrollTrigger.create({
                 trigger: detail,
-                start: "top top",
-                end: "bottom bottom",
+                start: "top bottom",
+                end: "bottom top",
                 onUpdate: (self) => {
                     if (progressRef.current) {
                         progressRef.current.style.setProperty(
@@ -143,6 +144,12 @@ const ProductDetail = ({ product }) => {
                             self.progress
                         );
                     }
+
+                    window.dispatchEvent(
+                        new CustomEvent("cosmalac:product-scroll", {
+                            detail: { progress: self.progress },
+                        })
+                    );
                 },
             });
 
@@ -154,64 +161,6 @@ const ProductDetail = ({ product }) => {
 
         return () => ctx.revert();
     }, []);
-
-    const handlePointerDown = (event) => {
-        if (!productArtRef.current) return;
-
-        event.currentTarget.setPointerCapture?.(event.pointerId);
-
-        dragState.current = {
-            active: true,
-            startX: event.clientX,
-            startY: event.clientY,
-            rotation: dragState.current.rotation,
-            tilt: dragState.current.tilt,
-        };
-    };
-
-    const handlePointerMove = (event) => {
-        const state = dragState.current;
-        if (!state.active || !productArtRef.current) return;
-
-        const deltaX = event.clientX - state.startX;
-        const deltaY = event.clientY - state.startY;
-
-        const nextRotation = Math.max(
-            -34,
-            Math.min(34, state.rotation + deltaX * 0.18)
-        );
-
-        const nextTilt = Math.max(
-            -10,
-            Math.min(10, state.tilt - deltaY * 0.08)
-        );
-
-        productArtRef.current.style.setProperty(
-            "--product-drag-rotation",
-            `${nextRotation}deg`
-        );
-
-        productArtRef.current.style.setProperty(
-            "--product-drag-tilt",
-            `${nextTilt}deg`
-        );
-    };
-
-    const handlePointerUp = () => {
-        if (!productArtRef.current) return;
-
-        const value = productArtRef.current.style.getPropertyValue(
-            "--product-drag-rotation"
-        );
-
-        const tilt = productArtRef.current.style.getPropertyValue(
-            "--product-drag-tilt"
-        );
-
-        dragState.current.active = false;
-        dragState.current.rotation = Number.parseFloat(value) || 0;
-        dragState.current.tilt = Number.parseFloat(tilt) || 0;
-    };
 
     if (!product) return null;
 
@@ -288,34 +237,7 @@ const ProductDetail = ({ product }) => {
                         className="product-detail__product-visual"
                         ref={visualRef}
                     >
-                        <div
-                            className="product-detail__product-art"
-                            ref={productArtRef}
-                            onPointerDown={handlePointerDown}
-                            onPointerMove={handlePointerMove}
-                            onPointerUp={handlePointerUp}
-                            onPointerCancel={handlePointerUp}
-                            role="img"
-                            aria-label={`${product.name} — drag to rotate`}
-                        >
-                            <div className="product-detail__depth" aria-hidden="true">
-                                <img src={product.image} alt="" />
-                                <img src={product.image} alt="" />
-                                <img src={product.image} alt="" />
-                                <img src={product.image} alt="" />
-                                <img src={product.image} alt="" />
-                            </div>
-
-                            <span
-                                className="product-detail__product-sheen"
-                                aria-hidden="true"
-                            />
-                            <img
-                                src={product.image}
-                                alt={product.name}
-                                draggable="false"
-                            />
-                        </div>
+                        <ThreeProductViewer product={product} />
                     </div>
 
                     <div className="product-detail__interaction">
