@@ -425,7 +425,7 @@ const ProductsPage = () => {
                                 </div>
 
                                 <div className="products-page__spotlight-actions">
-                                    <a href="/#wholesale">
+                                    <a href="/wholesale">
                                         Wholesale Inquiry
                                         <ArrowRight size={16} />
                                     </a>
@@ -464,7 +464,7 @@ const ProductsPage = () => {
                         </div>
 
                         <a
-                            href="/#wholesale"
+                            href="/wholesale"
                             className="products-page__b2b-button"
                         >
                             Wholesale Inquiry
