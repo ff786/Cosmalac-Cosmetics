@@ -1,7 +1,7 @@
 import { Heart, Plus, Star } from "lucide-react";
 
 import { useCart } from "../../hooks/useCart";
-import { useApp } from "../../context/AppContext";
+import { useApp } from "../../hooks/useApp";
 
 import { formatPrice } from "../../utils/helpers";
 
