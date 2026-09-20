@@ -1,16 +1,12 @@
-import { useMemo } from "react";
-
 const WHATSAPP_NUMBER = "+94755697476";
 const WHATSAPP_MESSAGE =
     "Hello Cosmalac, I would like to chat with you.";
 
 const WhatsAppChatButton = () => {
-    const whatsappUrl = useMemo(() => {
-        const normalizedPhone = WHATSAPP_NUMBER.replace(/\D/g, "");
-        const message = encodeURIComponent(WHATSAPP_MESSAGE);
-
-        return `https://wa.me/${normalizedPhone}?text=${message}`;
-    }, []);
+    const normalizedPhone = WHATSAPP_NUMBER.replace(/\D/g, "");
+    const message = encodeURIComponent(WHATSAPP_MESSAGE);
+    const whatsappUrl =
+        `https://wa.me/${normalizedPhone}?text=${message}`;
 
     return (
         <a
