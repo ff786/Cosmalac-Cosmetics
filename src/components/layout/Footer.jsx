@@ -54,11 +54,9 @@ const Footer = () => {
                                 <MapPin size={16} />
 
                                 <p>
-                                    25 Rose Avenue
+                                    Dubai
                                     <br />
-                                    Colombo
-                                    <br />
-                                    Sri Lanka
+                                    United Arab Emirates
                                 </p>
                             </div>
                         </div>

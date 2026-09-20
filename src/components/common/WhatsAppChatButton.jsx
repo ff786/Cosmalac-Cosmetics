@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-const WHATSAPP_NUMBER = "+94 75 569 7476";
+const WHATSAPP_NUMBER = "+94755697476";
 const WHATSAPP_MESSAGE =
     "Hello Cosmalac, I would like to chat with you.";
 
