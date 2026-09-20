@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
@@ -12,6 +13,19 @@ const Navigation = () => {
     } = useApp();
     const navigate = useNavigate();
     const location = useLocation();
+    const closeButtonRef = useRef(null);
+
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            requestAnimationFrame(() => {
+                closeButtonRef.current?.focus();
+            });
+        } else {
+            requestAnimationFrame(() => {
+                document.querySelector(".nuvia-header__mobile-toggle")?.focus();
+            });
+        }
+    }, [isMobileMenuOpen]);
 
     const getHeaderOffset = () => {
         const header = document.querySelector(".nuvia-header");
@@ -102,7 +116,7 @@ const Navigation = () => {
             ]
                 .filter(Boolean)
                 .join(" ")}
-            aria-hidden={!isMobileMenuOpen}
+            inert={!isMobileMenuOpen ? "" : undefined}
         >
             <div className="nuvia-mobile-menu__header">
                 <NavLink
@@ -115,6 +129,7 @@ const Navigation = () => {
                 </NavLink>
 
                 <button
+                    ref={closeButtonRef}
                     type="button"
                     className="nuvia-mobile-menu__close"
                     onClick={closeMobileMenu}
