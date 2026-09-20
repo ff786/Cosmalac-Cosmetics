@@ -86,14 +86,14 @@ const Contact = () => {
                 </span>
                             </a>
 
-                            <a href="tel:+971559915823">
+                            <a href="tel:+94755697476">
                 <span className="contact__detail-icon">
                   <Phone size={17} />
                 </span>
 
                                 <span>
                   <small>Phone</small>
-                  +971 55 991 5823
+                  +94 75 569 7476
                 </span>
                             </a>
 
@@ -182,7 +182,7 @@ const Contact = () => {
                                     label="Phone Number"
                                     name="phone"
                                     type="tel"
-                                    placeholder="+971..."
+                                    placeholder="+94 75..."
                                     value={form.phone}
                                     onChange={handleChange}
                                     error={errors.phone}
