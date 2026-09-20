@@ -49,6 +49,28 @@ const Contact = () => {
             return;
         }
 
+        const whatsappMessage = [
+            "Hello Cosmalac, I would like to get in touch.",
+            "",
+            `Name: ${form.name.trim()}`,
+            `Email: ${form.email.trim()}`,
+            form.phone.trim()
+                ? `Phone: ${form.phone.trim()}`
+                : "Phone: Not provided",
+            "",
+            "Message:",
+            form.message.trim(),
+        ].join("\n");
+
+        const whatsappUrl =
+            `https://wa.me/94755697476?text=${encodeURIComponent(whatsappMessage)}`;
+
+        window.open(
+            whatsappUrl,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
         setSubmitted(true);
     };
 
