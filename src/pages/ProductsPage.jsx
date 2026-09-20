@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const filters = [
     { id: "all", label: "All Products" },
     { id: "crown", label: "Crown Collection" },
-    { id: "night", label: "Night Care" },
+    // { id: "night", label: "Night Care" },
 ];
 
 const ProductsPage = () => {
@@ -32,7 +32,12 @@ const ProductsPage = () => {
     const filteredProducts = useMemo(() => {
         const query = searchTerm.trim().toLowerCase();
 
-        return products.filter((product) => {
+        // Queen Beauty Cream is temporarily hidden site-wide.
+        const availableProducts = products.filter(
+            (product) => product.id !== "queen-beauty-cream-8x"
+        );
+
+        return availableProducts.filter((product) => {
             const matchesSearch =
                 !query ||
                 product.name.toLowerCase().includes(query) ||
@@ -44,9 +49,7 @@ const ProductsPage = () => {
             const matchesFilter =
                 activeFilter === "all" ||
                 (activeFilter === "crown" &&
-                    product.id === "crown-whitening-beauty-cream") ||
-                (activeFilter === "night" &&
-                    product.id === "queen-beauty-cream-8x");
+                    product.id === "crown-whitening-beauty-cream");
 
             return matchesSearch && matchesFilter;
         });
@@ -190,7 +193,7 @@ const ProductsPage = () => {
                         </h1>
 
                         <p>
-                            Two signature formulas. One premium skincare
+                            One signature formula. A premium skincare
                             collection from Dubai.
                         </p>
 
