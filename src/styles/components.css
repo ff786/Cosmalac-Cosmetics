@@ -10040,7 +10040,7 @@ body.menu-open {
     .hero__actions {
         display: flex !important;
         flex-direction: column;
-        align-items: stretch;
+        align-items: flex-start;
         gap: 0.8rem;
         width: 100%;
         max-width: 100%;
@@ -10059,8 +10059,8 @@ body.menu-open {
     .hero__actions .hero__secondary-link {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        align-self: center;
+        justify-content: flex-start;
+        align-self: flex-start;
         min-width: max-content;
         white-space: nowrap;
         font-size: clamp(0.58rem, 2.6vw, 0.72rem);
