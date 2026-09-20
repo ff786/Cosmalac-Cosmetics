@@ -1,14 +1,24 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, Check, Minus, Plus, ShieldCheck } from "lucide-react";
+
+import {
+    Check,
+    Minus,
+    Plus,
+    ShieldCheck,
+    ShoppingBag,
+    Star,
+} from "lucide-react";
 
 import { useCart } from "../../context/CartContext";
+import { formatPrice } from "../../utils/helpers";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ProductDetail = ({ product }) => {
     const { addToCart } = useCart();
+
     const [quantity, setQuantity] = useState(1);
 
     const detailRef = useRef(null);
@@ -17,19 +27,16 @@ const ProductDetail = ({ product }) => {
     const productArtRef = useRef(null);
     const contentRef = useRef(null);
     const orbitRef = useRef(null);
-    const shadowRef = useRef(null);
-    const progressRef = useRef(null);
 
     const dragState = useRef({
         active: false,
         startX: 0,
-        startY: 0,
         rotation: 0,
-        tilt: 0,
     });
 
     useLayoutEffect(() => {
         const detail = detailRef.current;
+
         if (!detail) return;
 
         const ctx = gsap.context(() => {
@@ -37,119 +44,127 @@ const ProductDetail = ({ product }) => {
                 "(prefers-reduced-motion: reduce)"
             ).matches;
 
-            if (reduceMotion) return;
+            if (reduceMotion) {
+                gsap.set(
+                    [
+                        imageInnerRef.current,
+                        visualRef.current,
+                        contentRef.current,
+                        orbitRef.current,
+                    ],
+                    {
+                        clearProps: "all",
+                    }
+                );
 
-            const float = gsap.to(visualRef.current, {
-                y: -14,
-                rotationZ: 1.2,
-                duration: 4.6,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true,
-            });
+                return;
+            }
 
-            const shadow = gsap.to(shadowRef.current, {
-                scaleX: 0.72,
-                opacity: 0.4,
-                duration: 4.6,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true,
-            });
-
-            gsap.to(orbitRef.current, {
-                rotation: 360,
-                duration: 28,
-                ease: "none",
-                repeat: -1,
-            });
-
-            const entrance = gsap.timeline({
+            const timeline = gsap.timeline({
                 scrollTrigger: {
                     trigger: detail,
-                    start: "top 78%",
-                    end: "bottom 28%",
+                    start: "top 82%",
+                    end: "bottom 22%",
                     scrub: 1.1,
                     invalidateOnRefresh: true,
                 },
             });
 
-            entrance
+            timeline
                 .fromTo(
                     imageInnerRef.current,
-                    { y: 80, scale: 0.9, opacity: 0 },
-                    { y: 0, scale: 1, opacity: 1, duration: 1 },
+                    {
+                        y: 90,
+                        scale: 0.88,
+                        opacity: 0,
+                    },
+                    {
+                        y: 0,
+                        scale: 1,
+                        opacity: 1,
+                        ease: "power3.out",
+                        duration: 1,
+                    },
                     0
                 )
                 .fromTo(
-                    contentRef.current,
-                    { y: 55, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 0.8 },
-                    0.12
+                    visualRef.current,
+                    {
+                        rotateY: -18,
+                        rotateZ: -5,
+                        scale: 0.9,
+                    },
+                    {
+                        rotateY: 0,
+                        rotateZ: 0,
+                        scale: 1,
+                        ease: "power2.out",
+                        duration: 1.1,
+                    },
+                    0
                 )
                 .fromTo(
                     orbitRef.current,
-                    { scale: 0.7, opacity: 0 },
-                    { scale: 1, opacity: 1, duration: 0.8 },
-                    0
-                )
-                .to(
-                    visualRef.current,
                     {
-                        y: -55,
-                        rotateY: 16,
-                        rotateX: -4,
-                        rotateZ: -4,
-                        scale: 1.05,
-                        duration: 1.2,
-                        ease: "none",
+                        opacity: 0,
+                        scale: 0.72,
+                        rotate: -35,
                     },
-                    0.8
-                )
-                .to(
-                    visualRef.current,
                     {
-                        y: -10,
-                        rotateY: -13,
-                        rotateX: 3,
-                        rotateZ: 3,
-                        scale: 1.01,
-                        duration: 1.1,
-                        ease: "none",
-                    },
-                    2
-                )
-                .to(
-                    visualRef.current,
-                    {
-                        y: 0,
-                        rotateY: 0,
-                        rotateX: 0,
-                        rotateZ: 0,
+                        opacity: 1,
                         scale: 1,
+                        rotate: 0,
+                        ease: "power3.out",
                         duration: 1,
                     },
-                    3.1
+                    0.08
+                )
+                .fromTo(
+                    contentRef.current,
+                    {
+                        y: 55,
+                        opacity: 0,
+                    },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        ease: "power3.out",
+                        duration: 0.8,
+                    },
+                    0.12
+                )
+                .to(
+                    visualRef.current,
+                    {
+                        rotateY: 10,
+                        rotateZ: 2.5,
+                        y: -8,
+                        ease: "none",
+                        duration: 0.75,
+                    },
+                    0.95
+                )
+                .to(
+                    visualRef.current,
+                    {
+                        rotateY: 0,
+                        rotateZ: 0,
+                        y: 0,
+                        ease: "power2.out",
+                        duration: 0.75,
+                    },
+                    1.7
+                )
+                .to(
+                    orbitRef.current,
+                    {
+                        rotate: 25,
+                        scale: 1.05,
+                        ease: "none",
+                        duration: 1.5,
+                    },
+                    0.7
                 );
-
-            ScrollTrigger.create({
-                trigger: detail,
-                start: "top top",
-                end: "bottom bottom",
-                onUpdate: (self) => {
-                    if (progressRef.current) {
-                        progressRef.current.style.setProperty(
-                            "--product-progress",
-                            self.progress
-                        );
-                    }
-                },
-            });
-
-            return () => {
-                float.kill();
-                shadow.kill();
-            };
         }, detail);
 
         return () => ctx.revert();
@@ -163,72 +178,50 @@ const ProductDetail = ({ product }) => {
         dragState.current = {
             active: true,
             startX: event.clientX,
-            startY: event.clientY,
             rotation: dragState.current.rotation,
-            tilt: dragState.current.tilt,
         };
     };
 
     const handlePointerMove = (event) => {
         const state = dragState.current;
+
         if (!state.active || !productArtRef.current) return;
 
-        const deltaX = event.clientX - state.startX;
-        const deltaY = event.clientY - state.startY;
-
+        const delta = event.clientX - state.startX;
         const nextRotation = Math.max(
-            -34,
-            Math.min(34, state.rotation + deltaX * 0.18)
-        );
-
-        const nextTilt = Math.max(
-            -10,
-            Math.min(10, state.tilt - deltaY * 0.08)
+            -18,
+            Math.min(18, state.rotation + delta * 0.12)
         );
 
         productArtRef.current.style.setProperty(
             "--product-drag-rotation",
             `${nextRotation}deg`
         );
-
-        productArtRef.current.style.setProperty(
-            "--product-drag-tilt",
-            `${nextTilt}deg`
-        );
     };
 
     const handlePointerUp = () => {
         if (!productArtRef.current) return;
 
-        const value = productArtRef.current.style.getPropertyValue(
-            "--product-drag-rotation"
-        );
-
-        const tilt = productArtRef.current.style.getPropertyValue(
-            "--product-drag-tilt"
-        );
+        const value =
+            productArtRef.current.style.getPropertyValue(
+                "--product-drag-rotation"
+            );
 
         dragState.current.active = false;
-        dragState.current.rotation = Number.parseFloat(value) || 0;
-        dragState.current.tilt = Number.parseFloat(tilt) || 0;
+        dragState.current.rotation =
+            Number.parseFloat(value) || 0;
     };
 
-    if (!product) return null;
+    if (!product) {
+        return null;
+    }
 
-    const benefits = (product.benefits || []).map((benefit) =>
-        typeof benefit === "string" ? benefit : benefit.title
-    );
-
-    const selectedIngredients = (product.ingredients || []).slice(0, 9);
-
-    const decreaseQuantity = () =>
+    const decreaseQuantity = () => {
         setQuantity((current) => Math.max(1, current - 1));
+    };
 
-    const increaseQuantity = () =>
+    const increaseQuantity = () => {
         setQuantity((current) => current + 1);
-
-    const handleWholesale = () => {
-        window.location.href = "/#wholesale";
     };
 
     const handleAddToCart = () => {
@@ -240,23 +233,11 @@ const ProductDetail = ({ product }) => {
             className="product-detail product-detail--scrollytelling"
             ref={detailRef}
         >
-            <div className="product-detail__progress" ref={progressRef}>
-                <span>01</span>
-                <i />
-                <span className="is-active">02</span>
-                <i />
-                <span>03</span>
-                <i />
-                <span>04</span>
-            </div>
-
             <div className="product-detail__image">
                 <div
                     className="product-detail__image-inner"
                     ref={imageInnerRef}
                 >
-                    <div className="product-detail__ambient-glow" />
-
                     <div
                         className="product-detail__orbit"
                         ref={orbitRef}
@@ -266,23 +247,6 @@ const ProductDetail = ({ product }) => {
                         <span />
                         <span />
                     </div>
-
-                    <div
-                        className="product-detail__particles"
-                        aria-hidden="true"
-                    >
-                        <span />
-                        <span />
-                        <span />
-                        <span />
-                        <span />
-                    </div>
-
-                    <div
-                        className="product-detail__air-shadow"
-                        ref={shadowRef}
-                        aria-hidden="true"
-                    />
 
                     <div
                         className="product-detail__product-visual"
@@ -298,18 +262,6 @@ const ProductDetail = ({ product }) => {
                             role="img"
                             aria-label={`${product.name} — drag to rotate`}
                         >
-                            <div className="product-detail__depth" aria-hidden="true">
-                                <img src={product.image} alt="" />
-                                <img src={product.image} alt="" />
-                                <img src={product.image} alt="" />
-                                <img src={product.image} alt="" />
-                                <img src={product.image} alt="" />
-                            </div>
-
-                            <span
-                                className="product-detail__product-sheen"
-                                aria-hidden="true"
-                            />
                             <img
                                 src={product.image}
                                 alt={product.name}
@@ -318,19 +270,8 @@ const ProductDetail = ({ product }) => {
                         </div>
                     </div>
 
-                    <div className="product-detail__interaction">
-                        <span className="product-detail__interaction-degree">
-                            360°
-                        </span>
-                        <span>Drag to rotate</span>
-                    </div>
-
-                    <span className="product-detail__scroll-cue">
-                        Scroll to explore ↓
-                    </span>
-
-                    <span className="product-detail__microcopy">
-                        Pure care<br />Radiant you
+                    <span className="product-detail__rotate-hint">
+                        Drag to rotate
                     </span>
                 </div>
             </div>
@@ -339,90 +280,117 @@ const ProductDetail = ({ product }) => {
                 className="product-detail__content"
                 ref={contentRef}
             >
-                <span className="product-detail__category">
-                    {product.badge || "Face Care"}
-                </span>
+                {product.badge && (
+                    <span className="eyebrow">
+                        {product.badge}
+                    </span>
+                )}
 
-                <h1>
-                    {product.name
-                        .replace(" Beauty Cream", "")
-                        .replace(" 8X Whitening Night Cream", "")}
-                    <em>
-                        {product.name.includes("Queen")
-                            ? "Beauty Night Cream"
-                            : "Beauty Cream"}
-                    </em>
-                </h1>
+                <h1>{product.name}</h1>
 
-                <span className="product-detail__size">
-                    {product.size || "20G / 0.7 OZ"}
-                </span>
+                <div className="product-detail__rating">
+                    <span className="product-detail__stars">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                            <Star
+                                key={star}
+                                size={14}
+                                fill="currentColor"
+                            />
+                        ))}
+                    </span>
+
+                    <span>
+                        {product.rating} · {product.reviewCount} reviews
+                    </span>
+                </div>
+
+                <div className="product-detail__price">
+                    {formatPrice(product.price, product.currency)}
+                </div>
 
                 <p className="product-detail__description">
                     {product.description}
                 </p>
 
-                <div className="product-detail__info-block">
-                    <h3>Key Benefits</h3>
-                    <div className="product-detail__benefit-pills">
-                        {benefits.map((benefit) => (
-                            <span key={benefit}>
-                                <Check size={12} />
+                <div className="product-detail__meta">
+                    <span>{product.size}</span>
+
+                    <span>
+                        For {product.skinTypes.join(", ")} skin
+                    </span>
+                </div>
+
+                <div className="product-detail__benefits">
+                    <h3>Why you'll love it</h3>
+
+                    <ul>
+                        {product.benefits.map((benefit) => (
+                            <li key={benefit}>
+                                <Check size={15} />
                                 {benefit}
-                            </span>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 </div>
 
-                <div className="product-detail__info-block">
-                    <h3>Selected Ingredients</h3>
-                    <div className="product-detail__ingredient-line">
-                        {selectedIngredients.map((ingredient, index) => (
-                            <span key={ingredient}>
-                                {ingredient}
-                                {index < selectedIngredients.length - 1 && (
-                                    <b>•</b>
-                                )}
-                            </span>
-                        ))}
-                    </div>
-                </div>
+                <div className="product-detail__purchase">
+                    <div className="product-detail__quantity">
+                        <button
+                            type="button"
+                            onClick={decreaseQuantity}
+                            aria-label="Decrease quantity"
+                        >
+                            <Minus size={15} />
+                        </button>
 
-                <div className="product-detail__actions">
-                    <button
-                        type="button"
-                        className="product-detail__wholesale"
-                        onClick={handleWholesale}
-                    >
-                        Wholesale Inquiry
-                        <span>
-                            <ArrowRight size={18} />
-                        </span>
-                    </button>
+                        <span>{quantity}</span>
+
+                        <button
+                            type="button"
+                            onClick={increaseQuantity}
+                            aria-label="Increase quantity"
+                        >
+                            <Plus size={15} />
+                        </button>
+                    </div>
 
                     <button
                         type="button"
-                        className="product-detail__purchase-toggle"
+                        className="product-detail__add"
                         onClick={handleAddToCart}
-                        aria-label="Add one product to bag"
+                        disabled={!product.inStock}
                     >
-                        +
+                        <ShoppingBag size={18} />
+
+                        {product.inStock
+                            ? "Add to Bag"
+                            : "Out of Stock"}
                     </button>
                 </div>
 
                 <div className="product-detail__assurance">
-                    <ShieldCheck size={17} />
-                    <span>Professionally manufactured in Dubai</span>
+                    <ShieldCheck size={20} />
+
+                    <div>
+                        <strong>Thoughtful skincare</strong>
+
+                        <span>
+                            Carefully selected formulas designed
+                            with your skin in mind.
+                        </span>
+                    </div>
                 </div>
 
-                <div className="product-detail__hidden-quantity" aria-hidden="true">
-                    <button type="button" onClick={decreaseQuantity}>
-                        <Minus size={12} />
-                    </button>
-                    <span>{quantity}</span>
-                    <button type="button" onClick={increaseQuantity}>
-                        <Plus size={12} />
-                    </button>
+                <div className="product-detail__ingredients">
+                    <h3>Key Ingredients</h3>
+
+                    <div>
+                        {product.ingredients.map((ingredient) => (
+                            <span key={ingredient}>
+                                {ingredient}
+                            </span>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
