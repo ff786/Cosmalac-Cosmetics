@@ -10443,19 +10443,25 @@ body.menu-open {
 
     .wholesale-page__hero-image {
         z-index: 4;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 58%;
         clip-path: polygon(
-            100% 42%,
+            100% 0%,
             100% 100%,
             0% 100%,
-            0% 78%
+            0% 48%
         );
-        transform-origin: 72% 70%;
-        will-change: transform, opacity, clip-path;
+        transform-origin: 72% 100%;
+        will-change: transform, opacity, clip-path, height;
     }
 
     .wholesale-page__hero-image img {
-        object-position: 72% 38%;
-        transform-origin: 72% 38%;
+        object-position: 72% 22%;
+        transform-origin: 72% 100%;
     }
 
     .wholesale-page__hero-image-wash {
@@ -10488,15 +10494,16 @@ body.menu-open {
     }
 
     .wholesale-page__hero-image {
+        height: 56%;
         clip-path: polygon(
-            100% 43%,
+            100% 0%,
             100% 100%,
             0% 100%,
-            0% 80%
+            0% 50%
         );
     }
 
     .wholesale-page__hero-image img {
-        object-position: 72% 37%;
+        object-position: 73% 20%;
     }
 }
