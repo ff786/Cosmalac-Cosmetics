@@ -1,5 +1,5 @@
 import { ArrowRight, Menu } from "lucide-react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Navigation from "./Navigation";
 import useScrollPosition from "../../hooks/useScrollPosition";
@@ -9,7 +9,6 @@ const Header = () => {
     const { y } = useScrollPosition();
     const { toggleMobileMenu, closeMobileMenu } = useApp();
     const navigate = useNavigate();
-    const location = useLocation();
 
     const scrolled = y > 40;
 
@@ -29,27 +28,6 @@ const Header = () => {
         });
     };
 
-    const handleWholesaleClick = (event) => {
-        event.preventDefault();
-        closeMobileMenu();
-
-        const target = document.querySelector("#wholesale");
-
-        if (!target) return;
-
-        const headerOffset = window.innerWidth <= 767 ? 72 : 88;
-        const top =
-            target.getBoundingClientRect().top +
-            window.scrollY -
-            headerOffset;
-
-        window.history.replaceState(null, "", "/#wholesale");
-
-        window.scrollTo({
-            top,
-            behavior: "smooth",
-        });
-    };
 
     return (
         <header
@@ -76,14 +54,14 @@ const Header = () => {
                 {/* RIGHT SIDE */}
                 <div className="nuvia-header__actions">
 
-                    <a
-                        href="/#wholesale"
+                    <Link
+                        to="/wholesale"
                         className="nuvia-header__inquiry"
-                        onClick={handleWholesaleClick}
+                        onClick={closeMobileMenu}
                     >
                         <span>Wholesale Inquiry</span>
                         <ArrowRight size={16} />
-                    </a>
+                    </Link>
 
                     <button
                         type="button"
