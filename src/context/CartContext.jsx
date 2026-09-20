@@ -1,6 +1,4 @@
 import {
-    createContext,
-    useContext,
     useEffect,
     useMemo,
     useState,
@@ -12,8 +10,7 @@ import {
 } from "../utils/helpers";
 
 import { STORAGE_KEYS } from "../utils/constants";
-
-const CartContext = createContext(null);
+import { CartContext } from "./CartContextValue";
 
 const getStoredCart = () => {
     if (typeof window === "undefined") {
@@ -170,7 +167,7 @@ export const CartProvider = ({ children }) => {
             isInCart,
             getItemQuantity,
         }),
-        [cartItems, cartTotal, cartQuantity]
+        [cartItems, cartTotal, cartQuantity, isInCart, getItemQuantity]
     );
 
     return (
