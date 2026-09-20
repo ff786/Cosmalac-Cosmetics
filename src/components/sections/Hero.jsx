@@ -13,6 +13,8 @@ const Hero = () => {
     const floatingCardRef = useRef(null);
     const heroBackgroundRef = useRef(null);
     const heroModelRef = useRef(null);
+    const heroMobileBackgroundRef = useRef(null);
+    const heroMobileModelRef = useRef(null);
     const heroPlusRef = useRef(null);
     const heroMinusRef = useRef(null);
     const scrollCueRef = useRef(null);
@@ -273,8 +275,24 @@ const Hero = () => {
                 /*
                  * INITIAL
                  *
-                 * Image starts toward the RIGHT/BOTTOM.
+                 * Mobile now uses the same layered composition as desktop:
+                 * generated environment + transparent model. The old single
+                 * photograph remains in the DOM only as a fallback and is
+                 * hidden by CSS.
                  */
+                gsap.set(
+                    [
+                        heroMobileBackgroundRef.current,
+                        heroMobileModelRef.current,
+                    ],
+                    {
+                        x: 0,
+                        y: 0,
+                        scale: 1,
+                        opacity: 1,
+                    }
+                );
+
                 gsap.set(imageFrameRef.current, {
                     xPercent: 0,
                     scale: 1,
@@ -288,11 +306,23 @@ const Hero = () => {
                  * Image starts entering toward the left.
                  */
                 tl.to(
-                    imageFrameRef.current,
+                    heroMobileBackgroundRef.current,
                     {
-                        x: "-8vw",
-                        scale: 1,
-                        duration: 0.25,
+                        scale: 1.035,
+                        y: "-1vh",
+                        duration: 0.32,
+                        ease: "none",
+                    },
+                    0
+                );
+
+                tl.to(
+                    heroMobileModelRef.current,
+                    {
+                        x: "-2vw",
+                        y: "-1vh",
+                        scale: 1.06,
+                        duration: 0.32,
                         ease: "none",
                     },
                     0
@@ -304,11 +334,23 @@ const Hero = () => {
                  * Image crosses over the text.
                  */
                 tl.to(
-                    imageFrameRef.current,
+                    heroMobileBackgroundRef.current,
                     {
-                        x: "-22vw",
-                        scale: 1.04,
-                        duration: 0.3,
+                        scale: 1.09,
+                        y: "-2vh",
+                        duration: 0.34,
+                        ease: "none",
+                    },
+                    0.25
+                );
+
+                tl.to(
+                    heroMobileModelRef.current,
+                    {
+                        x: "-5vw",
+                        y: "-2vh",
+                        scale: 1.16,
+                        duration: 0.34,
                         ease: "none",
                     },
                     0.25
@@ -334,10 +376,22 @@ const Hero = () => {
                  * Image becomes dominant.
                  */
                 tl.to(
-                    imageFrameRef.current,
+                    heroMobileBackgroundRef.current,
                     {
-                        x: "-34vw",
-                        scale: 1.08,
+                        scale: 1.16,
+                        y: "-3vh",
+                        duration: 0.35,
+                        ease: "none",
+                    },
+                    0.55
+                );
+
+                tl.to(
+                    heroMobileModelRef.current,
+                    {
+                        x: "-8vw",
+                        y: "-3vh",
+                        scale: 1.34,
                         duration: 0.35,
                         ease: "none",
                     },
@@ -487,6 +541,21 @@ const Hero = () => {
                             src="/images/hero/cosmalac-hero-model.webp"
                             alt=""
                             fetchPriority="high"
+                        />
+                    </div>
+
+                    <div className="hero__mobile-composite" aria-hidden="true">
+                        <img
+                            ref={heroMobileBackgroundRef}
+                            className="hero__mobile-background"
+                            src="/images/hero/cosmalac-hero-bg.webp"
+                            alt=""
+                        />
+                        <img
+                            ref={heroMobileModelRef}
+                            className="hero__mobile-model"
+                            src="/images/hero/cosmalac-hero-model.webp"
+                            alt=""
                         />
                     </div>
 
