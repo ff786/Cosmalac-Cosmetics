@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Check, Mail } from "lucide-react";
 
 import Input from "../common/Input";
@@ -14,7 +14,11 @@ const Newsletter = () => {
     const [error, setError] = useState("");
     const [submitted, setSubmitted] = useState(false);
     const [honeypot, setHoneypot] = useState("");
-    const startedAtRef = useRef(Date.now());
+    const startedAtRef = useRef(null);
+
+    useEffect(() => {
+        startedAtRef.current = Date.now();
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
