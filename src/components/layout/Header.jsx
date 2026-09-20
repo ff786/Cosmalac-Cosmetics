@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import Navigation from "./Navigation";
 import useScrollPosition from "../../hooks/useScrollPosition";
-import { useApp } from "../../context/AppContext";
+import { useApp } from "../../hooks/useApp";
 
 const Header = () => {
     const { y } = useScrollPosition();
