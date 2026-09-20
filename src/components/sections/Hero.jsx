@@ -13,6 +13,9 @@ const Hero = () => {
     const floatingCardRef = useRef(null);
     const heroBackgroundRef = useRef(null);
     const heroModelRef = useRef(null);
+    const heroPlusRef = useRef(null);
+    const heroMinusRef = useRef(null);
+    const scrollCueRef = useRef(null);
 
 
     useLayoutEffect(() => {
@@ -38,6 +41,79 @@ const Hero = () => {
                     x: 0,
                     y: 0,
                 });
+
+                /*
+                 * DESKTOP MICRO-INTERACTION
+                 * A restrained pointer parallax adds depth without touching
+                 * the scroll-controlled model animation.
+                 */
+                const backgroundX = gsap.quickTo(
+                    heroBackgroundRef.current,
+                    "x",
+                    { duration: 0.8, ease: "power3.out" }
+                );
+                const backgroundY = gsap.quickTo(
+                    heroBackgroundRef.current,
+                    "y",
+                    { duration: 0.8, ease: "power3.out" }
+                );
+                const plusX = heroPlusRef.current
+                    ? gsap.quickTo(heroPlusRef.current, "x", {
+                        duration: 0.9,
+                        ease: "power3.out",
+                    })
+                    : null;
+                const plusY = heroPlusRef.current
+                    ? gsap.quickTo(heroPlusRef.current, "y", {
+                        duration: 0.9,
+                        ease: "power3.out",
+                    })
+                    : null;
+                const minusX = heroMinusRef.current
+                    ? gsap.quickTo(heroMinusRef.current, "x", {
+                        duration: 1.05,
+                        ease: "power3.out",
+                    })
+                    : null;
+                const minusY = heroMinusRef.current
+                    ? gsap.quickTo(heroMinusRef.current, "y", {
+                        duration: 1.05,
+                        ease: "power3.out",
+                    })
+                    : null;
+
+                const handlePointerMove = (event) => {
+                    const rect = heroRef.current.getBoundingClientRect();
+                    const x = (event.clientX - rect.left) / rect.width - 0.5;
+                    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+                    backgroundX(x * 10);
+                    backgroundY(y * 8);
+                    plusX?.(x * 16);
+                    plusY?.(y * 12);
+                    minusX?.(x * -12);
+                    minusY?.(y * -10);
+                };
+
+                const resetPointer = () => {
+                    backgroundX(0);
+                    backgroundY(0);
+                    plusX?.(0);
+                    plusY?.(0);
+                    minusX?.(0);
+                    minusY?.(0);
+                };
+
+                heroRef.current.addEventListener(
+                    "pointermove",
+                    handlePointerMove,
+                    { passive: true }
+                );
+                heroRef.current.addEventListener(
+                    "pointerleave",
+                    resetPointer,
+                    { passive: true }
+                );
 
                 const tl = gsap.timeline({
                     scrollTrigger: {
@@ -148,7 +224,32 @@ const Hero = () => {
                     );
                 }
 
+                /*
+                 * Scroll cue follows the same timeline so it naturally
+                 * disappears as the hero starts transforming.
+                 */
+                if (scrollCueRef.current) {
+                    tl.to(
+                        scrollCueRef.current,
+                        {
+                            opacity: 0,
+                            y: 14,
+                            duration: 0.2,
+                            ease: "none",
+                        },
+                        0.08
+                    );
+                }
+
                 return () => {
+                    heroRef.current?.removeEventListener(
+                        "pointermove",
+                        handlePointerMove
+                    );
+                    heroRef.current?.removeEventListener(
+                        "pointerleave",
+                        resetPointer
+                    );
                     tl.kill();
                 };
             });
@@ -298,11 +399,11 @@ const Hero = () => {
                 />
             </div>
 
-            <div className="hero__decor hero__decor--plus">
+            <div ref={heroPlusRef} className="hero__decor hero__decor--plus">
                 <Sparkles size={30} />
             </div>
 
-            <div className="hero__decor hero__decor--minus">
+            <div ref={heroMinusRef} className="hero__decor hero__decor--minus">
                 <span
                     style={{
                         fontSize: "2rem",
@@ -311,6 +412,15 @@ const Hero = () => {
                 >
                     −
                 </span>
+            </div>
+
+            <div
+                ref={scrollCueRef}
+                className="hero__scroll-cue"
+                aria-hidden="true"
+            >
+                <span className="hero__scroll-cue-line" />
+                <span>Scroll to explore</span>
             </div>
 
             <div className="container hero__container">
