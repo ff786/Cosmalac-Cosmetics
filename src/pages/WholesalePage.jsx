@@ -46,6 +46,8 @@ const WholesalePage = () => {
                 });
 
                 mobileScroll
+                    // Copy stays readable at first, then slides behind the portrait
+                    // before fading out.
                     .fromTo(
                         contentRef.current,
                         {
@@ -53,13 +55,15 @@ const WholesalePage = () => {
                             opacity: 1,
                         },
                         {
-                            y: -70,
+                            y: -150,
                             opacity: 0,
-                            duration: 0.42,
+                            duration: 0.62,
                             ease: "none",
                         },
-                        0.05
+                        0.12
                     )
+                    // The portrait expands from its diagonal crop toward a full-frame
+                    // image as the user progresses through the hero.
                     .fromTo(
                         imageRef.current,
                         {
@@ -67,13 +71,14 @@ const WholesalePage = () => {
                             x: 0,
                         },
                         {
-                            scale: 1.075,
-                            x: -10,
+                            scale: 1.24,
+                            x: -8,
                             duration: 1,
                             ease: "none",
                         },
                         0
                     )
+                    // Let the stats remain present longer, then fade out near the end.
                     .fromTo(
                         statsRef.current,
                         {
@@ -81,12 +86,12 @@ const WholesalePage = () => {
                             opacity: 1,
                         },
                         {
-                            y: 26,
+                            y: 38,
                             opacity: 0,
-                            duration: 0.5,
+                            duration: 0.42,
                             ease: "none",
                         },
-                        0.45
+                        0.62
                     );
 
                 return () => {
