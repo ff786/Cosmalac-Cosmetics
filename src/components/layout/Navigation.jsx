@@ -16,16 +16,26 @@ const Navigation = () => {
     const closeButtonRef = useRef(null);
 
     useEffect(() => {
-        if (isMobileMenuOpen) {
-            requestAnimationFrame(() => {
-                closeButtonRef.current?.focus();
-            });
-        } else {
-            requestAnimationFrame(() => {
-                document.querySelector(".nuvia-header__mobile-toggle")?.focus();
-            });
-        }
+        if (!isMobileMenuOpen) return;
+
+        requestAnimationFrame(() => {
+            closeButtonRef.current?.focus();
+        });
     }, [isMobileMenuOpen]);
+
+    const closeMenu = () => {
+        const activeElement = document.activeElement;
+
+        if (activeElement instanceof HTMLElement) {
+            activeElement.blur();
+        }
+
+        closeMenu();
+
+        requestAnimationFrame(() => {
+            document.querySelector(".nuvia-header__mobile-toggle")?.focus();
+        });
+    };
 
     const getHeaderOffset = () => {
         const header = document.querySelector(".nuvia-header");
@@ -58,7 +68,7 @@ const Navigation = () => {
 
     const handleNavigation = (event, item) => {
         if (!item.path?.includes("#")) {
-            closeMobileMenu();
+            closeMenu();
             return;
         }
 
@@ -68,7 +78,7 @@ const Navigation = () => {
         const targetPath = pathname || "/";
         const hash = hashFragment ? `#${hashFragment}` : "";
 
-        closeMobileMenu();
+        closeMenu();
 
         if (location.pathname !== targetPath) {
             navigate(`${targetPath}${hash}`);
@@ -116,7 +126,7 @@ const Navigation = () => {
             ]
                 .filter(Boolean)
                 .join(" ")}
-            inert={!isMobileMenuOpen ? "" : undefined}
+            inert={isMobileMenuOpen ? undefined : true}
         >
             <div className="nuvia-mobile-menu__header">
                 <NavLink
