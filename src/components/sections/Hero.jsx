@@ -21,10 +21,6 @@ const Hero = () => {
 
 
     useLayoutEffect(() => {
-        const heroElement = heroRef.current;
-
-        if (!heroElement) return;
-
         const ctx = gsap.context(() => {
             const mm = gsap.matchMedia();
 
@@ -89,7 +85,7 @@ const Hero = () => {
                     : null;
 
                 const handlePointerMove = (event) => {
-                    const rect = heroElement.getBoundingClientRect();
+                    const rect = heroRef.current.getBoundingClientRect();
                     const x = (event.clientX - rect.left) / rect.width - 0.5;
                     const y = (event.clientY - rect.top) / rect.height - 0.5;
 
@@ -110,12 +106,12 @@ const Hero = () => {
                     minusY?.(0);
                 };
 
-                heroElement.addEventListener(
+                heroRef.current.addEventListener(
                     "pointermove",
                     handlePointerMove,
                     { passive: true }
                 );
-                heroElement.addEventListener(
+                heroRef.current.addEventListener(
                     "pointerleave",
                     resetPointer,
                     { passive: true }
@@ -123,7 +119,7 @@ const Hero = () => {
 
                 const tl = gsap.timeline({
                     scrollTrigger: {
-                        trigger: heroElement,
+                        trigger: heroRef.current,
                         start: "top top",
                         end: "bottom bottom",
                         scrub: 0.28,
@@ -248,11 +244,11 @@ const Hero = () => {
                 }
 
                 return () => {
-                    heroElement.removeEventListener(
+                    heroRef.current?.removeEventListener(
                         "pointermove",
                         handlePointerMove
                     );
-                    heroElement.removeEventListener(
+                    heroRef.current?.removeEventListener(
                         "pointerleave",
                         resetPointer
                     );
@@ -268,7 +264,7 @@ const Hero = () => {
             mm.add("(max-width: 767px)", () => {
                 const tl = gsap.timeline({
                     scrollTrigger: {
-                        trigger: heroElement,
+                        trigger: heroRef.current,
                         start: "top top",
                         end: "bottom top",
                         scrub: 1,
@@ -432,4 +428,166 @@ const Hero = () => {
                     );
                 }
 
-            
+                return () => {
+                    tl.kill();
+                };
+            });
+        }, heroRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    return (
+        <section
+            ref={heroRef}
+            className="hero"
+            id="home"
+        >
+            <div className="hero__background">
+                <img
+                    ref={heroBackgroundRef}
+                    className="hero__background-image"
+                    src="/images/hero/cosmalac-hero-bg.webp"
+                    alt=""
+                    aria-hidden="true"
+                />
+            </div>
+
+            <div ref={heroPlusRef} className="hero__decor hero__decor--plus">
+                <Sparkles size={30} />
+            </div>
+
+            <div ref={heroMinusRef} className="hero__decor hero__decor--minus">
+                <span
+                    style={{
+                        fontSize: "2rem",
+                        fontFamily: "serif",
+                    }}
+                >
+                    −
+                </span>
+            </div>
+
+            <div
+                ref={scrollCueRef}
+                className="hero__scroll-cue"
+                aria-hidden="true"
+            >
+                <span className="hero__scroll-cue-line" />
+                <span>Scroll to explore</span>
+            </div>
+
+            <div className="container hero__container">
+                <div
+                    ref={contentRef}
+                    className="hero__content"
+                >
+
+                    <div className="hero__eyebrow">
+                        <span className="hero__eyebrow-line" />
+                        <span>PREMIUM SKINCARE FROM DUBAI</span>
+                    </div>
+
+                    <h1 className="hero__title">
+                        <span className="hero__title-main">
+                            Premium
+                        </span>
+                        <span className="hero__title-main">
+                            Whitening
+                        </span>
+
+                        <span className="hero__title-script">
+                            Care
+                        </span>
+                    </h1>
+                    <p className="hero__description">
+                        Discover professionally crafted skincare
+                        designed to help reveal brighter, clearer,
+                        beautifully radiant-looking skin.
+                    </p>
+
+                    <div className="hero__actions">
+
+                        <Link
+                            to="/products"
+                            className="nuvia-button nuvia-button--primary nuvia-button--large"
+                        >
+                            <span>Explore Our Products</span>
+                            <ArrowRight size={17} />
+                        </Link>
+
+                        <Link
+                            to="/wholesale"
+                            className="hero__secondary-link"
+                        >
+                            Wholesale Inquiry
+                            <ArrowRight size={15} />
+                        </Link>
+
+                    </div>
+
+                </div>
+
+                <div className="hero__visual">
+                    <div className="hero__desktop-composite" aria-hidden="true">
+                        <img
+                            ref={heroModelRef}
+                            className="hero__model-layer"
+                            src="/images/hero/cosmalac-hero-model.webp"
+                            alt=""
+                            fetchPriority="high"
+                        />
+                    </div>
+
+                    <div className="hero__mobile-composite" aria-hidden="true">
+                        <img
+                            ref={heroMobileBackgroundRef}
+                            className="hero__mobile-background"
+                            src="/images/hero/cosmalac-hero-bg.webp"
+                            alt=""
+                        />
+                        <img
+                            ref={heroMobileModelRef}
+                            className="hero__mobile-model"
+                            src="/images/hero/cosmalac-hero-model.webp"
+                            alt=""
+                        />
+                    </div>
+
+                    <div
+                        ref={imageFrameRef}
+                        className="hero__image-frame hero__image-frame--mobile"
+                    >
+                        <img
+                            src="/images/hero/cosmalac-hero.png"
+                            alt="Cosmalac premium skincare"
+                            fetchPriority="high"
+                        />
+                    </div>
+
+                    <div ref={floatingCardRef}
+                         className="hero__floating-card">
+
+                        <div className="hero__floating-card-icon">
+                            <Sparkles size={17} />
+                        </div>
+
+                        <div>
+                            <strong>
+                                Crafted with Care
+                            </strong>
+
+                            <span>
+                                Premium skincare solutions
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default Hero;
