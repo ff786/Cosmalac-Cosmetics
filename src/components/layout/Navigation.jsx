@@ -93,6 +93,7 @@ const Navigation = () => {
 
     const mobileMenu = (
         <div
+            id="cosmalac-mobile-menu"
             className={[
                 "nuvia-mobile-menu",
                 isMobileMenuOpen ? "nuvia-mobile-menu--open" : "",
