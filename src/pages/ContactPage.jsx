@@ -20,10 +20,11 @@ const ContactPage = () => {
 
             if (reduceMotion) return;
 
-            gsap.from(".contact-page__hero-orbit", {
-                scale: 0.72,
-                rotate: -25,
+            gsap.from(".contact-page__visual-arch", {
+                scale: 0.86,
+                rotate: -10,
                 opacity: 0,
+                transformOrigin: "center center",
                 duration: 1.2,
                 ease: "power3.out",
             });
@@ -37,7 +38,7 @@ const ContactPage = () => {
                 delay: 0.15,
             });
 
-            gsap.from(".contact-page__hero-card", {
+            gsap.from(".contact-page__visual-panel", {
                 y: 55,
                 opacity: 0,
                 scale: 0.96,
