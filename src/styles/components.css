@@ -10123,29 +10123,28 @@ body.menu-open {
         opacity: 0;
         transform: translate3d(42px, 42px, 0) scale(1.035);
         transform-origin: 78% 100%;
-        clip-path: polygon(
-            100% 0%,
-            100% 100%,
-            0% 100%,
-            0% 76%
-        );
-        /* Keep the diagonal reveal visible, but soft, in the initial state. */
+        /* Soft diagonal edge — the hero image fades into the cream
+           background instead of ending on a hard geometric cut. */
+        --mobile-fade-start: 38;
+        --mobile-fade-end: 58;
         -webkit-mask-image: linear-gradient(
-            to bottom,
+            135deg,
             #000 0%,
-            #000 72%,
-            rgba(0, 0, 0, 0.72) 76%,
-            rgba(0, 0, 0, 0.18) 84%,
+            #000 calc(var(--mobile-fade-start) * 1%),
+            transparent calc(var(--mobile-fade-end) * 1%),
             transparent 100%
         );
         mask-image: linear-gradient(
-            to bottom,
+            135deg,
             #000 0%,
-            #000 72%,
-            rgba(0, 0, 0, 0.72) 76%,
-            rgba(0, 0, 0, 0.18) 84%,
+            #000 calc(var(--mobile-fade-start) * 1%),
+            transparent calc(var(--mobile-fade-end) * 1%),
             transparent 100%
         );
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
         animation: wholesale-mobile-portrait-in 1100ms
             cubic-bezier(0.16, 1, 0.3, 1) 220ms forwards;
         will-change: transform, opacity;
