@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 
 import { NAVIGATION_ITEMS } from "../../utils/constants";
-import { useApp } from "../../context/AppContext";
+import { useApp } from "../../hooks/useApp";
 
 const Navigation = () => {
     const {
