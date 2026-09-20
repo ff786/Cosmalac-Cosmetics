@@ -23,7 +23,9 @@ const ProductDetail = ({ product }) => {
     const dragState = useRef({
         active: false,
         startX: 0,
+        startY: 0,
         rotation: 0,
+        tilt: 0,
     });
 
     useLayoutEffect(() => {
@@ -161,7 +163,9 @@ const ProductDetail = ({ product }) => {
         dragState.current = {
             active: true,
             startX: event.clientX,
+            startY: event.clientY,
             rotation: dragState.current.rotation,
+            tilt: dragState.current.tilt,
         };
     };
 
@@ -169,15 +173,27 @@ const ProductDetail = ({ product }) => {
         const state = dragState.current;
         if (!state.active || !productArtRef.current) return;
 
-        const delta = event.clientX - state.startX;
+        const deltaX = event.clientX - state.startX;
+        const deltaY = event.clientY - state.startY;
+
         const nextRotation = Math.max(
-            -24,
-            Math.min(24, state.rotation + delta * 0.16)
+            -34,
+            Math.min(34, state.rotation + deltaX * 0.18)
+        );
+
+        const nextTilt = Math.max(
+            -10,
+            Math.min(10, state.tilt - deltaY * 0.08)
         );
 
         productArtRef.current.style.setProperty(
             "--product-drag-rotation",
             `${nextRotation}deg`
+        );
+
+        productArtRef.current.style.setProperty(
+            "--product-drag-tilt",
+            `${nextTilt}deg`
         );
     };
 
@@ -188,8 +204,13 @@ const ProductDetail = ({ product }) => {
             "--product-drag-rotation"
         );
 
+        const tilt = productArtRef.current.style.getPropertyValue(
+            "--product-drag-tilt"
+        );
+
         dragState.current.active = false;
         dragState.current.rotation = Number.parseFloat(value) || 0;
+        dragState.current.tilt = Number.parseFloat(tilt) || 0;
     };
 
     if (!product) return null;
