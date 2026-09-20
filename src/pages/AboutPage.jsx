@@ -218,6 +218,7 @@ const AboutPage = () => {
             <section className="about-page__manufacturing section">
                 <div className="container">
                     <div className="about-page__manufacturing-grid">
+                        {/* Queen Beauty Cream temporarily hidden.
                         <div className="about-page__manufacturing-image">
                             <img
                                 src="/images/products/queen-beauty-cream-8x.png"
@@ -225,6 +226,7 @@ const AboutPage = () => {
                                 loading="lazy"
                             />
                         </div>
+                        */}
 
                         <div className="about-page__manufacturing-content">
               <span className="eyebrow">
