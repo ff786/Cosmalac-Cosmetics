@@ -1,6 +1,4 @@
 import {
-    createContext,
-    useContext,
     useEffect,
     useMemo,
     useState,
@@ -8,7 +6,7 @@ import {
 
 import { initLenis } from "../utils/lenis";
 
-const AppContext = createContext(null);
+import { AppContext } from "./AppContextValue";
 
 export const AppProvider = ({ children }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -101,14 +99,3 @@ export const AppProvider = ({ children }) => {
     );
 };
 
-export const useApp = () => {
-    const context = useContext(AppContext);
-
-    if (!context) {
-        throw new Error("useApp must be used inside an AppProvider");
-    }
-
-    return context;
-};
-
-export default AppContext;
