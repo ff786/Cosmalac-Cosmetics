@@ -114,6 +114,7 @@ const Benefits = () => {
                     </div>
                 </div>
 
+                {/*
                 <div className="benefits__secondary">
                     <div className="benefits__secondary-content">
             <span className="eyebrow">
@@ -156,7 +157,7 @@ const Benefits = () => {
                         />
                     </div>
                 </div>
-            </div>
+                 */}           </div>
         </section>
     );
 };
