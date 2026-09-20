@@ -100,7 +100,7 @@ export const ROUTES = {
     HOME: "/",
     PRODUCTS: "/products",
     ABOUT: "/about",
-    SERVICES: "/services",
+    WHOLESALE: "/wholesale",
     CONTACT: "/contact",
 };
 
