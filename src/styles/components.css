@@ -1925,6 +1925,18 @@ body.modal-open {
     }
 }
 /* =========================================================
+   DESKTOP — MOBILE COMPOSITE IS STRICTLY DISABLED
+   Keep the desktop hero on its original layered composition.
+   ========================================================= */
+
+@media (min-width: 768px) {
+    .hero__mobile-composite,
+    .hero__image-frame--mobile {
+        display: none !important;
+    }
+}
+
+/* =========================================================
    MEDIA QUERIES MOBILE
    ========================================================= */
 
