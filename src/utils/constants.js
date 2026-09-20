@@ -23,7 +23,7 @@ export const NAVIGATION_ITEMS = [
     },
     {
         label: "Contact Us",
-        path: "/ContactUs",
+        path: "/contact",
     },
 ];
 
