@@ -11,6 +11,8 @@ const Hero = () => {
     const contentRef = useRef(null);
     const imageFrameRef = useRef(null);
     const floatingCardRef = useRef(null);
+    const heroBackgroundRef = useRef(null);
+    const heroModelRef = useRef(null);
 
 
     useLayoutEffect(() => {
@@ -48,14 +50,24 @@ const Hero = () => {
 
                 /*
                  * PHASE 2
-                 * Image moves only slightly toward the centre while
-                 * the dominant motion comes from the zoom.
+                 * The model separates from the environment and begins
+                 * expanding. The background remains visually stable.
                  */
                 tl.to(
-                    imageFrameRef.current,
+                    heroModelRef.current,
                     {
-                        x: "-7vw",
-                        scale: 1.18,
+                        x: "-3vw",
+                        scale: 1.16,
+                        duration: 0.48,
+                        ease: "none",
+                    },
+                    0.15
+                );
+
+                tl.to(
+                    heroBackgroundRef.current,
+                    {
+                        scale: 1.035,
                         duration: 0.48,
                         ease: "none",
                     },
@@ -64,15 +76,25 @@ const Hero = () => {
 
                 /*
                  * PHASE 3
-                 * The image becomes the dominant hero visual.
-                 * Keep horizontal travel controlled; let scale create
-                 * the cinematic takeover.
+                 * The model becomes the dominant visual while the
+                 * background softly enlarges behind it.
                  */
                 tl.to(
-                    imageFrameRef.current,
+                    heroModelRef.current,
                     {
-                        x: "-11vw",
-                        scale: 1.58,
+                        x: "-6vw",
+                        y: "-2vh",
+                        scale: 1.5,
+                        duration: 0.42,
+                        ease: "none",
+                    },
+                    0.55
+                );
+
+                tl.to(
+                    heroBackgroundRef.current,
+                    {
+                        scale: 1.09,
                         duration: 0.42,
                         ease: "none",
                     },
@@ -250,7 +272,15 @@ const Hero = () => {
             className="hero"
             id="home"
         >
-            <div className="hero__background" />
+            <div className="hero__background">
+                <img
+                    ref={heroBackgroundRef}
+                    className="hero__background-image"
+                    src="/images/hero/cosmalac-hero-bg.webp"
+                    alt=""
+                    aria-hidden="true"
+                />
+            </div>
 
             <div className="hero__decor hero__decor--plus">
                 <Sparkles size={30} />
@@ -324,9 +354,19 @@ const Hero = () => {
                 </div>
 
                 <div className="hero__visual">
+                    <div className="hero__desktop-composite" aria-hidden="true">
+                        <img
+                            ref={heroModelRef}
+                            className="hero__model-layer"
+                            src="/images/hero/cosmalac-hero-model.webp"
+                            alt=""
+                            fetchPriority="high"
+                        />
+                    </div>
+
                     <div
                         ref={imageFrameRef}
-                        className="hero__image-frame"
+                        className="hero__image-frame hero__image-frame--mobile"
                     >
                         <img
                             src="/images/hero/cosmalac-hero.png"
