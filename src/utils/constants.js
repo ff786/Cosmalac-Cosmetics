@@ -14,12 +14,12 @@ export const NAVIGATION_ITEMS = [
         path: "/products",
     },
     {
-        label: "About Us",
-        path: "/about",
-    },
-    {
         label: "Wholesale Inquiry",
         path: "/wholesale",
+    },
+    {
+        label: "About Us",
+        path: "/about",
     },
     {
         label: "Contact Us",
