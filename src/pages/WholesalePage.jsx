@@ -46,6 +46,22 @@ const WholesalePage = () => {
                 });
 
                 mobileScroll
+                    // The soft diagonal image edge gradually opens to a full-frame
+                    // portrait as the user scrolls through the hero.
+                    .fromTo(
+                        imageWrapRef.current,
+                        {
+                            "--mobile-fade-start": 38,
+                            "--mobile-fade-end": 58,
+                        },
+                        {
+                            "--mobile-fade-start": 100,
+                            "--mobile-fade-end": 100,
+                            duration: 0.72,
+                            ease: "none",
+                        },
+                        0
+                    )
                     // Copy stays readable at first, then slides behind the portrait
                     // before fading out.
                     .fromTo(
