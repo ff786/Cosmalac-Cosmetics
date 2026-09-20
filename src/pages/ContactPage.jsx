@@ -11,6 +11,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ContactPage = () => {
     const pageRef = useRef(null);
+    const heroArchRef = useRef(null);
+    const heroContentRef = useRef(null);
+    const visualPanelRef = useRef(null);
     const [openFaq, setOpenFaq] = useState(0);
 
     useLayoutEffect(() => {
@@ -21,7 +24,7 @@ const ContactPage = () => {
 
             if (reduceMotion) return;
 
-            gsap.from(".contact-page__visual-arch", {
+            gsap.from(heroArchRef.current, {
                 scale: 0.86,
                 rotate: -10,
                 opacity: 0,
@@ -30,7 +33,7 @@ const ContactPage = () => {
                 ease: "power3.out",
             });
 
-            gsap.from(".contact-page__hero-content > *", {
+            gsap.from(heroContentRef.current?.children || [], {
                 y: 42,
                 opacity: 0,
                 stagger: 0.1,
@@ -39,7 +42,7 @@ const ContactPage = () => {
                 delay: 0.15,
             });
 
-            gsap.from(".contact-page__visual-panel", {
+            gsap.from(visualPanelRef.current, {
                 y: 55,
                 opacity: 0,
                 scale: 0.96,
@@ -71,7 +74,7 @@ const ContactPage = () => {
         <main className="contact-page" ref={pageRef}>
             <section className="contact-page__hero">
                 <div className="container contact-page__hero-layout">
-                    <div className="contact-page__hero-content">
+                    <div className="contact-page__hero-content" ref={heroContentRef}>
                         <span className="eyebrow">
                             <Sparkles size={13} />
                             Let's connect
@@ -100,8 +103,8 @@ const ContactPage = () => {
 
                     <div className="contact-page__hero-visual" aria-hidden="true">
                         <div className="contact-page__visual-light" />
-                        <div className="contact-page__visual-arch" />
-                        <div className="contact-page__visual-panel">
+                        <div className="contact-page__visual-arch" ref={heroArchRef} />
+                        <div className="contact-page__visual-panel" ref={visualPanelRef}>
                             <div className="contact-page__visual-panel-inner">
                                 <span className="contact-page__visual-small">
                                     PREMIUM SKINCARE
