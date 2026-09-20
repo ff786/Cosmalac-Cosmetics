@@ -1,5 +1,5 @@
 /* =========================================================
-   NUVIA CARE — VALIDATION
+   Cosmalac — VALIDATION
    ========================================================= */
 
 export const isRequired = (value) => {
