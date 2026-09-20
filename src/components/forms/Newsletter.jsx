@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight, Check, Mail } from "lucide-react";
 
 import Input from "../common/Input";
 
 import { validateNewsletter } from "../../utils/validation";
+import {
+    hasRecentSubmission,
+    isLikelyBot,
+} from "../../utils/formSecurity";
 
 const Newsletter = () => {
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
     const [submitted, setSubmitted] = useState(false);
+    const [honeypot, setHoneypot] = useState("");
+    const startedAtRef = useRef(Date.now());
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -18,6 +24,16 @@ const Newsletter = () => {
 
         if (validationError) {
             setError(validationError);
+            return;
+        }
+
+        if (
+            isLikelyBot({
+                honeypot,
+                startedAt: startedAtRef.current,
+            }) ||
+            hasRecentSubmission("newsletter")
+        ) {
             return;
         }
 
@@ -61,6 +77,17 @@ const Newsletter = () => {
                             className="newsletter__form"
                             onSubmit={handleSubmit}
                         >
+                            <input
+                                type="text"
+                                name="website"
+                                value={honeypot}
+                                onChange={(event) => setHoneypot(event.target.value)}
+                                tabIndex="-1"
+                                autoComplete="off"
+                                aria-hidden="true"
+                                className="form-honeypot"
+                            />
+
                             <Input
                                 name="newsletter-email"
                                 type="email"
