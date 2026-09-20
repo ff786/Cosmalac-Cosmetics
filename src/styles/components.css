@@ -10422,3 +10422,81 @@ body.menu-open {
         object-position: 72% 31%;
     }
 }
+
+
+/* =========================================================
+   WHOLESALE MOBILE HERO — APPROVED COMPOSITION
+   Initial state: copy is completely clear above the portrait.
+   Scroll state: portrait expands upward and takes over the copy.
+   ========================================================= */
+
+@media (max-width: 767px) {
+    .wholesale-page__hero--editorial {
+        overflow: hidden;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content {
+        position: relative;
+        z-index: 10;
+        padding-top: 2.45rem;
+    }
+
+    .wholesale-page__hero-image {
+        z-index: 4;
+        clip-path: polygon(
+            100% 42%,
+            100% 100%,
+            0% 100%,
+            0% 78%
+        );
+        transform-origin: 72% 70%;
+        will-change: transform, opacity, clip-path;
+    }
+
+    .wholesale-page__hero-image img {
+        object-position: 72% 38%;
+        transform-origin: 72% 38%;
+    }
+
+    .wholesale-page__hero-image-wash {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(248,238,224,0) 0%,
+                rgba(248,238,224,0.02) 24%,
+                rgba(248,238,224,0.10) 52%,
+                rgba(57,37,29,0.04) 100%
+            );
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content h1,
+    .wholesale-page__hero--editorial .wholesale-page__hero-content p,
+    .wholesale-page__hero--editorial .wholesale-page__hero-content .eyebrow,
+    .wholesale-page__hero--editorial .wholesale-page__hero-link {
+        position: relative;
+        z-index: 11;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-stats {
+        z-index: 12;
+    }
+}
+
+@media (max-width: 480px) {
+    .wholesale-page__hero--editorial .wholesale-page__hero-content {
+        padding-top: 2.25rem;
+    }
+
+    .wholesale-page__hero-image {
+        clip-path: polygon(
+            100% 43%,
+            100% 100%,
+            0% 100%,
+            0% 80%
+        );
+    }
+
+    .wholesale-page__hero-image img {
+        object-position: 72% 37%;
+    }
+}
