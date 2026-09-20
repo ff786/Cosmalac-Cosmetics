@@ -154,7 +154,7 @@ const ProductsPage = () => {
                 block: "center",
             });
         });
-    }, [activeProductId]);
+    }, [activeProduct]);
 
     const handleProductSelect = (product) => {
         setActiveProductId((current) =>
