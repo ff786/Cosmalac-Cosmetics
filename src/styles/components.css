@@ -10012,26 +10012,6 @@ body.menu-open {
     transform: translateY(-50%);
 }
 
-.wholesale-page__hero-scroll {
-    position: absolute;
-    z-index: 8;
-    right: 0;
-    bottom: 2.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--color-brown-700);
-    font-size: 0.55rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    will-change: transform, opacity;
-}
-
-.wholesale-page__hero-scroll svg {
-    color: var(--color-gold-600);
-}
-
 @media (max-width: 1023px) and (min-width: 768px) {
     .wholesale-page__hero--editorial .wholesale-page__hero-content {
         width: 58%;
@@ -10062,7 +10042,7 @@ body.menu-open {
         right: 0;
         bottom: 0;
         width: 100%;
-        height: 54%;
+        height: 57%;
         transform-origin: center bottom;
         border-radius: 0;
     }
@@ -10080,7 +10060,7 @@ body.menu-open {
     .wholesale-page__hero--editorial .wholesale-page__hero-content {
         width: 100%;
         max-width: 100%;
-        padding: 7.5rem 0 0;
+        padding: 3.25rem 0 0;
     }
 
     .wholesale-page__hero--editorial .wholesale-page__hero-content h1 {
@@ -10121,10 +10101,6 @@ body.menu-open {
         display: none;
     }
 
-    .wholesale-page__hero-scroll {
-        display: none;
-    }
-
     .wholesale-page__hero--editorial .wholesale-page__hero-orbit {
         width: 110vw;
         right: 50%;
@@ -10142,7 +10118,7 @@ body.menu-open {
 
 @media (max-width: 480px) {
     .wholesale-page__hero--editorial .wholesale-page__hero-content {
-        padding-top: 7.1rem;
+        padding-top: 2.8rem;
     }
 
     .wholesale-page__hero--editorial .wholesale-page__hero-content h1 {
@@ -10161,5 +10137,79 @@ body.menu-open {
     .wholesale-page__hero-scroll {
         transform: none !important;
         transition: none !important;
+    }
+}
+
+
+/* =========================================================
+   WHOLESALE HERO — TRANSITION REFINEMENT
+   ========================================================= */
+
+/* The image must remain wider than its animated travel distance.
+   This prevents a background strip from appearing on the right
+   when the visual moves left during the scroll story. */
+.wholesale-page__hero-image {
+    right: -110px;
+    width: min(calc(67vw + 110px), 1090px);
+}
+
+.wholesale-page__hero-image img {
+    transform-origin: center center;
+}
+
+/* Keep editorial text fully legible at the beginning of the
+   scroll timeline. GSAP now owns the transition from 1 -> 0. */
+.wholesale-page__hero--editorial .wholesale-page__hero-content,
+.wholesale-page__hero--editorial .wholesale-page__hero-stats {
+    will-change: transform, opacity;
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+    .wholesale-page__hero-image {
+        right: -90px;
+        width: calc(62vw + 90px);
+    }
+}
+
+@media (max-width: 767px) {
+    .wholesale-page__hero-image {
+        right: 0;
+        width: 100%;
+        height: 57%;
+        bottom: 0;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content {
+        padding-top: 3.25rem;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content h1 {
+        font-size: clamp(3.25rem, 14.5vw, 4.8rem);
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content p {
+        margin-top: 1rem;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-link {
+        margin-top: 1.1rem;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-stats {
+        bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .wholesale-page__hero-image {
+        height: 55%;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content {
+        padding-top: 2.8rem;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content h1 {
+        font-size: clamp(3.05rem, 15.5vw, 4.35rem);
     }
 }
