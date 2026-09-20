@@ -72,26 +72,6 @@ const ProductDetail = ({ product }) => {
                 },
             });
 
-            gsap.to(visualRef.current, {
-                y: -10,
-                rotationZ: 1.5,
-                rotationX: 1.5,
-                duration: 3.8,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true,
-            });
-
-            gsap.to(shadowRef.current, {
-                scaleX: 0.88,
-                scaleY: 0.82,
-                opacity: 0.72,
-                duration: 3.8,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true,
-            });
-
             timeline
                 .fromTo(
                     imageInnerRef.current,
