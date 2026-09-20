@@ -8726,3 +8726,103 @@ body.modal-open {
         animation: none;
     }
 }
+
+
+
+/* =========================================================
+   MOBILE NAV — TRUE FULL-SCREEN OVERLAY
+   ========================================================= */
+
+body.menu-open {
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+@media (max-width: 1023px) {
+    .nuvia-mobile-menu {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100dvh;
+        min-height: 100vh;
+        max-height: 100dvh;
+
+        box-sizing: border-box;
+
+        padding:
+            max(1.25rem, env(safe-area-inset-top))
+            max(1.25rem, env(safe-area-inset-right))
+            max(1.25rem, env(safe-area-inset-bottom))
+            max(1.25rem, env(safe-area-inset-left));
+
+        overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+
+        background:
+            radial-gradient(
+                circle at 88% 10%,
+                rgba(203, 161, 92, 0.16),
+                transparent 28%
+            ),
+            radial-gradient(
+                circle at 12% 82%,
+                rgba(255, 255, 255, 0.72),
+                transparent 34%
+            ),
+            var(--color-cream-50);
+
+        z-index: calc(var(--z-header) + 100);
+    }
+
+    .nuvia-mobile-menu__header {
+        min-height: 44px;
+        flex-shrink: 0;
+    }
+
+    .nuvia-mobile-menu__nav {
+        margin-top: clamp(3rem, 9vh, 5rem);
+        flex-shrink: 0;
+    }
+
+    .nuvia-mobile-menu__footer {
+        padding-top: 4rem;
+        padding-bottom: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .nuvia-mobile-menu {
+        padding:
+            max(1rem, env(safe-area-inset-top))
+            max(1rem, env(safe-area-inset-right))
+            max(1rem, env(safe-area-inset-bottom))
+            max(1rem, env(safe-area-inset-left));
+    }
+
+    .nuvia-mobile-menu__nav {
+        margin-top: clamp(2.5rem, 8vh, 4rem);
+    }
+
+    .nuvia-mobile-menu__link {
+        min-height: 64px;
+        padding-block: 1rem;
+        font-size: clamp(2rem, 9vw, 3.25rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .nuvia-mobile-menu__nav {
+        margin-top: 2.5rem;
+    }
+
+    .nuvia-mobile-menu__link {
+        min-height: 58px;
+        font-size: clamp(1.85rem, 10vw, 2.65rem);
+    }
+
+    .nuvia-mobile-menu__footer {
+        padding-top: 3rem;
+    }
+}
