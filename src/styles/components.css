@@ -4977,10 +4977,15 @@ body.modal-open {
 
 .products-page__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: minmax(0, 900px);
+    justify-content: center;
     gap: 1.5rem;
 
     margin-top: 2.5rem;
+}
+
+.products-page__grid .products-page__item {
+    width: 100%;
 }
 
 .products-page__item .product-card__image-wrapper {
