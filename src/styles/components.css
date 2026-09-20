@@ -6191,3 +6191,53 @@ body.modal-open {
         animation: none;
     }
 }
+
+
+
+/* Floating motion is isolated from the GSAP scroll transform. */
+.product-detail--scrollytelling .product-detail__product-art {
+    animation: cosmalac-product-float 4.8s ease-in-out infinite;
+}
+
+.product-detail--scrollytelling .product-detail__air-shadow {
+    animation: cosmalac-shadow-pulse 4.8s ease-in-out infinite;
+}
+
+.product-detail--scrollytelling .product-detail__product-art img {
+    mix-blend-mode: multiply;
+}
+
+@keyframes cosmalac-product-float {
+    0%, 100% {
+        transform:
+            translate3d(0, 0, 0)
+            rotateY(var(--product-drag-rotation, 0deg))
+            rotateX(var(--product-drag-tilt, 0deg));
+    }
+
+    50% {
+        transform:
+            translate3d(0, -14px, 0)
+            rotateY(var(--product-drag-rotation, 0deg))
+            rotateX(var(--product-drag-tilt, 0deg));
+    }
+}
+
+@keyframes cosmalac-shadow-pulse {
+    0%, 100% {
+        transform: scaleX(0.92) scaleY(0.9);
+        opacity: 0.62;
+    }
+
+    50% {
+        transform: scaleX(0.72) scaleY(0.78);
+        opacity: 0.38;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .product-detail--scrollytelling .product-detail__product-art,
+    .product-detail--scrollytelling .product-detail__air-shadow {
+        animation: none;
+    }
+}
