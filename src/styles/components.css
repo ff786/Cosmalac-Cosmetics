@@ -10062,7 +10062,8 @@ body.menu-open {
         width: 100%;
         min-width: 0;
         max-width: none;
-        justify-content: center;
+        justify-content: flex-start;
+        text-align: left;
         white-space: nowrap;
         padding-inline: clamp(0.75rem, 3.5vw, 1.25rem);
         font-size: clamp(0.62rem, 2.7vw, 0.78rem);
