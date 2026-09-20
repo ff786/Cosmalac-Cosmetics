@@ -6737,3 +6737,110 @@ body.modal-open {
         display: none;
     }
 }
+
+
+
+/* =========================================================
+   3D ILLUSION — LAYERED DEPTH FROM A SINGLE PRODUCT PHOTO
+   ========================================================= */
+
+.product-detail--scrollytelling .product-detail__product-art {
+    --depth-x: 0px;
+    --depth-y: 0px;
+    --depth-scale: 1;
+    transform-style: preserve-3d;
+    isolation: isolate;
+}
+
+.product-detail--scrollytelling .product-detail__depth {
+    position: absolute;
+    z-index: 1;
+    inset: 2%;
+    display: grid;
+    place-items: center;
+    transform-style: preserve-3d;
+    pointer-events: none;
+}
+
+.product-detail--scrollytelling .product-detail__depth img {
+    position: absolute;
+    width: 96%;
+    height: 96%;
+    object-fit: contain;
+    opacity: 0.16;
+    filter:
+        brightness(0.72)
+        saturate(0.7)
+        blur(0.15px)
+        drop-shadow(0 8px 6px rgba(43, 27, 18, 0.08));
+    transform:
+        translate3d(var(--depth-x), var(--depth-y), -18px)
+        scale(0.998);
+}
+
+.product-detail--scrollytelling .product-detail__depth img:nth-child(1) {
+    --depth-x: -9px;
+    --depth-y: 4px;
+    opacity: 0.08;
+}
+
+.product-detail--scrollytelling .product-detail__depth img:nth-child(2) {
+    --depth-x: -6px;
+    --depth-y: 3px;
+    opacity: 0.11;
+}
+
+.product-detail--scrollytelling .product-detail__depth img:nth-child(3) {
+    --depth-x: -3px;
+    --depth-y: 2px;
+    opacity: 0.13;
+}
+
+.product-detail--scrollytelling .product-detail__depth img:nth-child(4) {
+    --depth-x: 3px;
+    --depth-y: -1px;
+    opacity: 0.10;
+}
+
+.product-detail--scrollytelling .product-detail__depth img:nth-child(5) {
+    --depth-x: 7px;
+    --depth-y: -2px;
+    opacity: 0.08;
+}
+
+.product-detail--scrollytelling .product-detail__product-art img {
+    z-index: 4;
+    backface-visibility: hidden;
+}
+
+.product-detail--scrollytelling .product-detail__product-art::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    width: 76%;
+    height: 78%;
+    border-radius: 44%;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(37, 25, 18, 0.22),
+            rgba(37, 25, 18, 0) 18%,
+            rgba(255, 255, 255, 0.13) 52%,
+            rgba(37, 25, 18, 0.17)
+        );
+    mix-blend-mode: multiply;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateZ(20px) rotateY(0deg);
+    transition: opacity 180ms ease;
+}
+
+.product-detail--scrollytelling .product-detail__product-art:hover::after {
+    opacity: 0.32;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .product-detail--scrollytelling .product-detail__depth {
+        display: none;
+    }
+}
