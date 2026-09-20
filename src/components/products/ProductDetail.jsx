@@ -15,19 +15,10 @@ const ProductDetail = ({ product }) => {
     const detailRef = useRef(null);
     const imageInnerRef = useRef(null);
     const visualRef = useRef(null);
-    const productArtRef = useRef(null);
     const contentRef = useRef(null);
     const orbitRef = useRef(null);
     const shadowRef = useRef(null);
     const progressRef = useRef(null);
-
-    const dragState = useRef({
-        active: false,
-        startX: 0,
-        startY: 0,
-        rotation: 0,
-        tilt: 0,
-    });
 
     useLayoutEffect(() => {
         const detail = detailRef.current;
