@@ -9769,46 +9769,53 @@ body.menu-open {
 
 
 /* =========================================================
-   MOBILE — VIEWPORT WIDTH + HERO ACTIONS FINAL OVERRIDE
-   This layer intentionally preserves all earlier responsive
-   rules and only normalizes the viewport and action row.
+   MOBILE — FINAL VIEWPORT STABILITY
+   Preserve all existing responsive behavior while preventing
+   layout-width shrink/zoom artifacts on mobile browsers.
    ========================================================= */
 
 @media (max-width: 767px) {
     html,
     body,
     #root {
-        width: 100dvw !important;
-        min-width: 100dvw;
-        max-width: 100dvw !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        overflow-x: hidden;
     }
 
-    .nuvia-header {
-        width: 100dvw !important;
-        min-width: 100dvw;
-        max-width: 100dvw !important;
-        left: 0;
-        right: auto;
-    }
-
-    .nuvia-header__inner {
-        width: calc(100dvw - 1.5rem) !important;
-        max-width: none !important;
-        padding-inline: 0;
-        margin-inline: auto;
-    }
-
+    .nuvia-header,
     .hero,
     .hero__container,
     .hero__visual {
-        width: 100dvw !important;
-        min-width: 100dvw;
-        max-width: 100dvw !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+    }
+
+    .nuvia-header {
+        left: 0;
+        right: 0;
+    }
+
+    .nuvia-header__inner {
+        width: calc(100% - 1.5rem) !important;
+        max-width: none !important;
+    }
+
+    .hero {
+        min-height: 185svh;
+    }
+
+    .hero__container {
+        width: 100% !important;
+        height: 100svh;
+        min-height: 100svh;
     }
 
     .hero__content {
-        width: 100% !important;
-        max-width: none !important;
+        width: 100%;
+        max-width: none;
         padding-inline: clamp(1rem, 4.5vw, 1.5rem);
     }
 
@@ -9816,7 +9823,6 @@ body.menu-open {
         display: grid !important;
         grid-template-columns: minmax(0, 1fr) auto;
         align-items: center;
-        justify-content: stretch;
         gap: clamp(0.55rem, 2.5vw, 0.9rem);
         width: 100%;
         max-width: 100%;
@@ -9826,7 +9832,6 @@ body.menu-open {
         width: 100%;
         min-width: 0;
         max-width: none;
-        flex: none;
         justify-content: center;
         white-space: nowrap;
         padding-inline: clamp(0.75rem, 3.5vw, 1.25rem);
@@ -9840,10 +9845,6 @@ body.menu-open {
         min-width: max-content;
         white-space: nowrap;
         font-size: clamp(0.58rem, 2.6vw, 0.72rem);
-    }
-
-    .hero__actions .hero__secondary-link svg {
-        flex: 0 0 auto;
     }
 }
 
