@@ -23,12 +23,28 @@ const Hero = () => {
              * DESKTOP
              */
             mm.add("(min-width: 768px)", () => {
+                /*
+                 * Desktop composite starts from the exact resting
+                 * alignment of the generated background + transparent model.
+                 */
+                gsap.set(heroBackgroundRef.current, {
+                    scale: 1,
+                    x: 0,
+                    y: 0,
+                });
+
+                gsap.set(heroModelRef.current, {
+                    scale: 1,
+                    x: 0,
+                    y: 0,
+                });
+
                 const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: heroRef.current,
                         start: "top top",
                         end: "bottom bottom",
-                        scrub: 0.35,
+                        scrub: 0.28,
                         invalidateOnRefresh: true,
                     },
                 });
@@ -56,8 +72,8 @@ const Hero = () => {
                 tl.to(
                     heroModelRef.current,
                     {
-                        x: "-3vw",
-                        scale: 1.16,
+                        x: "-2vw",
+                        scale: 1.12,
                         duration: 0.48,
                         ease: "none",
                     },
@@ -67,7 +83,7 @@ const Hero = () => {
                 tl.to(
                     heroBackgroundRef.current,
                     {
-                        scale: 1.035,
+                        scale: 1.025,
                         duration: 0.48,
                         ease: "none",
                     },
@@ -82,8 +98,8 @@ const Hero = () => {
                 tl.to(
                     heroModelRef.current,
                     {
-                        x: "-6vw",
-                        y: "-2vh",
+                        x: "-5vw",
+                        y: "-1vh",
                         scale: 1.5,
                         duration: 0.42,
                         ease: "none",
@@ -94,7 +110,7 @@ const Hero = () => {
                 tl.to(
                     heroBackgroundRef.current,
                     {
-                        scale: 1.09,
+                        scale: 1.065,
                         duration: 0.42,
                         ease: "none",
                     },
