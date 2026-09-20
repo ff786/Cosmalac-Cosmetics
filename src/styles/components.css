@@ -10213,3 +10213,168 @@ body.menu-open {
         font-size: clamp(3.05rem, 15.5vw, 4.35rem);
     }
 }
+
+/* =========================================================
+   WHOLESALE HERO — MOBILE DIAGONAL EDITORIAL
+   ========================================================= */
+
+@media (max-width: 767px) {
+    .wholesale-page__hero--editorial {
+        overflow: hidden;
+        min-height: 100svh;
+        height: 100svh;
+        max-height: none;
+        background:
+            radial-gradient(circle at 12% 10%, rgba(255,255,255,0.72), transparent 42%),
+            linear-gradient(135deg, #fbf7ef 0%, #f2e4d1 100%);
+    }
+
+    .wholesale-page__hero-container {
+        width: 100%;
+        min-height: 100%;
+        padding-inline: 1.5rem;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content {
+        position: relative;
+        z-index: 6;
+        width: min(100%, 520px);
+        padding-top: 2.35rem;
+        padding-bottom: 0;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content h1 {
+        max-width: 100%;
+        font-size: clamp(3.15rem, 15.4vw, 5rem);
+        line-height: 0.83;
+        letter-spacing: -0.045em;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content p {
+        position: relative;
+        z-index: 7;
+        max-width: 370px;
+        margin-top: 1.15rem;
+        font-size: clamp(0.78rem, 3.5vw, 0.98rem);
+        line-height: 1.62;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-link {
+        position: relative;
+        z-index: 8;
+        margin-top: 1.05rem;
+    }
+
+    .wholesale-page__hero-image {
+        z-index: 4;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        right: auto;
+        bottom: auto;
+        overflow: hidden;
+        transform-origin: center center;
+        will-change: transform, opacity, clip-path;
+        background: #ead5bb;
+    }
+
+    .wholesale-page__hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 67% center;
+    }
+
+    .wholesale-page__hero-image-wash {
+        background:
+            linear-gradient(
+                135deg,
+                rgba(249,241,229,0.98) 0%,
+                rgba(249,241,229,0.74) 20%,
+                rgba(249,241,229,0.08) 48%,
+                transparent 64%
+            ),
+            linear-gradient(
+                0deg,
+                rgba(57,37,29,0.10),
+                transparent 45%
+            );
+    }
+
+    .wholesale-page__hero-glow {
+        z-index: 1;
+        right: -30%;
+        top: 28%;
+        width: 105vw;
+        opacity: 0.7;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-orbit {
+        z-index: 2;
+        width: 115vw;
+        right: 48%;
+        top: 63%;
+        opacity: 0.5;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-stats {
+        position: absolute;
+        z-index: 7;
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 1.1rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-stats div {
+        min-height: 3.9rem;
+        padding: 0.65rem 0;
+        color: var(--color-brown-800);
+        font-size: clamp(0.62rem, 3vw, 0.78rem);
+        border-top: 1px solid rgba(88,65,52,0.14);
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-stats div:last-child {
+        border-bottom: 1px solid rgba(88,65,52,0.14);
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-stats div + div {
+        padding-left: 0;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-stats div + div::before {
+        display: none;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-stats svg {
+        flex: 0 0 auto;
+        color: var(--color-gold-600);
+    }
+}
+
+@media (max-width: 480px) {
+    .wholesale-page__hero-container {
+        padding-inline: 1.25rem;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content {
+        padding-top: 2rem;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content h1 {
+        font-size: clamp(3rem, 15.8vw, 4.35rem);
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-content p {
+        max-width: 340px;
+        margin-top: 1rem;
+    }
+
+    .wholesale-page__hero--editorial .wholesale-page__hero-stats {
+        left: 1.25rem;
+        right: 1.25rem;
+        bottom: 0.85rem;
+    }
+}
