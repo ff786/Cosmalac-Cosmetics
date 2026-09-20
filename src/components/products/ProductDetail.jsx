@@ -11,7 +11,7 @@ import {
     Star,
 } from "lucide-react";
 
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../hooks/useCart";
 import { formatPrice } from "../../utils/helpers";
 
 gsap.registerPlugin(ScrollTrigger);
