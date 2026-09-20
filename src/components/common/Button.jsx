@@ -41,7 +41,7 @@ export function Button({
 export default Button;
 */
 import { forwardRef } from "react";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 const Button = forwardRef(
     (

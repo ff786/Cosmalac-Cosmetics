@@ -1,9 +1,7 @@
 import {
-    ArrowRight,
     ArrowUpRight,
     Mail,
     MapPin,
-    Phone,
 } from "lucide-react";
 
 import { NAVIGATION_ITEMS, SOCIAL_LINKS } from "../../utils/constants";

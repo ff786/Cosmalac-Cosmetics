@@ -3,7 +3,7 @@ import {
     Menu,
 } from "lucide-react";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import Navigation from "./Navigation";
 import useScrollPosition from "../../hooks/useScrollPosition";
@@ -11,6 +11,8 @@ import { useApp } from "../../context/AppContext";
 
 const Header = () => {
     const { y } = useScrollPosition();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const {
         toggleMobileMenu,
@@ -31,6 +33,7 @@ const Header = () => {
                     to="/"
                     className="nuvia-header__logo"
                     aria-label="Cosmalac"
+                    onClick={handleLogoClick}
                 >
                     <span className="nuvia-header__logo-name">
                         COSMALAC
@@ -71,3 +74,21 @@ const Header = () => {
 };
 
 export default Header;
+    const handleLogoClick = (event) => {
+        event.preventDefault();
+
+        if (location.pathname !== "/") {
+            navigate("/");
+            return;
+        }
+
+        const reducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+        const behavior = reducedMotion ? "auto" : "smooth";
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior,
+        });
+    };

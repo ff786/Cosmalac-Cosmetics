@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 
 import {
@@ -8,10 +8,67 @@ import {
 import { useApp } from "../../context/AppContext";
 
 const Navigation = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
     const {
         isMobileMenuOpen,
         closeMobileMenu,
     } = useApp();
+
+    const getHeaderOffset = () => {
+        const header = document.querySelector(".nuvia-header");
+        const headerHeight = header?.offsetHeight || 0;
+        return Math.max(headerHeight + 12, 72);
+    };
+
+    const scrollToHashSection = (hash) => {
+        const target = document.querySelector(hash);
+
+        if (!target) {
+            return false;
+        }
+
+        const offset = getHeaderOffset();
+        const top =
+            target.getBoundingClientRect().top +
+            window.scrollY -
+            offset;
+        const reducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+        const behavior = reducedMotion ? "auto" : "smooth";
+
+        window.scrollTo({
+            top: Math.max(0, top),
+            left: 0,
+            behavior,
+        });
+
+        return true;
+    };
+
+    const handleNavClick = (event, path) => {
+        if (!path.includes("#")) {
+            closeMobileMenu();
+            return;
+        }
+
+        event.preventDefault();
+        closeMobileMenu();
+
+        const [pathname, hashFragment] = path.split("#");
+        const hash = hashFragment ? `#${hashFragment}` : "";
+        const targetPath = pathname || "/";
+
+        if (location.pathname !== targetPath) {
+            navigate(`${targetPath}${hash}`);
+            return;
+        }
+
+        if (hash) {
+            scrollToHashSection(hash);
+        }
+    };
 
     const getLinkClass = ({ isActive }) =>
         [
@@ -29,6 +86,9 @@ const Navigation = () => {
                         key={item.path}
                         to={item.path}
                         className={getLinkClass}
+                        onClick={(event) =>
+                            handleNavClick(event, item.path)
+                        }
                     >
                         {item.label}
                     </NavLink>
@@ -47,7 +107,7 @@ const Navigation = () => {
             >
                 <div className="nuvia-mobile-menu__header">
           <span className="nuvia-mobile-menu__brand">
-            Nuvia Care
+            Cosmalac
           </span>
 
                     <button
@@ -77,7 +137,9 @@ const Navigation = () => {
                                     .filter(Boolean)
                                     .join(" ")
                             }
-                            onClick={closeMobileMenu}
+                            onClick={(event) =>
+                                handleNavClick(event, item.path)
+                            }
                         >
               <span>
                 0{index + 1}

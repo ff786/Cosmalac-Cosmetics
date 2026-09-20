@@ -29,7 +29,7 @@ const crownBenefits = [
 
 const Benefits = () => {
     return (
-        <section className="benefits section">
+        <section className="benefits section" id="services">
             <div className="container">
                 <div className="benefits__header">
                     <div>

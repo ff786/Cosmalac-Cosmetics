@@ -1,10 +1,14 @@
 /* =========================================================
-   NUVIA CARE — CONSTANTS
+   COSMALAC — CONSTANTS
    ========================================================= */
 
-export const APP_NAME = "Nuvia Care";
+export const APP_NAME = "Cosmalac";
 
 export const NAVIGATION_ITEMS = [
+    {
+        label: "Home",
+        path: "/",
+    },
     {
         label: "Products",
         path: "/products",
@@ -12,10 +16,6 @@ export const NAVIGATION_ITEMS = [
     {
         label: "About Us",
         path: "/about",
-    },
-    {
-        label: "Services",
-        path: "/services",
     },
     {
         label: "Contact Us",
@@ -78,7 +78,7 @@ export const TREATMENT_SERVICES = [
 
 export const FAQ_ITEMS = [
     {
-        question: "Which skin types can use Nuvia Care products?",
+        question: "Which skin types can use Cosmalac products?",
         answer:
             "Our collection is designed with gentle, skin-conscious formulas suitable for a variety of skin types. We recommend checking each product's ingredients and usage instructions before adding it to your routine.",
     },
@@ -113,8 +113,8 @@ export const ROUTES = {
 };
 
 export const STORAGE_KEYS = {
-    CART: "nuvia-care-cart",
-    APP: "nuvia-care-app",
+    CART: "cosmalac-cart",
+    APP: "cosmalac-app",
 };
 
 export const BREAKPOINTS = {
