@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     Check,
     Mail,
@@ -28,7 +28,11 @@ const Contact = () => {
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
     const [honeypot, setHoneypot] = useState("");
-    const startedAtRef = useRef(Date.now());
+    const startedAtRef = useRef(null);
+
+    useEffect(() => {
+        startedAtRef.current = Date.now();
+    }, []);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
