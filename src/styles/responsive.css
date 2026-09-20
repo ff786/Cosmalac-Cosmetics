@@ -30,3 +30,182 @@
   .sm\:w-full { width: 100%; }
   .sm\:text-center { text-align: center; }
 }
+
+/* =========================================================
+   PRODUCTS — TABLET
+   ========================================================= */
+
+@media (max-width: 1023px) {
+
+  .products-section__header {
+    grid-template-columns: 1fr;
+
+    gap: 2rem;
+  }
+
+  .products-section__header > p {
+    justify-self: start;
+
+    max-width: 620px;
+  }
+
+  .products-showcase__item,
+  .products-showcase__item--reverse {
+    grid-template-columns: 1fr;
+
+    gap: 2.5rem;
+  }
+
+  .products-showcase__item--reverse
+  .products-showcase__media {
+    order: 1;
+  }
+
+  .products-showcase__item--reverse
+  .products-showcase__content {
+    order: 2;
+  }
+
+  .products-showcase__media {
+    min-height: 600px;
+  }
+
+  .products-showcase__content {
+    max-width: 720px;
+  }
+}
+
+
+/* =========================================================
+   PRODUCTS — MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+  .products-section {
+    padding-block: 6rem;
+  }
+
+  .products-section__header {
+    margin-bottom: 4rem;
+  }
+
+  .products-section__header h2 {
+    font-size: clamp(
+            3rem,
+            13vw,
+            4.5rem
+    );
+  }
+
+  .products-section__header > p {
+    font-size: 0.86rem;
+  }
+
+  .products-showcase {
+    gap: 5rem;
+  }
+
+  .products-showcase__item,
+  .products-showcase__item--reverse {
+    gap: 2rem;
+  }
+
+  .products-showcase__media {
+    min-height: 460px;
+
+    border-radius: var(--radius-xl);
+  }
+
+  .products-showcase__media-label {
+    right: 1.25rem;
+    bottom: 1.25rem;
+
+    font-size: 0.5rem;
+  }
+
+  .products-showcase__image-wrap {
+    width: 88%;
+    height: 86%;
+  }
+
+  .products-showcase__content {
+    padding-block: 0;
+  }
+
+  .products-showcase__title-row {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 0.7rem;
+  }
+
+  .products-showcase__title-row h3 {
+    font-size: clamp(
+            2.6rem,
+            12vw,
+            4rem
+    );
+  }
+
+  .products-showcase__accent {
+    font-size: 1.65rem;
+  }
+
+  .products-showcase__size {
+    padding-bottom: 0;
+  }
+
+  .products-showcase__description {
+    margin-top: 1.5rem;
+
+    font-size: 0.86rem;
+  }
+
+  .products-showcase__block {
+    margin-top: 1.8rem;
+  }
+
+  .products-showcase__benefits span {
+    font-size: 0.58rem;
+  }
+
+  .products-showcase__ingredients span {
+    font-size: 0.62rem;
+  }
+
+  .products-section__footer {
+    margin-top: 5rem;
+  }
+}
+
+
+/* =========================================================
+   PRODUCTS — SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .products-showcase__media {
+    min-height: 400px;
+  }
+
+  .products-showcase__image-wrap {
+    width: 84%;
+    height: 74%;
+  }
+
+  .products-showcase__media::before {
+    inset: 6%;
+  }
+
+  .products-showcase__media::after {
+    inset: 13%;
+  }
+
+  .products-showcase__cta,
+  .products-section__link {
+    font-size: 0.65rem;
+  }
+}
