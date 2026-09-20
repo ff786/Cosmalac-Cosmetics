@@ -7296,7 +7296,7 @@ body.modal-open {
     display: flex;
     align-items: center;
     gap: 0.65rem;
-    color: rgba(255,255,255,0.72);
+    color: #000;
     font-size: 0.63rem;
     font-weight: 650;
 }
