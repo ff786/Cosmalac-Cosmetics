@@ -184,7 +184,7 @@ const WholesalePage = () => {
                     y: 72,
                     scale: 1.035,
                     clipPath:
-                        "polygon(100% 24%, 100% 100%, 0% 100%, 0% 84%)",
+                        "polygon(100% 42%, 100% 100%, 0% 100%, 0% 78%)",
                 });
 
                 const intro = gsap.timeline({
@@ -253,7 +253,7 @@ const WholesalePage = () => {
                             y: -12,
                             scale: 1.055,
                             clipPath:
-                                "polygon(100% 0%, 100% 100%, 0% 100%, 0% 72%)",
+                                "polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)",
                             duration: 1,
                             ease: "none",
                         },
@@ -283,13 +283,13 @@ const WholesalePage = () => {
                             opacity: 1,
                         },
                         {
-                            x: -12,
-                            y: -125,
+                            x: -18,
+                            y: -105,
                             opacity: 0,
-                            duration: 0.78,
+                            duration: 0.72,
                             ease: "power1.in",
                         },
-                        0.08
+                        0.30
                     )
                     .fromTo(
                         statsRef.current,
@@ -299,13 +299,13 @@ const WholesalePage = () => {
                             opacity: 1,
                         },
                         {
-                            x: -20,
-                            y: -55,
+                            x: -18,
+                            y: -38,
                             opacity: 0,
-                            duration: 0.58,
+                            duration: 0.52,
                             ease: "power1.in",
                         },
-                        0.22
+                        0.48
                     );
 
                 return () => {
