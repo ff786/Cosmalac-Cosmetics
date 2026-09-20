@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
     Check,
     Mail,
@@ -11,6 +11,10 @@ import Input from "../common/Input";
 import Button from "../common/Button";
 
 import { validateContactForm } from "../../utils/validation";
+import {
+    hasRecentSubmission,
+    isLikelyBot,
+} from "../../utils/formSecurity";
 
 const initialForm = {
     name: "",
@@ -23,6 +27,8 @@ const Contact = () => {
     const [form, setForm] = useState(initialForm);
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
+    const [honeypot, setHoneypot] = useState("");
+    const startedAtRef = useRef(Date.now());
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -46,6 +52,16 @@ const Contact = () => {
 
         if (Object.keys(validationErrors).length) {
             setErrors(validationErrors);
+            return;
+        }
+
+        if (
+            isLikelyBot({
+                honeypot,
+                startedAt: startedAtRef.current,
+            }) ||
+            hasRecentSubmission("contact")
+        ) {
             return;
         }
 
@@ -169,6 +185,17 @@ const Contact = () => {
                                 className="contact__form"
                                 onSubmit={handleSubmit}
                             >
+                                <input
+                                    type="text"
+                                    name="website"
+                                    value={honeypot}
+                                    onChange={(event) => setHoneypot(event.target.value)}
+                                    tabIndex="-1"
+                                    autoComplete="off"
+                                    aria-hidden="true"
+                                    className="form-honeypot"
+                                />
+
                                 <div className="contact__form-heading">
                   <span className="eyebrow">
                     Contact Cosmalac
