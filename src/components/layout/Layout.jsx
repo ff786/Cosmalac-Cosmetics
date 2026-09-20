@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 
 import Header from "./Header";
 import Footer from "./Footer";
+import WhatsAppChatButton from "../common/WhatsAppChatButton";
 
 const Layout = () => {
     return (
@@ -13,6 +14,8 @@ const Layout = () => {
             </main>
 
             <Footer />
+
+            <WhatsAppChatButton />
         </div>
     );
 };
