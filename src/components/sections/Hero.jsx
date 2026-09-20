@@ -21,7 +21,7 @@ const Hero = () => {
 
 
     useLayoutEffect(() => {
-        const heroElement = heroElement;
+        const heroElement = heroRef.current;
 
         if (!heroElement) return;
 
@@ -248,7 +248,7 @@ const Hero = () => {
                 }
 
                 return () => {
-                    heroRef.current?.removeEventListener(
+                    heroElement.removeEventListener(
                         "pointermove",
                         handlePointerMove
                     );
