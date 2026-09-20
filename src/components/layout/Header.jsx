@@ -1,4 +1,4 @@
-import { ArrowRight, Menu } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 import Navigation from "./Navigation";
@@ -7,7 +7,7 @@ import { useApp } from "../../context/AppContext";
 
 const Header = () => {
     const { y } = useScrollPosition();
-    const { toggleMobileMenu, closeMobileMenu } = useApp();
+    const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } = useApp();
     const navigate = useNavigate();
 
     const scrolled = y > 40;
@@ -67,9 +67,11 @@ const Header = () => {
                         type="button"
                         className="nuvia-header__mobile-toggle"
                         onClick={toggleMobileMenu}
-                        aria-label="Open navigation"
+                        aria-label={isMobileMenuOpen ? "Close navigation" : "Open navigation"}
+                        aria-expanded={isMobileMenuOpen}
+                        aria-controls="cosmalac-mobile-menu"
                     >
-                        <Menu size={21} />
+                        {isMobileMenuOpen ? <X size={21} /> : <Menu size={21} />}
                     </button>
 
                 </div>
