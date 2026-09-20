@@ -149,7 +149,7 @@ const Hero = () => {
                     imageFrameRef.current,
                     {
                         x: "-12vw",
-                        scale: 1.08,
+                        scale: 1,
                         duration: 0.25,
                         ease: "none",
                     },
@@ -165,7 +165,7 @@ const Hero = () => {
                     imageFrameRef.current,
                     {
                         x: "-32vw",
-                        scale: 1.28,
+                        scale: 1,
                         duration: 0.3,
                         ease: "none",
                     },
@@ -195,7 +195,7 @@ const Hero = () => {
                     imageFrameRef.current,
                     {
                         x: "-48vw",
-                        scale: 1.55,
+                        scale: 1,
                         duration: 0.35,
                         ease: "none",
                     },
@@ -303,13 +303,13 @@ const Hero = () => {
                             <ArrowRight size={17} />
                         </Link>
 
-                        <a
-                            href="/wholesale"
+                        <Link
+                            to="/wholesale"
                             className="hero__secondary-link"
                         >
                             Wholesale Inquiry
                             <ArrowRight size={15} />
-                        </a>
+                        </Link>
 
                     </div>
 
