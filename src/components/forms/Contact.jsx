@@ -166,8 +166,9 @@ const Contact = () => {
                                 </h2>
 
                                 <p>
-                                    Our team will get back to you as soon
-                                    as possible.
+                                    Your message has been prepared for
+                                    WhatsApp. Complete the conversation there
+                                    and our team will get back to you.
                                 </p>
 
                                 <button
