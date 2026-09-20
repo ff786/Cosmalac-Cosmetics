@@ -14,8 +14,8 @@ export const NAVIGATION_ITEMS = [
         path: "/about",
     },
     {
-        label: "Services",
-        path: "/services",
+        label: "Wholesale Inquiry",
+        path: "/wholesale",
     },
     {
         label: "Contact Us",
