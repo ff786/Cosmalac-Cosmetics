@@ -176,7 +176,7 @@ const Navigation = () => {
                         <span>
                             {String(index + 1).padStart(2, "0")}
                         </span>
-                        <strong>{t.nav[item.key] || item.label}</strong>
+                        <strong>{item.path === "/" ? t.nav.home : item.path === "/products" ? t.nav.products : item.path === "/wholesale" ? t.nav.wholesale : item.path === "/about" ? t.nav.about : item.path === "/contact" ? t.nav.contact : item.label}</strong>
                     </NavLink>
                 ))}
             </nav>
