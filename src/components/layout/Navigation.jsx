@@ -15,6 +15,23 @@ const Navigation = () => {
     const navigate = useNavigate();
     const { t } = useLanguage();
     const location = useLocation();
+
+    const getNavigationLabel = (item) => {
+        switch (item.path) {
+            case "/":
+                return t.nav.home;
+            case "/products":
+                return t.nav.products;
+            case "/wholesale":
+                return t.nav.wholesale;
+            case "/about":
+                return t.nav.about;
+            case "/contact":
+                return t.nav.contact;
+            default:
+                return item.label;
+        }
+    };
     const closeButtonRef = useRef(null);
 
     useEffect(() => {
@@ -176,7 +193,7 @@ const Navigation = () => {
                         <span>
                             {String(index + 1).padStart(2, "0")}
                         </span>
-                        <strong>{item.path === "/" ? t.nav.home : item.path === "/products" ? t.nav.products : item.path === "/wholesale" ? t.nav.wholesale : item.path === "/about" ? t.nav.about : item.path === "/contact" ? t.nav.contact : item.label}</strong>
+                        <strong>{getNavigationLabel(item)}</strong>
                     </NavLink>
                 ))}
             </nav>
@@ -184,9 +201,12 @@ const Navigation = () => {
             <div className="nuvia-mobile-menu__footer">
                 <span>{t.mobile.location}</span>
                 <p>
-                    Premium skincare.
-                    <br />
-                    Thoughtfully made.
+                    {t.mobile.footer.split("\\n").map((line, index) => (
+                        <span key={line}>
+                            {index > 0 ? <br /> : null}
+                            {line}
+                        </span>
+                    ))}
                 </p>
             </div>
         </div>
