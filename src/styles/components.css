@@ -717,10 +717,6 @@
 
 @media (max-width: 1023px) {
 
-    .nuvia-language-switcher {
-        display: none;
-    }
-
     .nuvia-header {
         /* Ensure header stays visible on scroll */
         box-shadow: 0 2px 12px rgba(55, 37, 27, 0.04);
@@ -764,6 +760,21 @@
    ========================================================= */
 
 @media (max-width: 767px) {
+
+    .nuvia-language-switcher__trigger {
+        min-width: 58px;
+        min-height: 38px;
+        padding-inline: 0.55rem;
+    }
+
+    .nuvia-language-switcher__menu {
+        right: -0.25rem;
+    }
+
+    [dir="rtl"] .nuvia-language-switcher__menu {
+        right: auto;
+        left: -0.25rem;
+    }
 
     .nuvia-header {
         height: var(--header-height-mobile);
