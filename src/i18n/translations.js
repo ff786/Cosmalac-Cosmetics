@@ -7,6 +7,8 @@ export const translations = {
             about: "About Us",
             services: "Services",
             contact: "Contact Us",
+            primary: "Primary navigation",
+            mobile: "Mobile navigation",
         },
         header: {
             wholesale: "Wholesale Inquiry",
@@ -17,6 +19,7 @@ export const translations = {
         },
         mobile: {
             footer: "Premium skincare.\nThoughtfully made.",
+            location: "Cosmalac · Dubai",
         },
     },
     ar: {
@@ -27,6 +30,8 @@ export const translations = {
             about: "من نحن",
             services: "الخدمات",
             contact: "اتصل بنا",
+            primary: "التنقل الرئيسي",
+            mobile: "التنقل على الهاتف",
         },
         header: {
             wholesale: "استفسار الجملة",
@@ -37,6 +42,7 @@ export const translations = {
         },
         mobile: {
             footer: "عناية فاخرة بالبشرة.\nصُنعت بعناية.",
+            location: "كوزمالاك · دبي",
         },
     },
 };
