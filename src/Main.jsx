@@ -15,6 +15,7 @@ import "./styles/global.css";
 import "./styles/components.css";
 
 import ScrollManager from "./components/common/ScrollManager";
+import { LanguageProvider } from "./i18n/LanguageContext";
 
 initLenis();
 
@@ -23,12 +24,14 @@ ReactDOM.createRoot(
 ).render(
     <React.StrictMode>
         <BrowserRouter>
-            <AppProvider>
-                <CartProvider>
-                    <ScrollManager />
-                    <App />
-                </CartProvider>
-            </AppProvider>
+            <LanguageProvider>
+                <AppProvider>
+                    <CartProvider>
+                        <ScrollManager />
+                        <App />
+                    </CartProvider>
+                </AppProvider>
+            </LanguageProvider>
         </BrowserRouter>
     </React.StrictMode>
 );
