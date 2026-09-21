@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 
 import { NAVIGATION_ITEMS } from "../../utils/constants";
 import { useApp } from "../../hooks/useApp";
+import useLanguage from "../../hooks/useLanguage";
 
 const Navigation = () => {
     const {
@@ -12,6 +13,7 @@ const Navigation = () => {
         closeMobileMenu,
     } = useApp();
     const navigate = useNavigate();
+    const { t } = useLanguage();
     const location = useLocation();
     const closeButtonRef = useRef(null);
 
@@ -93,7 +95,7 @@ const Navigation = () => {
     const desktopNavigation = (
         <nav
             className="nuvia-nav nuvia-nav--desktop"
-            aria-label="Primary navigation"
+            aria-label={t.nav.primary}
         >
             {NAVIGATION_ITEMS.map((item) => (
                 <NavLink
@@ -143,7 +145,7 @@ const Navigation = () => {
                     type="button"
                     className="nuvia-mobile-menu__close"
                     onClick={closeMobileMenu}
-                    aria-label="Close navigation"
+                    aria-label={t.header.closeNavigation}
                 >
                     <X size={21} aria-hidden="true" />
                 </button>
@@ -151,7 +153,7 @@ const Navigation = () => {
 
             <nav
                 className="nuvia-mobile-menu__nav"
-                aria-label="Mobile navigation"
+                aria-label={t.nav.mobile}
             >
                 {NAVIGATION_ITEMS.map((item, index) => (
                     <NavLink
@@ -174,13 +176,13 @@ const Navigation = () => {
                         <span>
                             {String(index + 1).padStart(2, "0")}
                         </span>
-                        <strong>{item.label}</strong>
+                        <strong>{t.nav[item.key] || item.label}</strong>
                     </NavLink>
                 ))}
             </nav>
 
             <div className="nuvia-mobile-menu__footer">
-                <span>Cosmalac · Dubai</span>
+                <span>{t.mobile.location}</span>
                 <p>
                     Premium skincare.
                     <br />
