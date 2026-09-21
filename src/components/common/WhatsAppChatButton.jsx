@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = "+94755697476";
+const WHATSAPP_NUMBER = "+971559915823";
 const WHATSAPP_MESSAGE =
     "Hello Cosmalac, I would like to chat with you.";
 
