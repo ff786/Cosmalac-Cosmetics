@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 
 import { NAVIGATION_ITEMS } from "../../utils/constants";
 import { useApp } from "../../hooks/useApp";
+import useLanguage from "../../hooks/useLanguage";
 
 const Navigation = () => {
     const {
@@ -14,6 +15,14 @@ const Navigation = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const closeButtonRef = useRef(null);
+    const { t } = useLanguage();
+
+    const navigationLabels = [
+        t.nav.products,
+        t.nav.about,
+        t.nav.services,
+        t.nav.contact,
+    ];
 
     useEffect(() => {
         if (!isMobileMenuOpen) return;
@@ -93,11 +102,11 @@ const Navigation = () => {
     const desktopNavigation = (
         <nav
             className="nuvia-nav nuvia-nav--desktop"
-            aria-label="Primary navigation"
+            aria-label={t.nav.primaryLabel || "Primary navigation"}
         >
-            {NAVIGATION_ITEMS.map((item) => (
+            {NAVIGATION_ITEMS.map((item, index) => (
                 <NavLink
-                    key={item.label}
+                    key={item.path}
                     to={item.path}
                     className={({ isActive }) =>
                         [
@@ -109,7 +118,7 @@ const Navigation = () => {
                     }
                     onClick={(event) => handleNavigation(event, item)}
                 >
-                    {item.label}
+                    {navigationLabels[index] || item.label}
                 </NavLink>
             ))}
         </nav>
@@ -143,7 +152,7 @@ const Navigation = () => {
                     type="button"
                     className="nuvia-mobile-menu__close"
                     onClick={closeMobileMenu}
-                    aria-label="Close navigation"
+                    aria-label={t.header.closeNavigation}
                 >
                     <X size={21} aria-hidden="true" />
                 </button>
@@ -151,11 +160,11 @@ const Navigation = () => {
 
             <nav
                 className="nuvia-mobile-menu__nav"
-                aria-label="Mobile navigation"
+                aria-label={t.nav.primaryLabel || "Mobile navigation"}
             >
                 {NAVIGATION_ITEMS.map((item, index) => (
                     <NavLink
-                        key={item.label}
+                        key={item.path}
                         to={item.path}
                         className={({ isActive }) =>
                             [
@@ -174,17 +183,24 @@ const Navigation = () => {
                         <span>
                             {String(index + 1).padStart(2, "0")}
                         </span>
-                        <strong>{item.label}</strong>
+                        <strong>
+                            {navigationLabels[index] || item.label}
+                        </strong>
                     </NavLink>
                 ))}
             </nav>
 
             <div className="nuvia-mobile-menu__footer">
-                <span>Cosmalac · Dubai</span>
+                <span>{t.footer?.location || "Cosmalac · Dubai"}</span>
                 <p>
-                    Premium skincare.
-                    <br />
-                    Thoughtfully made.
+                    {t.mobile.footer
+                        .split("\n")
+                        .map((line, index) => (
+                            <span key={line}>
+                                {index > 0 && <br />}
+                                {line}
+                            </span>
+                        ))}
                 </p>
             </div>
         </div>
