@@ -1,5 +1,6 @@
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 import Navigation from "./Navigation";
 import useScrollPosition from "../../hooks/useScrollPosition";
@@ -15,6 +16,31 @@ const Header = () => {
     } = useApp();
     const navigate = useNavigate();
     const { language, changeLanguage, t } = useLanguage();
+    const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
+    const languageSwitcherRef = useRef(null);
+
+    useEffect(() => {
+        const handlePointerDown = (event) => {
+            if (
+                languageSwitcherRef.current &&
+                !languageSwitcherRef.current.contains(event.target)
+            ) {
+                setLanguageMenuOpen(false);
+            }
+        };
+
+        document.addEventListener(
+            "pointerdown",
+            handlePointerDown
+        );
+
+        return () => {
+            document.removeEventListener(
+                "pointerdown",
+                handlePointerDown
+            );
+        };
+    }, []);
 
     const scrolled = y > 40;
 
@@ -68,12 +94,16 @@ const Header = () => {
                 <Navigation />
 
                 <div className="nuvia-header__actions">
-                    <div className="nuvia-language-switcher">
+                    <div className="nuvia-language-switcher" ref={languageSwitcherRef}>
                         <button
                             type="button"
                             className="nuvia-language-switcher__trigger"
                             aria-label={t.header.languageLabel}
                             aria-haspopup="listbox"
+                            aria-expanded={languageMenuOpen}
+                            onClick={() =>
+                                setLanguageMenuOpen((open) => !open)
+                            }
                         >
                             <span aria-hidden="true">
                                 {language === "en" ? "🇬🇧" : "🇦🇪"}
@@ -81,16 +111,15 @@ const Header = () => {
                             <span>
                                 {language === "en" ? "EN" : "ع"}
                             </span>
-                            <span
+                            <ChevronDown
                                 className="nuvia-language-switcher__chevron"
+                                size={13}
                                 aria-hidden="true"
-                            >
-                                ▾
-                            </span>
+                            />
                         </button>
 
                         <div
-                            className="nuvia-language-switcher__menu"
+                            className={`nuvia-language-switcher__menu ${languageMenuOpen ? "nuvia-language-switcher__menu--open" : ""}`}
                             role="listbox"
                             aria-label={t.header.languageLabel}
                         >
@@ -99,7 +128,7 @@ const Header = () => {
                                 role="option"
                                 aria-selected={language === "en"}
                                 className="nuvia-language-switcher__option"
-                                onClick={() => changeLanguage("en")}
+                                onClick={() => { changeLanguage("en"); setLanguageMenuOpen(false); }}
                             >
                                 <span aria-hidden="true">🇬🇧</span>
                                 <span>EN</span>
@@ -110,7 +139,7 @@ const Header = () => {
                                 role="option"
                                 aria-selected={language === "ar"}
                                 className="nuvia-language-switcher__option"
-                                onClick={() => changeLanguage("ar")}
+                                onClick={() => { changeLanguage("ar"); setLanguageMenuOpen(false); }}
                             >
                                 <span aria-hidden="true">🇦🇪</span>
                                 <span>ع</span>
