@@ -485,7 +485,8 @@ const Hero = () => {
 
                     <div className="hero__eyebrow">
                         <span className="hero__eyebrow-line" />
-                        <span>PREMIUM SKINCARE FROM DUBAI</span>
+                        <span>PREMIUM SKINCARE</span>
+                        <span className="hero__eyebrow-line" />
                     </div>
 
                     <h1 className="hero__title">
