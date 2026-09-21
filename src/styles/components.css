@@ -262,8 +262,148 @@
 
 
 /* =========================================================
+   LANGUAGE SWITCHER
+   ========================================================= */
+
+.nuvia-language-switcher {
+    position: relative;
+    z-index: 20;
+}
+
+.nuvia-language-switcher__trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+
+    min-width: 62px;
+    min-height: 38px;
+    padding: 0.5rem 0.65rem;
+
+    color: var(--color-brown-800);
+    background: rgba(255, 255, 255, 0.58);
+    border: 1px solid rgba(92, 63, 45, 0.1);
+    border-radius: var(--radius-pill);
+
+    font-size: 0.68rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition:
+        background 250ms ease,
+        border-color 250ms ease,
+        transform 250ms ease,
+        box-shadow 250ms ease;
+}
+
+.nuvia-language-switcher__trigger:hover,
+.nuvia-language-switcher__trigger[aria-expanded="true"] {
+    background: rgba(255, 255, 255, 0.82);
+    border-color: rgba(92, 63, 45, 0.16);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(55, 37, 27, 0.08);
+}
+
+.nuvia-language-switcher__chevron {
+    transition: transform 250ms ease;
+}
+
+.nuvia-language-switcher__trigger[aria-expanded="true"] .nuvia-language-switcher__chevron {
+    transform: rotate(180deg);
+}
+
+.nuvia-language-switcher__menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    min-width: 112px;
+    padding: 0.35rem;
+
+    background: rgba(255, 253, 250, 0.94);
+    border: 1px solid rgba(92, 63, 45, 0.1);
+    border-radius: 14px;
+
+    box-shadow:
+        0 16px 35px rgba(55, 37, 27, 0.12),
+        0 2px 8px rgba(55, 37, 27, 0.05);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-5px) scale(0.98);
+    transform-origin: top right;
+
+    transition:
+        opacity 180ms ease,
+        visibility 180ms ease,
+        transform 180ms ease;
+}
+
+.nuvia-language-switcher__menu--open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.nuvia-language-switcher__option {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+
+    width: 100%;
+    padding: 0.55rem 0.65rem;
+
+    color: var(--color-brown-800);
+    background: transparent;
+    border-radius: 9px;
+
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        background 180ms ease,
+        color 180ms ease;
+}
+
+.nuvia-language-switcher__option:hover,
+.nuvia-language-switcher__option[aria-selected="true"] {
+    color: var(--color-brown-900);
+    background: rgba(248, 240, 228, 0.85);
+}
+
+.nuvia-header--scrolled .nuvia-language-switcher__trigger {
+    background: rgba(255, 255, 255, 0.76);
+}
+
+[dir="rtl"] .nuvia-language-switcher__menu {
+    right: auto;
+    left: 0;
+    transform-origin: top left;
+}
+
+[dir="rtl"] .nuvia-language-switcher__option {
+    text-align: right;
+}
+
+/* =========================================================
    RIGHT SIDE ACTIONS
    ========================================================= */
+
+
 
 .nuvia-header__actions {
     display: flex;
@@ -576,6 +716,10 @@
    ========================================================= */
 
 @media (max-width: 1023px) {
+
+    .nuvia-language-switcher {
+        display: none;
+    }
 
     .nuvia-header {
         /* Ensure header stays visible on scroll */
