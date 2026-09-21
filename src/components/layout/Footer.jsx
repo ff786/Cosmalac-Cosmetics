@@ -134,7 +134,7 @@ const Footer = () => {
 
                     <div className="nuvia-footer__bottom">
                         <p>
-                            © {currentYear} Cosmalac. All rights reserved.
+                            © {currentYear} Cosmalac. All rights reserved. · Developed by MintroLabs
                         </p>
 
                         <div className="nuvia-footer__legal">

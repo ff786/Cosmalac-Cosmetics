@@ -4771,8 +4771,7 @@ body.modal-open {
 .nuvia-footer__bottom p,
 .nuvia-footer__legal a {
     color: rgba(255, 255, 255, 0.35);
-
-    font-size: 0.62rem;
+    font-size: 0.82rem;
 }
 
 .nuvia-footer__legal {
